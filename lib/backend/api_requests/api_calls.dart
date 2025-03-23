@@ -141,19 +141,25 @@ class SWalletAPIGroup {
 }
 
 class ApiAuthLoginPOSTCall {
-  Future<ApiCallResponse> call() async {
+  Future<ApiCallResponse> call({
+    String? userName = '',
+    String? password = '',
+  }) async {
     final baseUrl = SWalletAPIGroup.getBaseUrl();
 
     final ffApiRequestBody = '''
 {
-  "userName": "",
-  "password": ""
+  "userName": "${escapeStringForJson(userName)}",
+  "password": "${escapeStringForJson(password)}"
 }''';
     return ApiManager.instance.makeApiCall(
       callName: '/api/Auth/login POST',
       apiUrl: '${baseUrl}/api/Auth/login',
       callType: ApiCallType.POST,
-      headers: {},
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
@@ -165,6 +171,23 @@ class ApiAuthLoginPOSTCall {
       alwaysAllowBody: false,
     );
   }
+
+  String? token(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.token''',
+      ));
+  String? role(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.role''',
+      ));
+  String? accountId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.accountId''',
+      ));
+  bool? isVerify(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.isVerify''',
+      ));
 }
 
 class ApiAuthVerifyCodePOSTCall {

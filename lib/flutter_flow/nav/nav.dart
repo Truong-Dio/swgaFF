@@ -239,6 +239,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: SignUpPageWidget.routeName,
               path: SignUpPageWidget.routePath,
               builder: (context, params) => SignUpPageWidget(),
+            ),
+            FFRoute(
+              name: PhoneNumberFieldWidget.routeName,
+              path: PhoneNumberFieldWidget.routePath,
+              builder: (context, params) => PhoneNumberFieldWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

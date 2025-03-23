@@ -1,4 +1,4 @@
-name: stationery_app_template
+name: swallet
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -35,6 +35,7 @@ dependencies:
   country_code_picker: ^3.0.0
   csslib: 0.17.3
   dropdown_button2: 2.3.9
+  easy_debounce: 2.0.1
   equatable: 2.0.5
   expandable: 5.0.1
   file_picker: 8.1.2

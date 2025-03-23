@@ -13,12 +13,9 @@ class SignInPageModel extends FlutterFlowModel<SignInPageWidget> {
   String? Function(BuildContext, String?)? textController1Validator;
   String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter email address';
+      return 'Please enter your username';
     }
 
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Please enter email address';
-    }
     return null;
   }
 

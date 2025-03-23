@@ -50,3 +50,5 @@ export '/profile/security_page/security_page_widget.dart'
 export '/profile/change_password_page/change_password_page_widget.dart'
     show ChangePasswordPageWidget;
 export '/login/sign_up_page/sign_up_page_widget.dart' show SignUpPageWidget;
+export '/login/phone_number_field/phone_number_field_widget.dart'
+    show PhoneNumberFieldWidget;

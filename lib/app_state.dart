@@ -47,10 +47,6 @@ class FFAppState extends ChangeNotifier {
       _campusId = prefs.getString('ff_campusId') ?? _campusId;
     });
     _safeInit(() {
-      _studentCardFront =
-          prefs.getString('ff_studentCardFront') ?? _studentCardFront;
-    });
-    _safeInit(() {
       _code = prefs.getString('ff_code') ?? _code;
     });
     _safeInit(() {
@@ -70,6 +66,12 @@ class FFAppState extends ChangeNotifier {
     });
     _safeInit(() {
       _brandName = prefs.getString('ff_brandName') ?? _brandName;
+    });
+    _safeInit(() {
+      _token = prefs.getString('ff_token') ?? _token;
+    });
+    _safeInit(() {
+      _accountId = prefs.getString('ff_accountId') ?? _accountId;
     });
   }
 
@@ -397,13 +399,6 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_campusId', value);
   }
 
-  String _studentCardFront = '';
-  String get studentCardFront => _studentCardFront;
-  set studentCardFront(String value) {
-    _studentCardFront = value;
-    prefs.setString('ff_studentCardFront', value);
-  }
-
   String _code = '';
   String get code => _code;
   set code(String value) {
@@ -438,6 +433,34 @@ class FFAppState extends ChangeNotifier {
   set brandName(String value) {
     _brandName = value;
     prefs.setString('ff_brandName', value);
+  }
+
+  String _photoUploaded = 'Uploaded successfully';
+  String get photoUploaded => _photoUploaded;
+  set photoUploaded(String value) {
+    _photoUploaded = value;
+  }
+
+  String _password = '';
+  String get password => _password;
+  set password(String value) {
+    _password = value;
+  }
+
+  /// authToken
+  String _token = '';
+  String get token => _token;
+  set token(String value) {
+    _token = value;
+    prefs.setString('ff_token', value);
+  }
+
+  /// loginaccount
+  String _accountId = '';
+  String get accountId => _accountId;
+  set accountId(String value) {
+    _accountId = value;
+    prefs.setString('ff_accountId', value);
   }
 }
 

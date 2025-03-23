@@ -1,5 +1,5 @@
+import '/all_component/phone/phone_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'sign_up_page_widget.dart' show SignUpPageWidget;
 import 'package:flutter/material.dart';
@@ -14,12 +14,9 @@ class SignUpPageModel extends FlutterFlowModel<SignUpPageWidget> {
   String? Function(BuildContext, String?)? textController1Validator;
   String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter email address';
+      return 'Username is required';
     }
 
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Please enter email address';
-    }
     return null;
   }
 
@@ -40,19 +37,42 @@ class SignUpPageModel extends FlutterFlowModel<SignUpPageWidget> {
   FocusNode? textFieldFocusNode3;
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
+  String? _textController3Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'email is require';
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Has to be a valid email address.';
+    }
+    return null;
+  }
+
   // State field(s) for TextField widget.
   FocusNode? textFieldFocusNode4;
   TextEditingController? textController4;
   String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  String? _textController4Validator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Full Name is required';
+    }
+
+    return null;
+  }
+
+  // Model for phone component.
+  late PhoneModel phoneModel;
 
   @override
   void initState(BuildContext context) {
     textController1Validator = _textController1Validator;
     passwordVisibility = false;
     textController2Validator = _textController2Validator;
+    textController3Validator = _textController3Validator;
+    textController4Validator = _textController4Validator;
+    phoneModel = createModel(context, () => PhoneModel());
+    phoneModel.phoneNumberFieldTextControllerValidator =
+        _formTextFieldValidator;
   }
 
   @override
@@ -68,5 +88,24 @@ class SignUpPageModel extends FlutterFlowModel<SignUpPageWidget> {
 
     textFieldFocusNode4?.dispose();
     textController4?.dispose();
+
+    phoneModel.dispose();
+  }
+
+  /// Additional helper methods.
+
+  String? _formTextFieldValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Phone is required';
+    }
+
+    if (val.length < 9) {
+      return 'Phone number invalid';
+    }
+    if (val.length > 12) {
+      return 'Phone number invalid';
+    }
+
+    return null;
   }
 }

@@ -94,7 +94,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                               alignment: AlignmentDirectional(1.0, 1.0),
                               children: [
                                 Image.asset(
-                                  'assets/images/profile.png',
+                                  'assets/images/OIP.jpg',
                                   width: 87.0,
                                   height: 87.0,
                                   fit: BoxFit.contain,
