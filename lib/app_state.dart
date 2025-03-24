@@ -73,6 +73,12 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _accountId = prefs.getString('ff_accountId') ?? _accountId;
     });
+    _safeInit(() {
+      _roleId = prefs.getString('ff_roleId') ?? _roleId;
+    });
+    _safeInit(() {
+      _roleName = prefs.getString('ff_roleName') ?? _roleName;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -461,6 +467,20 @@ class FFAppState extends ChangeNotifier {
   set accountId(String value) {
     _accountId = value;
     prefs.setString('ff_accountId', value);
+  }
+
+  String _roleId = '';
+  String get roleId => _roleId;
+  set roleId(String value) {
+    _roleId = value;
+    prefs.setString('ff_roleId', value);
+  }
+
+  String _roleName = '';
+  String get roleName => _roleName;
+  set roleName(String value) {
+    _roleName = value;
+    prefs.setString('ff_roleName', value);
   }
 }
 

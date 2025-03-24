@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/backend/schema/structs/index.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -361,12 +362,80 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                             FFAppState().userName = _model.textController1.text;
                             FFAppState().password = _model.textController2.text;
                             safeSetState(() {});
-                            await SWalletAPIGroup.apiAuthLoginPOSTCall.call(
+                            _model.accountId =
+                                await SWalletAPIGroup.apiAuthLoginPOSTCall.call(
                               userName: FFAppState().userName,
                               password: FFAppState().password,
                             );
 
+                            _model.accountData = await SWalletAPIGroup
+                                .apiStudentAccountidGETCall
+                                .call(
+                              id: AuthValueStruct.maybeFromMap(
+                                      (_model.accountId?.jsonBody ?? ''))
+                                  ?.accountId,
+                            );
+
+                            _model.getAccountUser =
+                                await SWalletAPIGroup.apiAccountidGETCall.call(
+                              id: AuthValueStruct.maybeFromMap(
+                                      (_model.accountId?.jsonBody ?? ''))
+                                  ?.accountId,
+                            );
+
+                            FFAppState().fullName =
+                                AccountStuIdGetInfoStruct.maybeFromMap(
+                                        (_model.accountData?.jsonBody ?? ''))!
+                                    .fullName;
+                            FFAppState()
+                                .email = AccountIdGetStruct.maybeFromMap(
+                                    (_model.getAccountUser?.jsonBody ?? ''))!
+                                .email;
+                            FFAppState()
+                                .phone = AccountIdGetStruct.maybeFromMap(
+                                    (_model.getAccountUser?.jsonBody ?? ''))!
+                                .phone;
+                            FFAppState()
+                                .userName = AccountIdGetStruct.maybeFromMap(
+                                    (_model.getAccountUser?.jsonBody ?? ''))!
+                                .userName;
+                            FFAppState().campusId =
+                                AccountStuIdGetInfoStruct.maybeFromMap(
+                                        (_model.accountData?.jsonBody ?? ''))!
+                                    .campusId;
+                            FFAppState().code =
+                                AccountStuIdGetInfoStruct.maybeFromMap(
+                                        (_model.accountData?.jsonBody ?? ''))!
+                                    .code;
+                            FFAppState().gender =
+                                AccountStuIdGetInfoStruct.maybeFromMap(
+                                        (_model.accountData?.jsonBody ?? ''))!
+                                    .gender;
+                            FFAppState().address =
+                                AccountStuIdGetInfoStruct.maybeFromMap(
+                                        (_model.accountData?.jsonBody ?? ''))!
+                                    .address;
+                            FFAppState().dateOfBirth = getJsonField(
+                              (_model.accountData?.jsonBody ?? ''),
+                              r'''$.dateOfBirth''',
+                            );
+                            FFAppState().token = AuthValueStruct.maybeFromMap(
+                                    (_model.accountId?.jsonBody ?? ''))!
+                                .token;
+                            FFAppState()
+                                .roleName = AccountIdGetStruct.maybeFromMap(
+                                    (_model.getAccountUser?.jsonBody ?? ''))!
+                                .roleName;
+                            FFAppState()
+                                .roleId = AccountIdGetStruct.maybeFromMap(
+                                    (_model.getAccountUser?.jsonBody ?? ''))!
+                                .roleId
+                                .toString();
+                            safeSetState(() {});
+
                             context.goNamed(BottomPageWidget.routeName);
+
+                            safeSetState(() {});
                           },
                           text: 'Sign in',
                           options: FFButtonOptions(

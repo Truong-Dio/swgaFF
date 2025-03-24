@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'sign_in_page_widget.dart' show SignInPageWidget;
@@ -31,6 +32,13 @@ class SignInPageModel extends FlutterFlowModel<SignInPageWidget> {
 
     return null;
   }
+
+  // Stores action output result for [Backend Call - API (/api/Auth/login POST)] action in Button widget.
+  ApiCallResponse? accountId;
+  // Stores action output result for [Backend Call - API (/api/Student/account/{id} GET)] action in Button widget.
+  ApiCallResponse? accountData;
+  // Stores action output result for [Backend Call - API (/api/Account/{id} GET)] action in Button widget.
+  ApiCallResponse? getAccountUser;
 
   @override
   void initState(BuildContext context) {

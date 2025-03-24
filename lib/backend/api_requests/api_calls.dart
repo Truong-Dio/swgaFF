@@ -503,6 +503,69 @@ class ApiStudentAccountidGETCall {
       alwaysAllowBody: false,
     );
   }
+
+  String? getStuId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.id''',
+      ));
+  String? getStuCampusId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.campusId''',
+      ));
+  String? getStuAccountId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.accountId''',
+      ));
+  String? getStuCardFront(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.studentCardFront''',
+      ));
+  String? getStuFullName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.fullName''',
+      ));
+  String? getStuCode(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.code''',
+      ));
+  int? getStuGender(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.gender''',
+      ));
+  String? getStuDOB(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.dateOfBirth''',
+      ));
+  String? getStuAddress(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.address''',
+      ));
+  int? getStuTotalIncome(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.totalIncome''',
+      ));
+  int? getStuSpending(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.totalSpending''',
+      ));
+  String? getStuDateCreated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateCreated''',
+      ));
+  String? getStuDateUpdated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateUpdated''',
+      ));
+  int? getStuState(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.state''',
+      ));
+  bool? getStuStatus(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.status''',
+      ));
 }
 
 class ApiAccountStudentRegisterPOSTCall {
@@ -636,6 +699,54 @@ class ApiAccountidGETCall {
       alwaysAllowBody: false,
     );
   }
+
+  String? accUserId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.id''',
+      ));
+  int? accUserRoleId(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.roleId''',
+      ));
+  String? accUserRoleName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.roleName''',
+      ));
+  String? accUserUserName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.userName''',
+      ));
+  String? accUserPhone(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.phone''',
+      ));
+  String? accUserEmail(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.email''',
+      ));
+  bool? accUserIsverify(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.isVerify''',
+      ));
+  String? accUserDateCreated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateCreated''',
+      ));
+  String? accUserDateUpdated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateUpdated''',
+      ));
+  String? accUserDescription(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.description''',
+      ));
+  bool? accUserStatus(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.status''',
+      ));
 }
 
 class ApiAccountidPUTCall {
