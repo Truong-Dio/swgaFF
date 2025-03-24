@@ -2,13 +2,13 @@ import '/all_component/product_contanier/product_contanier_widget.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'brand_voucher_page_widget.dart' show BrandVoucherPageWidget;
+import 'voucher_of_campaign_widget.dart' show VoucherOfCampaignWidget;
 import 'package:flutter/material.dart';
 
-class BrandVoucherPageModel extends FlutterFlowModel<BrandVoucherPageWidget> {
+class VoucherOfCampaignModel extends FlutterFlowModel<VoucherOfCampaignWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - API (/api/Voucher GET)] action in brandVoucherPage widget.
+  // Stores action output result for [Backend Call - API (/api/Voucher GET)] action in voucherOfCampaign widget.
   ApiCallResponse? voucherListGet;
   // Models for ProductContanier dynamic component.
   late FlutterFlowDynamicModels<ProductContanierModel> productContanierModels;

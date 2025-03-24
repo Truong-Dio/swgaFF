@@ -1,10 +1,11 @@
 import '/all_component/appbar/appbar_widget.dart';
 import '/all_component/product_contanier/product_contanier_widget.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter/scheduler.dart';
 import 'search_result_model.dart';
 export 'search_result_model.dart';
 
@@ -28,6 +29,17 @@ class _SearchResultWidgetState extends State<SearchResultWidget> {
     super.initState();
     _model = createModel(context, () => SearchResultModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.voucherListGet = await SWalletAPIGroup.apiVoucherGETCall.call(
+        brandId: '01JMH34A946RYPBC6AAAHTPPQF',
+        state: true,
+        isAsc: true,
+        page: 1,
+        size: 4,
+      );
+    });
+
     _model.textController ??= TextEditingController();
     _model.textFieldFocusNode ??= FocusNode();
 
@@ -43,8 +55,6 @@ class _SearchResultWidgetState extends State<SearchResultWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -203,10 +213,11 @@ class _SearchResultWidgetState extends State<SearchResultWidget> {
                           EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                       child: Builder(
                         builder: (context) {
-                          final resultlist = FFAppState()
-                              .detaillist
-                              .where((e) => e.itsResult)
-                              .toList();
+                          final resultList = VoucherListStruct.maybeFromMap(
+                                      (_model.voucherListGet?.jsonBody ?? ''))
+                                  ?.voucheritems
+                                  .toList() ??
+                              [];
 
                           return GridView.builder(
                             padding: EdgeInsets.fromLTRB(
@@ -238,57 +249,24 @@ class _SearchResultWidgetState extends State<SearchResultWidget> {
                             primary: false,
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
-                            itemCount: resultlist.length,
-                            itemBuilder: (context, resultlistIndex) {
-                              final resultlistItem =
-                                  resultlist[resultlistIndex];
+                            itemCount: resultList.length,
+                            itemBuilder: (context, resultListIndex) {
+                              final resultListItem =
+                                  resultList[resultListIndex];
                               return Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     8.0, 0.0, 8.0, 0.0),
-                                child: InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      VoucherDetailPageWidget.routeName,
-                                      queryParameters: {
-                                        'detail': serializeParam(
-                                          resultlistItem,
-                                          ParamType.DataStruct,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: wrapWithModel(
-                                    model:
-                                        _model.productContanierModels.getModel(
-                                      resultlistIndex.toString(),
-                                      resultlistIndex,
+                                child: wrapWithModel(
+                                  model: _model.productContanierModels.getModel(
+                                    resultListItem.id,
+                                    resultListIndex,
+                                  ),
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: ProductContanierWidget(
+                                    key: Key(
+                                      'Keyqga_${resultListItem.id}',
                                     ),
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ProductContanierWidget(
-                                      key: Key(
-                                        'Keyqga_${resultlistIndex.toString()}',
-                                      ),
-                                      colordata: resultlistItem,
-                                      onTapFav: () async {
-                                        if (resultlistItem.isFav == true) {
-                                          FFAppState().updateDetaillistAtIndex(
-                                            resultlistItem.id,
-                                            (e) => e..isFav = false,
-                                          );
-                                          safeSetState(() {});
-                                        } else {
-                                          FFAppState().updateDetaillistAtIndex(
-                                            resultlistItem.id,
-                                            (e) => e..isFav = true,
-                                          );
-                                          safeSetState(() {});
-                                        }
-                                      },
-                                    ),
+                                    voucherList: resultListItem,
                                   ),
                                 ),
                               );

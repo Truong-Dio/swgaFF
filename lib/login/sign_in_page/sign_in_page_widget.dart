@@ -362,30 +362,31 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                             FFAppState().userName = _model.textController1.text;
                             FFAppState().password = _model.textController2.text;
                             safeSetState(() {});
-                            _model.accountId =
+                            _model.authLogin =
                                 await SWalletAPIGroup.apiAuthLoginPOSTCall.call(
-                              userName: FFAppState().userName,
-                              password: FFAppState().password,
+                              userName: _model.textController1.text,
+                              password: _model.textController2.text,
                             );
 
-                            _model.accountData = await SWalletAPIGroup
+                            _model.accountStuData = await SWalletAPIGroup
                                 .apiStudentAccountidGETCall
                                 .call(
                               id: AuthValueStruct.maybeFromMap(
-                                      (_model.accountId?.jsonBody ?? ''))
+                                      (_model.authLogin?.jsonBody ?? ''))
                                   ?.accountId,
                             );
 
                             _model.getAccountUser =
                                 await SWalletAPIGroup.apiAccountidGETCall.call(
                               id: AuthValueStruct.maybeFromMap(
-                                      (_model.accountId?.jsonBody ?? ''))
+                                      (_model.authLogin?.jsonBody ?? ''))
                                   ?.accountId,
                             );
 
                             FFAppState().fullName =
                                 AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountData?.jsonBody ?? ''))!
+                                        (_model.accountStuData?.jsonBody ??
+                                            ''))!
                                     .fullName;
                             FFAppState()
                                 .email = AccountIdGetStruct.maybeFromMap(
@@ -401,26 +402,29 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                 .userName;
                             FFAppState().campusId =
                                 AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountData?.jsonBody ?? ''))!
+                                        (_model.accountStuData?.jsonBody ??
+                                            ''))!
                                     .campusId;
-                            FFAppState().code =
-                                AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountData?.jsonBody ?? ''))!
-                                    .code;
+                            FFAppState()
+                                .code = AccountStuIdGetInfoStruct.maybeFromMap(
+                                    (_model.accountStuData?.jsonBody ?? ''))!
+                                .code;
                             FFAppState().gender =
                                 AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountData?.jsonBody ?? ''))!
+                                        (_model.accountStuData?.jsonBody ??
+                                            ''))!
                                     .gender;
                             FFAppState().address =
                                 AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountData?.jsonBody ?? ''))!
+                                        (_model.accountStuData?.jsonBody ??
+                                            ''))!
                                     .address;
                             FFAppState().dateOfBirth = getJsonField(
-                              (_model.accountData?.jsonBody ?? ''),
+                              (_model.accountStuData?.jsonBody ?? ''),
                               r'''$.dateOfBirth''',
                             );
                             FFAppState().token = AuthValueStruct.maybeFromMap(
-                                    (_model.accountId?.jsonBody ?? ''))!
+                                    (_model.authLogin?.jsonBody ?? ''))!
                                 .token;
                             FFAppState()
                                 .roleName = AccountIdGetStruct.maybeFromMap(

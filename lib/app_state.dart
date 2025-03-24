@@ -482,6 +482,64 @@ class FFAppState extends ChangeNotifier {
     _roleName = value;
     prefs.setString('ff_roleName', value);
   }
+
+  List<ItemsStruct> _campaignList = [];
+  List<ItemsStruct> get campaignList => _campaignList;
+  set campaignList(List<ItemsStruct> value) {
+    _campaignList = value;
+  }
+
+  void addToCampaignList(ItemsStruct value) {
+    campaignList.add(value);
+  }
+
+  void removeFromCampaignList(ItemsStruct value) {
+    campaignList.remove(value);
+  }
+
+  void removeAtIndexFromCampaignList(int index) {
+    campaignList.removeAt(index);
+  }
+
+  void updateCampaignListAtIndex(
+    int index,
+    ItemsStruct Function(ItemsStruct) updateFn,
+  ) {
+    campaignList[index] = updateFn(_campaignList[index]);
+  }
+
+  void insertAtIndexInCampaignList(int index, ItemsStruct value) {
+    campaignList.insert(index, value);
+  }
+
+  List<VoucheritemsStruct> _voucherList = [];
+  List<VoucheritemsStruct> get voucherList => _voucherList;
+  set voucherList(List<VoucheritemsStruct> value) {
+    _voucherList = value;
+  }
+
+  void addToVoucherList(VoucheritemsStruct value) {
+    voucherList.add(value);
+  }
+
+  void removeFromVoucherList(VoucheritemsStruct value) {
+    voucherList.remove(value);
+  }
+
+  void removeAtIndexFromVoucherList(int index) {
+    voucherList.removeAt(index);
+  }
+
+  void updateVoucherListAtIndex(
+    int index,
+    VoucheritemsStruct Function(VoucheritemsStruct) updateFn,
+  ) {
+    voucherList[index] = updateFn(_voucherList[index]);
+  }
+
+  void insertAtIndexInVoucherList(int index, VoucheritemsStruct value) {
+    voucherList.insert(index, value);
+  }
 }
 
 void _safeInit(Function() initializeField) {

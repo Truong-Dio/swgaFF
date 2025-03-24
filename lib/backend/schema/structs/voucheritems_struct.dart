@@ -5,52 +5,48 @@ import '/backend/schema/util/schema_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class ItemsStruct extends BaseStruct {
-  ItemsStruct({
+class VoucheritemsStruct extends BaseStruct {
+  VoucheritemsStruct({
     String? id,
     String? brandId,
     String? brandName,
-    String? brandAcronym,
     String? typeId,
     String? typeName,
-    String? campaignName,
+    String? voucherName,
+    int? price,
+    double? rate,
+    String? condition,
     String? image,
     String? imageName,
     String? file,
     String? fileName,
-    String? condition,
-    String? link,
-    String? startOn,
-    String? endOn,
-    int? duration,
-    int? totalIncome,
-    int? totalSpending,
     String? dateCreated,
     String? dateUpdated,
     String? description,
+    bool? state,
     bool? status,
+    int? numberOfItems,
+    String? numberOfItemsAvailable,
   })  : _id = id,
         _brandId = brandId,
         _brandName = brandName,
-        _brandAcronym = brandAcronym,
         _typeId = typeId,
         _typeName = typeName,
-        _campaignName = campaignName,
+        _voucherName = voucherName,
+        _price = price,
+        _rate = rate,
+        _condition = condition,
         _image = image,
         _imageName = imageName,
         _file = file,
         _fileName = fileName,
-        _condition = condition,
-        _link = link,
-        _startOn = startOn,
-        _endOn = endOn,
-        _duration = duration,
-        _totalIncome = totalIncome,
-        _totalSpending = totalSpending,
         _dateCreated = dateCreated,
         _dateUpdated = dateUpdated,
         _description = description,
-        _status = status;
+        _state = state,
+        _status = status,
+        _numberOfItems = numberOfItems,
+        _numberOfItemsAvailable = numberOfItemsAvailable;
 
   // "id" field.
   String? _id;
@@ -73,13 +69,6 @@ class ItemsStruct extends BaseStruct {
 
   bool hasBrandName() => _brandName != null;
 
-  // "brandAcronym" field.
-  String? _brandAcronym;
-  String get brandAcronym => _brandAcronym ?? '';
-  set brandAcronym(String? val) => _brandAcronym = val;
-
-  bool hasBrandAcronym() => _brandAcronym != null;
-
   // "typeId" field.
   String? _typeId;
   String get typeId => _typeId ?? '';
@@ -94,12 +83,37 @@ class ItemsStruct extends BaseStruct {
 
   bool hasTypeName() => _typeName != null;
 
-  // "campaignName" field.
-  String? _campaignName;
-  String get campaignName => _campaignName ?? '';
-  set campaignName(String? val) => _campaignName = val;
+  // "voucherName" field.
+  String? _voucherName;
+  String get voucherName => _voucherName ?? '';
+  set voucherName(String? val) => _voucherName = val;
 
-  bool hasCampaignName() => _campaignName != null;
+  bool hasVoucherName() => _voucherName != null;
+
+  // "price" field.
+  int? _price;
+  int get price => _price ?? 0;
+  set price(int? val) => _price = val;
+
+  void incrementPrice(int amount) => price = price + amount;
+
+  bool hasPrice() => _price != null;
+
+  // "rate" field.
+  double? _rate;
+  double get rate => _rate ?? 0.0;
+  set rate(double? val) => _rate = val;
+
+  void incrementRate(double amount) => rate = rate + amount;
+
+  bool hasRate() => _rate != null;
+
+  // "condition" field.
+  String? _condition;
+  String get condition => _condition ?? '';
+  set condition(String? val) => _condition = val;
+
+  bool hasCondition() => _condition != null;
 
   // "image" field.
   String? _image;
@@ -129,62 +143,6 @@ class ItemsStruct extends BaseStruct {
 
   bool hasFileName() => _fileName != null;
 
-  // "condition" field.
-  String? _condition;
-  String get condition => _condition ?? '';
-  set condition(String? val) => _condition = val;
-
-  bool hasCondition() => _condition != null;
-
-  // "link" field.
-  String? _link;
-  String get link => _link ?? '';
-  set link(String? val) => _link = val;
-
-  bool hasLink() => _link != null;
-
-  // "startOn" field.
-  String? _startOn;
-  String get startOn => _startOn ?? '';
-  set startOn(String? val) => _startOn = val;
-
-  bool hasStartOn() => _startOn != null;
-
-  // "endOn" field.
-  String? _endOn;
-  String get endOn => _endOn ?? '';
-  set endOn(String? val) => _endOn = val;
-
-  bool hasEndOn() => _endOn != null;
-
-  // "duration" field.
-  int? _duration;
-  int get duration => _duration ?? 0;
-  set duration(int? val) => _duration = val;
-
-  void incrementDuration(int amount) => duration = duration + amount;
-
-  bool hasDuration() => _duration != null;
-
-  // "totalIncome" field.
-  int? _totalIncome;
-  int get totalIncome => _totalIncome ?? 0;
-  set totalIncome(int? val) => _totalIncome = val;
-
-  void incrementTotalIncome(int amount) => totalIncome = totalIncome + amount;
-
-  bool hasTotalIncome() => _totalIncome != null;
-
-  // "totalSpending" field.
-  int? _totalSpending;
-  int get totalSpending => _totalSpending ?? 0;
-  set totalSpending(int? val) => _totalSpending = val;
-
-  void incrementTotalSpending(int amount) =>
-      totalSpending = totalSpending + amount;
-
-  bool hasTotalSpending() => _totalSpending != null;
-
   // "dateCreated" field.
   String? _dateCreated;
   String get dateCreated => _dateCreated ?? '';
@@ -206,6 +164,13 @@ class ItemsStruct extends BaseStruct {
 
   bool hasDescription() => _description != null;
 
+  // "state" field.
+  bool? _state;
+  bool get state => _state ?? false;
+  set state(bool? val) => _state = val;
+
+  bool hasState() => _state != null;
+
   // "status" field.
   bool? _status;
   bool get status => _status ?? false;
@@ -213,57 +178,72 @@ class ItemsStruct extends BaseStruct {
 
   bool hasStatus() => _status != null;
 
-  static ItemsStruct fromMap(Map<String, dynamic> data) => ItemsStruct(
+  // "numberOfItems" field.
+  int? _numberOfItems;
+  int get numberOfItems => _numberOfItems ?? 0;
+  set numberOfItems(int? val) => _numberOfItems = val;
+
+  void incrementNumberOfItems(int amount) =>
+      numberOfItems = numberOfItems + amount;
+
+  bool hasNumberOfItems() => _numberOfItems != null;
+
+  // "numberOfItemsAvailable" field.
+  String? _numberOfItemsAvailable;
+  String get numberOfItemsAvailable => _numberOfItemsAvailable ?? '';
+  set numberOfItemsAvailable(String? val) => _numberOfItemsAvailable = val;
+
+  bool hasNumberOfItemsAvailable() => _numberOfItemsAvailable != null;
+
+  static VoucheritemsStruct fromMap(Map<String, dynamic> data) =>
+      VoucheritemsStruct(
         id: data['id'] as String?,
         brandId: data['brandId'] as String?,
         brandName: data['brandName'] as String?,
-        brandAcronym: data['brandAcronym'] as String?,
         typeId: data['typeId'] as String?,
         typeName: data['typeName'] as String?,
-        campaignName: data['campaignName'] as String?,
+        voucherName: data['voucherName'] as String?,
+        price: castToType<int>(data['price']),
+        rate: castToType<double>(data['rate']),
+        condition: data['condition'] as String?,
         image: data['image'] as String?,
         imageName: data['imageName'] as String?,
         file: data['file'] as String?,
         fileName: data['fileName'] as String?,
-        condition: data['condition'] as String?,
-        link: data['link'] as String?,
-        startOn: data['startOn'] as String?,
-        endOn: data['endOn'] as String?,
-        duration: castToType<int>(data['duration']),
-        totalIncome: castToType<int>(data['totalIncome']),
-        totalSpending: castToType<int>(data['totalSpending']),
         dateCreated: data['dateCreated'] as String?,
         dateUpdated: data['dateUpdated'] as String?,
         description: data['description'] as String?,
+        state: data['state'] as bool?,
         status: data['status'] as bool?,
+        numberOfItems: castToType<int>(data['numberOfItems']),
+        numberOfItemsAvailable: data['numberOfItemsAvailable'] as String?,
       );
 
-  static ItemsStruct? maybeFromMap(dynamic data) =>
-      data is Map ? ItemsStruct.fromMap(data.cast<String, dynamic>()) : null;
+  static VoucheritemsStruct? maybeFromMap(dynamic data) => data is Map
+      ? VoucheritemsStruct.fromMap(data.cast<String, dynamic>())
+      : null;
 
   Map<String, dynamic> toMap() => {
         'id': _id,
         'brandId': _brandId,
         'brandName': _brandName,
-        'brandAcronym': _brandAcronym,
         'typeId': _typeId,
         'typeName': _typeName,
-        'campaignName': _campaignName,
+        'voucherName': _voucherName,
+        'price': _price,
+        'rate': _rate,
+        'condition': _condition,
         'image': _image,
         'imageName': _imageName,
         'file': _file,
         'fileName': _fileName,
-        'condition': _condition,
-        'link': _link,
-        'startOn': _startOn,
-        'endOn': _endOn,
-        'duration': _duration,
-        'totalIncome': _totalIncome,
-        'totalSpending': _totalSpending,
         'dateCreated': _dateCreated,
         'dateUpdated': _dateUpdated,
         'description': _description,
+        'state': _state,
         'status': _status,
+        'numberOfItems': _numberOfItems,
+        'numberOfItemsAvailable': _numberOfItemsAvailable,
       }.withoutNulls;
 
   @override
@@ -280,10 +260,6 @@ class ItemsStruct extends BaseStruct {
           _brandName,
           ParamType.String,
         ),
-        'brandAcronym': serializeParam(
-          _brandAcronym,
-          ParamType.String,
-        ),
         'typeId': serializeParam(
           _typeId,
           ParamType.String,
@@ -292,8 +268,20 @@ class ItemsStruct extends BaseStruct {
           _typeName,
           ParamType.String,
         ),
-        'campaignName': serializeParam(
-          _campaignName,
+        'voucherName': serializeParam(
+          _voucherName,
+          ParamType.String,
+        ),
+        'price': serializeParam(
+          _price,
+          ParamType.int,
+        ),
+        'rate': serializeParam(
+          _rate,
+          ParamType.double,
+        ),
+        'condition': serializeParam(
+          _condition,
           ParamType.String,
         ),
         'image': serializeParam(
@@ -312,34 +300,6 @@ class ItemsStruct extends BaseStruct {
           _fileName,
           ParamType.String,
         ),
-        'condition': serializeParam(
-          _condition,
-          ParamType.String,
-        ),
-        'link': serializeParam(
-          _link,
-          ParamType.String,
-        ),
-        'startOn': serializeParam(
-          _startOn,
-          ParamType.String,
-        ),
-        'endOn': serializeParam(
-          _endOn,
-          ParamType.String,
-        ),
-        'duration': serializeParam(
-          _duration,
-          ParamType.int,
-        ),
-        'totalIncome': serializeParam(
-          _totalIncome,
-          ParamType.int,
-        ),
-        'totalSpending': serializeParam(
-          _totalSpending,
-          ParamType.int,
-        ),
         'dateCreated': serializeParam(
           _dateCreated,
           ParamType.String,
@@ -352,14 +312,26 @@ class ItemsStruct extends BaseStruct {
           _description,
           ParamType.String,
         ),
+        'state': serializeParam(
+          _state,
+          ParamType.bool,
+        ),
         'status': serializeParam(
           _status,
           ParamType.bool,
         ),
+        'numberOfItems': serializeParam(
+          _numberOfItems,
+          ParamType.int,
+        ),
+        'numberOfItemsAvailable': serializeParam(
+          _numberOfItemsAvailable,
+          ParamType.String,
+        ),
       }.withoutNulls;
 
-  static ItemsStruct fromSerializableMap(Map<String, dynamic> data) =>
-      ItemsStruct(
+  static VoucheritemsStruct fromSerializableMap(Map<String, dynamic> data) =>
+      VoucheritemsStruct(
         id: deserializeParam(
           data['id'],
           ParamType.String,
@@ -375,11 +347,6 @@ class ItemsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        brandAcronym: deserializeParam(
-          data['brandAcronym'],
-          ParamType.String,
-          false,
-        ),
         typeId: deserializeParam(
           data['typeId'],
           ParamType.String,
@@ -390,8 +357,23 @@ class ItemsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        campaignName: deserializeParam(
-          data['campaignName'],
+        voucherName: deserializeParam(
+          data['voucherName'],
+          ParamType.String,
+          false,
+        ),
+        price: deserializeParam(
+          data['price'],
+          ParamType.int,
+          false,
+        ),
+        rate: deserializeParam(
+          data['rate'],
+          ParamType.double,
+          false,
+        ),
+        condition: deserializeParam(
+          data['condition'],
           ParamType.String,
           false,
         ),
@@ -415,41 +397,6 @@ class ItemsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
-        condition: deserializeParam(
-          data['condition'],
-          ParamType.String,
-          false,
-        ),
-        link: deserializeParam(
-          data['link'],
-          ParamType.String,
-          false,
-        ),
-        startOn: deserializeParam(
-          data['startOn'],
-          ParamType.String,
-          false,
-        ),
-        endOn: deserializeParam(
-          data['endOn'],
-          ParamType.String,
-          false,
-        ),
-        duration: deserializeParam(
-          data['duration'],
-          ParamType.int,
-          false,
-        ),
-        totalIncome: deserializeParam(
-          data['totalIncome'],
-          ParamType.int,
-          false,
-        ),
-        totalSpending: deserializeParam(
-          data['totalSpending'],
-          ParamType.int,
-          false,
-        ),
         dateCreated: deserializeParam(
           data['dateCreated'],
           ParamType.String,
@@ -465,41 +412,54 @@ class ItemsStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        state: deserializeParam(
+          data['state'],
+          ParamType.bool,
+          false,
+        ),
         status: deserializeParam(
           data['status'],
           ParamType.bool,
           false,
         ),
+        numberOfItems: deserializeParam(
+          data['numberOfItems'],
+          ParamType.int,
+          false,
+        ),
+        numberOfItemsAvailable: deserializeParam(
+          data['numberOfItemsAvailable'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
-  String toString() => 'ItemsStruct(${toMap()})';
+  String toString() => 'VoucheritemsStruct(${toMap()})';
 
   @override
   bool operator ==(Object other) {
-    return other is ItemsStruct &&
+    return other is VoucheritemsStruct &&
         id == other.id &&
         brandId == other.brandId &&
         brandName == other.brandName &&
-        brandAcronym == other.brandAcronym &&
         typeId == other.typeId &&
         typeName == other.typeName &&
-        campaignName == other.campaignName &&
+        voucherName == other.voucherName &&
+        price == other.price &&
+        rate == other.rate &&
+        condition == other.condition &&
         image == other.image &&
         imageName == other.imageName &&
         file == other.file &&
         fileName == other.fileName &&
-        condition == other.condition &&
-        link == other.link &&
-        startOn == other.startOn &&
-        endOn == other.endOn &&
-        duration == other.duration &&
-        totalIncome == other.totalIncome &&
-        totalSpending == other.totalSpending &&
         dateCreated == other.dateCreated &&
         dateUpdated == other.dateUpdated &&
         description == other.description &&
-        status == other.status;
+        state == other.state &&
+        status == other.status &&
+        numberOfItems == other.numberOfItems &&
+        numberOfItemsAvailable == other.numberOfItemsAvailable;
   }
 
   @override
@@ -507,73 +467,67 @@ class ItemsStruct extends BaseStruct {
         id,
         brandId,
         brandName,
-        brandAcronym,
         typeId,
         typeName,
-        campaignName,
+        voucherName,
+        price,
+        rate,
+        condition,
         image,
         imageName,
         file,
         fileName,
-        condition,
-        link,
-        startOn,
-        endOn,
-        duration,
-        totalIncome,
-        totalSpending,
         dateCreated,
         dateUpdated,
         description,
-        status
+        state,
+        status,
+        numberOfItems,
+        numberOfItemsAvailable
       ]);
 }
 
-ItemsStruct createItemsStruct({
+VoucheritemsStruct createVoucheritemsStruct({
   String? id,
   String? brandId,
   String? brandName,
-  String? brandAcronym,
   String? typeId,
   String? typeName,
-  String? campaignName,
+  String? voucherName,
+  int? price,
+  double? rate,
+  String? condition,
   String? image,
   String? imageName,
   String? file,
   String? fileName,
-  String? condition,
-  String? link,
-  String? startOn,
-  String? endOn,
-  int? duration,
-  int? totalIncome,
-  int? totalSpending,
   String? dateCreated,
   String? dateUpdated,
   String? description,
+  bool? state,
   bool? status,
+  int? numberOfItems,
+  String? numberOfItemsAvailable,
 }) =>
-    ItemsStruct(
+    VoucheritemsStruct(
       id: id,
       brandId: brandId,
       brandName: brandName,
-      brandAcronym: brandAcronym,
       typeId: typeId,
       typeName: typeName,
-      campaignName: campaignName,
+      voucherName: voucherName,
+      price: price,
+      rate: rate,
+      condition: condition,
       image: image,
       imageName: imageName,
       file: file,
       fileName: fileName,
-      condition: condition,
-      link: link,
-      startOn: startOn,
-      endOn: endOn,
-      duration: duration,
-      totalIncome: totalIncome,
-      totalSpending: totalSpending,
       dateCreated: dateCreated,
       dateUpdated: dateUpdated,
       description: description,
+      state: state,
       status: status,
+      numberOfItems: numberOfItems,
+      numberOfItemsAvailable: numberOfItemsAvailable,
     );

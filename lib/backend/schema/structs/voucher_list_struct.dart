@@ -4,18 +4,18 @@
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class CategoriesStruct extends BaseStruct {
-  CategoriesStruct({
+class VoucherListStruct extends BaseStruct {
+  VoucherListStruct({
     int? size,
     int? page,
     int? total,
     int? totalPages,
-    List<ItemsStruct>? items,
+    List<VoucheritemsStruct>? voucheritems,
   })  : _size = size,
         _page = page,
         _total = total,
         _totalPages = totalPages,
-        _items = items;
+        _voucheritems = voucheritems;
 
   // "size" field.
   int? _size;
@@ -53,31 +53,31 @@ class CategoriesStruct extends BaseStruct {
 
   bool hasTotalPages() => _totalPages != null;
 
-  // "items" field.
-  List<ItemsStruct>? _items;
-  List<ItemsStruct> get items => _items ?? const [];
-  set items(List<ItemsStruct>? val) => _items = val;
+  // "Voucheritems" field.
+  List<VoucheritemsStruct>? _voucheritems;
+  List<VoucheritemsStruct> get voucheritems => _voucheritems ?? const [];
+  set voucheritems(List<VoucheritemsStruct>? val) => _voucheritems = val;
 
-  void updateItems(Function(List<ItemsStruct>) updateFn) {
-    updateFn(_items ??= []);
+  void updateVoucheritems(Function(List<VoucheritemsStruct>) updateFn) {
+    updateFn(_voucheritems ??= []);
   }
 
-  bool hasItems() => _items != null;
+  bool hasVoucheritems() => _voucheritems != null;
 
-  static CategoriesStruct fromMap(Map<String, dynamic> data) =>
-      CategoriesStruct(
+  static VoucherListStruct fromMap(Map<String, dynamic> data) =>
+      VoucherListStruct(
         size: castToType<int>(data['size']),
         page: castToType<int>(data['page']),
         total: castToType<int>(data['total']),
         totalPages: castToType<int>(data['totalPages']),
-        items: getStructList(
-          data['items'],
-          ItemsStruct.fromMap,
+        voucheritems: getStructList(
+          data['Voucheritems'],
+          VoucheritemsStruct.fromMap,
         ),
       );
 
-  static CategoriesStruct? maybeFromMap(dynamic data) => data is Map
-      ? CategoriesStruct.fromMap(data.cast<String, dynamic>())
+  static VoucherListStruct? maybeFromMap(dynamic data) => data is Map
+      ? VoucherListStruct.fromMap(data.cast<String, dynamic>())
       : null;
 
   Map<String, dynamic> toMap() => {
@@ -85,7 +85,7 @@ class CategoriesStruct extends BaseStruct {
         'page': _page,
         'total': _total,
         'totalPages': _totalPages,
-        'items': _items?.map((e) => e.toMap()).toList(),
+        'Voucheritems': _voucheritems?.map((e) => e.toMap()).toList(),
       }.withoutNulls;
 
   @override
@@ -106,15 +106,15 @@ class CategoriesStruct extends BaseStruct {
           _totalPages,
           ParamType.int,
         ),
-        'items': serializeParam(
-          _items,
+        'Voucheritems': serializeParam(
+          _voucheritems,
           ParamType.DataStruct,
           isList: true,
         ),
       }.withoutNulls;
 
-  static CategoriesStruct fromSerializableMap(Map<String, dynamic> data) =>
-      CategoriesStruct(
+  static VoucherListStruct fromSerializableMap(Map<String, dynamic> data) =>
+      VoucherListStruct(
         size: deserializeParam(
           data['size'],
           ParamType.int,
@@ -135,40 +135,40 @@ class CategoriesStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
-        items: deserializeStructParam<ItemsStruct>(
-          data['items'],
+        voucheritems: deserializeStructParam<VoucheritemsStruct>(
+          data['Voucheritems'],
           ParamType.DataStruct,
           true,
-          structBuilder: ItemsStruct.fromSerializableMap,
+          structBuilder: VoucheritemsStruct.fromSerializableMap,
         ),
       );
 
   @override
-  String toString() => 'CategoriesStruct(${toMap()})';
+  String toString() => 'VoucherListStruct(${toMap()})';
 
   @override
   bool operator ==(Object other) {
     const listEquality = ListEquality();
-    return other is CategoriesStruct &&
+    return other is VoucherListStruct &&
         size == other.size &&
         page == other.page &&
         total == other.total &&
         totalPages == other.totalPages &&
-        listEquality.equals(items, other.items);
+        listEquality.equals(voucheritems, other.voucheritems);
   }
 
   @override
   int get hashCode =>
-      const ListEquality().hash([size, page, total, totalPages, items]);
+      const ListEquality().hash([size, page, total, totalPages, voucheritems]);
 }
 
-CategoriesStruct createCategoriesStruct({
+VoucherListStruct createVoucherListStruct({
   int? size,
   int? page,
   int? total,
   int? totalPages,
 }) =>
-    CategoriesStruct(
+    VoucherListStruct(
       size: size,
       page: page,
       total: total,

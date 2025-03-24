@@ -8,22 +8,28 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'just_for_you_page_model.dart';
-export 'just_for_you_page_model.dart';
+import 'voucher_of_campaign_model.dart';
+export 'voucher_of_campaign_model.dart';
 
-class JustForYouPageWidget extends StatefulWidget {
-  const JustForYouPageWidget({super.key});
+class VoucherOfCampaignWidget extends StatefulWidget {
+  const VoucherOfCampaignWidget({
+    super.key,
+    required this.title,
+  });
 
-  static String routeName = 'JustForYouPage';
-  static String routePath = 'justForYouPage';
+  final String? title;
+
+  static String routeName = 'voucherOfCampaign';
+  static String routePath = 'campaignVoucher';
 
   @override
-  State<JustForYouPageWidget> createState() => _JustForYouPageWidgetState();
+  State<VoucherOfCampaignWidget> createState() =>
+      _VoucherOfCampaignWidgetState();
 }
 
-class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
+class _VoucherOfCampaignWidgetState extends State<VoucherOfCampaignWidget>
     with TickerProviderStateMixin {
-  late JustForYouPageModel _model;
+  late VoucherOfCampaignModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -32,7 +38,7 @@ class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => JustForYouPageModel());
+    _model = createModel(context, () => VoucherOfCampaignModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -86,7 +92,7 @@ class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
             mainAxisSize: MainAxisSize.max,
             children: [
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 12.0),
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 16.0, 20.0, 16.0),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -94,41 +100,39 @@ class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
                   children: [
                     Align(
                       alignment: AlignmentDirectional(-1.0, -1.0),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.safePop();
-                          },
-                          child: Container(
-                            width: 40.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).lightGray,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.arrow_back_ios_sharp,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 20.0,
-                            ),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.safePop();
+                        },
+                        child: Container(
+                          width: 40.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).lightGray,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios_sharp,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 20.0,
                           ),
                         ),
                       ),
                     ),
                     Expanded(
                       child: Text(
-                        'Just for you',
+                        valueOrDefault<String>(
+                          widget.title,
+                          'campaign voucher',
+                        ),
                         textAlign: TextAlign.center,
-                        maxLines: 1,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'SF  pro display',
-                              fontSize: 20.0,
+                              fontSize: 24.0,
                               letterSpacing: 0.0,
                               fontWeight: FontWeight.bold,
                               useGoogleFonts: false,
@@ -139,29 +143,25 @@ class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
                     ),
                     Align(
                       alignment: AlignmentDirectional(1.0, -1.0),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(FilterPageWidget.routeName);
-                          },
-                          child: Container(
-                            width: 40.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).lightGray,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              Icons.tune,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 20.0,
-                            ),
+                      child: InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          context.pushNamed(FilterPageWidget.routeName);
+                        },
+                        child: Container(
+                          width: 40.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).lightGray,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            Icons.tune,
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            size: 20.0,
                           ),
                         ),
                       ),
@@ -174,7 +174,7 @@ class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                   child: Builder(
                     builder: (context) {
-                      final justlist = VoucherListStruct.maybeFromMap(
+                      final voucherList = VoucherListStruct.maybeFromMap(
                                   (_model.voucherListGet?.jsonBody ?? ''))
                               ?.voucheritems
                               .toList() ??
@@ -188,20 +188,7 @@ class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
                           24.0,
                         ),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: () {
-                            if (MediaQuery.sizeOf(context).width <
-                                kBreakpointSmall) {
-                              return 2;
-                            } else if (MediaQuery.sizeOf(context).width <
-                                kBreakpointMedium) {
-                              return 4;
-                            } else if (MediaQuery.sizeOf(context).width <
-                                kBreakpointLarge) {
-                              return 6;
-                            } else {
-                              return 8;
-                            }
-                          }(),
+                          crossAxisCount: 2,
                           crossAxisSpacing: 0.0,
                           mainAxisSpacing: 16.0,
                           childAspectRatio: 1.0,
@@ -209,23 +196,23 @@ class _JustForYouPageWidgetState extends State<JustForYouPageWidget>
                         primary: false,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: justlist.length,
-                        itemBuilder: (context, justlistIndex) {
-                          final justlistItem = justlist[justlistIndex];
+                        itemCount: voucherList.length,
+                        itemBuilder: (context, voucherListIndex) {
+                          final voucherListItem = voucherList[voucherListIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
                             child: wrapWithModel(
                               model: _model.productContanierModels.getModel(
-                                justlistItem.id,
-                                justlistIndex,
+                                voucherListItem.id,
+                                voucherListIndex,
                               ),
                               updateCallback: () => safeSetState(() {}),
                               child: ProductContanierWidget(
                                 key: Key(
-                                  'Keyume_${justlistItem.id}',
+                                  'Keybps_${voucherListItem.id}',
                                 ),
-                                voucherList: justlistItem,
+                                voucherList: voucherListItem,
                               ),
                             ),
                           );

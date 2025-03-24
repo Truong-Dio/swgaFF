@@ -8,12 +8,10 @@ export 'product_contanier_model.dart';
 class ProductContanierWidget extends StatefulWidget {
   const ProductContanierWidget({
     super.key,
-    required this.colordata,
-    required this.onTapFav,
+    required this.voucherList,
   });
 
-  final DetailStruct? colordata;
-  final Future Function()? onTapFav;
+  final VoucheritemsStruct? voucherList;
 
   @override
   State<ProductContanierWidget> createState() => _ProductContanierWidgetState();
@@ -64,112 +62,145 @@ class _ProductContanierWidgetState extends State<ProductContanierWidget> {
       ),
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            alignment: AlignmentDirectional(1.0, -1.0),
-            children: [
-              Align(
-                alignment: AlignmentDirectional(0.0, -1.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(0.0),
-                    bottomRight: Radius.circular(0.0),
-                    topLeft: Radius.circular(8.0),
-                    topRight: Radius.circular(8.0),
-                  ),
+          Container(
+            width: double.infinity,
+            height: 140.98,
+            decoration: BoxDecoration(
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
-                    widget.colordata!.image,
-                    width: double.infinity,
-                    height: 113.0,
+                    '${'${widget.voucherList?.image}'}',
+                    width: 148.46,
+                    height: 232.1,
                     fit: BoxFit.cover,
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
-                child: Container(
-                  width: 24.0,
-                  height: 24.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    shape: BoxShape.circle,
-                  ),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      await widget.onTapFav?.call();
-                    },
-                    child: Builder(
-                      builder: (context) {
-                        if (widget.colordata?.isFav == true) {
-                          return Icon(
-                            Icons.favorite,
-                            color: FlutterFlowTheme.of(context).error,
-                            size: 16.0,
-                          );
-                        } else {
-                          return Icon(
-                            Icons.favorite_border,
-                            color: FlutterFlowTheme.of(context).primaryText,
-                            size: 16.0,
-                          );
-                        }
-                      },
+                Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 0.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              widget.voucherList?.brandName,
+                              'brandName',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w600,
+                                  fontStyle: FontStyle.italic,
+                                  useGoogleFonts: false,
+                                ),
+                          ),
+                        ),
+                      ],
                     ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [],
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 15.0, 0.0, 0.0),
+                          child: Text(
+                            valueOrDefault<String>(
+                              widget.voucherList?.price.toString(),
+                              'voucherPrice',
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  color: Color(0xFF13B15D),
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.w500,
+                                  useGoogleFonts: false,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 0.0, 0.0),
+                child: Text(
+                  valueOrDefault<String>(
+                    widget.voucherList?.voucherName,
+                    'voucherName',
                   ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'SF Pro Text',
+                        fontSize: 20.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w800,
+                        useGoogleFonts: false,
+                      ),
                 ),
               ),
             ],
           ),
-          Flexible(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 8.0, 0.0),
-                  child: Text(
-                    valueOrDefault<String>(
-                      widget.colordata?.title,
-                      'Camel Water Color',
-                    ),
-                    maxLines: 1,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'SF Pro Text',
-                          fontSize: 17.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.normal,
-                          useGoogleFonts: false,
-                          lineHeight: 1.5,
-                        ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 0.0, 15.0),
+                child: Text(
+                  valueOrDefault<String>(
+                    widget.voucherList?.typeName,
+                    'typeName',
                   ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'SF Pro Text',
+                        letterSpacing: 0.0,
+                        fontStyle: FontStyle.italic,
+                        useGoogleFonts: false,
+                      ),
                 ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                  child: Text(
-                    valueOrDefault<String>(
-                      widget.colordata?.price,
-                      '20.00 Points',
-                    ),
-                    maxLines: 1,
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'SF Pro Text',
-                          fontSize: 14.0,
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
-                          useGoogleFonts: false,
-                          lineHeight: 1.5,
-                        ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                child: Text(
+                  valueOrDefault<String>(
+                    widget.voucherList?.description,
+                    'description',
                   ),
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'SF Pro Text',
+                        letterSpacing: 0.0,
+                        useGoogleFonts: false,
+                      ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

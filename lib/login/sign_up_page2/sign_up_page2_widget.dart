@@ -9,7 +9,6 @@ import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'sign_up_page2_model.dart';
 export 'sign_up_page2_model.dart';
 
@@ -69,8 +68,6 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -412,20 +409,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                               safeSetState(() {});
                               _model.successSignup = await SWalletAPIGroup
                                   .apiAccountStudentRegisterPOSTCall
-                                  .call(
-                                userName: FFAppState().userName,
-                                password: FFAppState().password,
-                                phone: FFAppState().phone,
-                                email: FFAppState().email,
-                                studentCardFront:
-                                    _model.uploadModel.uploadedLocalFile,
-                                fullName: FFAppState().fullName,
-                                code: _model.codeTextTextController.text,
-                                gender: _model.genderValue,
-                                dateOfBirthJson: FFAppState().dateOfBirth,
-                                address: FFAppState().address,
-                                campusId: FFAppState().campusId,
-                              );
+                                  .call();
 
                               context.goNamed(BottomPageWidget.routeName);
 

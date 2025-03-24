@@ -52,3 +52,6 @@ export '/profile/change_password_page/change_password_page_widget.dart'
 export '/login/sign_up_page/sign_up_page_widget.dart' show SignUpPageWidget;
 export '/login/phone_number_field/phone_number_field_widget.dart'
     show PhoneNumberFieldWidget;
+export '/home/campaign_new/campaign_new_widget.dart' show CampaignNewWidget;
+export '/home/voucher_of_campaign/voucher_of_campaign_widget.dart'
+    show VoucherOfCampaignWidget;

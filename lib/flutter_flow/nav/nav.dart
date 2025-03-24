@@ -244,6 +244,21 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: PhoneNumberFieldWidget.routeName,
               path: PhoneNumberFieldWidget.routePath,
               builder: (context, params) => PhoneNumberFieldWidget(),
+            ),
+            FFRoute(
+              name: CampaignNewWidget.routeName,
+              path: CampaignNewWidget.routePath,
+              builder: (context, params) => CampaignNewWidget(),
+            ),
+            FFRoute(
+              name: VoucherOfCampaignWidget.routeName,
+              path: VoucherOfCampaignWidget.routePath,
+              builder: (context, params) => VoucherOfCampaignWidget(
+                title: params.getParam(
+                  'title',
+                  ParamType.String,
+                ),
+              ),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

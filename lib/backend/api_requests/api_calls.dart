@@ -12,7 +12,7 @@ const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 /// Start SWallet-API Group Code
 
 class SWalletAPIGroup {
-  static String getBaseUrl() => 'https://swallet-api.onrender.com';
+  static String getBaseUrl() => 'https://swallet-api.onrender.com/';
   static Map<String, String> headers = {};
   static ApiAuthLoginPOSTCall apiAuthLoginPOSTCall = ApiAuthLoginPOSTCall();
   static ApiAuthVerifyCodePOSTCall apiAuthVerifyCodePOSTCall =
@@ -55,8 +55,13 @@ class SWalletAPIGroup {
       ApiBrandExistingAccountPOSTCall();
   static ApiCampaignDetailsGETCall apiCampaignDetailsGETCall =
       ApiCampaignDetailsGETCall();
+  static ApiCampaignGetStoreByCampaignIdcampaignIdGETCall
+      apiCampaignGetStoreByCampaignIdcampaignIdGETCall =
+      ApiCampaignGetStoreByCampaignIdcampaignIdGETCall();
   static ApiCampaignGETCall apiCampaignGETCall = ApiCampaignGETCall();
   static ApiCampaignPOSTCall apiCampaignPOSTCall = ApiCampaignPOSTCall();
+  static ApiCampaignGetAllGETCall apiCampaignGetAllGETCall =
+      ApiCampaignGetAllGETCall();
   static ApiCampaignidPUTCall apiCampaignidPUTCall = ApiCampaignidPUTCall();
   static ApiCampaignidGETCall apiCampaignidGETCall = ApiCampaignidGETCall();
   static ApiCampaignDetailGETCall apiCampaignDetailGETCall =
@@ -74,6 +79,8 @@ class SWalletAPIGroup {
       ApiCampaignTypeidGETCall();
   static ApiCampaignTypeidPUTCall apiCampaignTypeidPUTCall =
       ApiCampaignTypeidPUTCall();
+  static ApiCampusDistributePointsPOSTCall apiCampusDistributePointsPOSTCall =
+      ApiCampusDistributePointsPOSTCall();
   static ApiCampusPOSTCall apiCampusPOSTCall = ApiCampusPOSTCall();
   static ApiCampusGETCall apiCampusGETCall = ApiCampusGETCall();
   static ApiCampusidPUTCall apiCampusidPUTCall = ApiCampusidPUTCall();
@@ -91,8 +98,18 @@ class SWalletAPIGroup {
   static ApiInvitationGETCall apiInvitationGETCall = ApiInvitationGETCall();
   static ApiLecturerPOSTCall apiLecturerPOSTCall = ApiLecturerPOSTCall();
   static ApiLecturerGETCall apiLecturerGETCall = ApiLecturerGETCall();
+  static ApiLecturerGenerateQrcodePOSTCall apiLecturerGenerateQrcodePOSTCall =
+      ApiLecturerGenerateQrcodePOSTCall();
   static ApiLectureridGETCall apiLectureridGETCall = ApiLectureridGETCall();
   static ApiLectureridPUTCall apiLectureridPUTCall = ApiLectureridPUTCall();
+  static ApiLecturerScanQrcodePOSTCall apiLecturerScanQrcodePOSTCall =
+      ApiLecturerScanQrcodePOSTCall();
+  static ApiLecturerCampusGETCall apiLecturerCampusGETCall =
+      ApiLecturerCampusGETCall();
+  static ApiLuckyPrizeGETCall apiLuckyPrizeGETCall = ApiLuckyPrizeGETCall();
+  static ApiLuckyPrizePOSTCall apiLuckyPrizePOSTCall = ApiLuckyPrizePOSTCall();
+  static ApiLuckyPrizeidPUTCall apiLuckyPrizeidPUTCall =
+      ApiLuckyPrizeidPUTCall();
   static ApiVNPAYPurchasePointsPOSTCall apiVNPAYPurchasePointsPOSTCall =
       ApiVNPAYPurchasePointsPOSTCall();
   static ApiVNPAYCreatePaymentUrlGETCall apiVNPAYCreatePaymentUrlGETCall =
@@ -122,10 +139,14 @@ class SWalletAPIGroup {
   static ApiVoucherGETCall apiVoucherGETCall = ApiVoucherGETCall();
   static ApiVoucheridGETCall apiVoucheridGETCall = ApiVoucheridGETCall();
   static ApiVoucheridPUTCall apiVoucheridPUTCall = ApiVoucheridPUTCall();
+  static ApiVoucherCampaignDetailcampaignIdGETCall
+      apiVoucherCampaignDetailcampaignIdGETCall =
+      ApiVoucherCampaignDetailcampaignIdGETCall();
   static ApiVoucherItemidPUTCall apiVoucherItemidPUTCall =
       ApiVoucherItemidPUTCall();
   static ApiVoucherItemPOSTCall apiVoucherItemPOSTCall =
       ApiVoucherItemPOSTCall();
+  static ApiVoucherItemGETCall apiVoucherItemGETCall = ApiVoucherItemGETCall();
   static ApiVoucherTypePOSTCall apiVoucherTypePOSTCall =
       ApiVoucherTypePOSTCall();
   static ApiVoucherTypeGETCall apiVoucherTypeGETCall = ApiVoucherTypeGETCall();
@@ -156,10 +177,7 @@ class ApiAuthLoginPOSTCall {
       callName: '/api/Auth/login POST',
       apiUrl: '${baseUrl}/api/Auth/login',
       callType: ApiCallType.POST,
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
+      headers: {},
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
@@ -172,19 +190,21 @@ class ApiAuthLoginPOSTCall {
     );
   }
 
-  String? token(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetToken(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.token''',
       ));
-  String? role(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetRole(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.role''',
       ));
-  String? accountId(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetAccountId(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.accountId''',
       ));
-  bool? isVerify(dynamic response) => castToType<bool>(getJsonField(
+  bool? accountIdGetIsVerify(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.isVerify''',
       ));
@@ -504,106 +524,81 @@ class ApiStudentAccountidGETCall {
     );
   }
 
-  String? getStuId(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetId(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.id''',
       ));
-  String? getStuCampusId(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetCampusId(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.campusId''',
       ));
-  String? getStuAccountId(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetAccountId(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.accountId''',
       ));
-  String? getStuCardFront(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetStuCard(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.studentCardFront''',
       ));
-  String? getStuFullName(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetFullName(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.fullName''',
       ));
-  String? getStuCode(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetCode(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.code''',
       ));
-  int? getStuGender(dynamic response) => castToType<int>(getJsonField(
+  int? stuIdGetGender(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.gender''',
       ));
-  String? getStuDOB(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetDOB(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.dateOfBirth''',
       ));
-  String? getStuAddress(dynamic response) => castToType<String>(getJsonField(
+  String? stuIdGetAddress(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.address''',
       ));
-  int? getStuTotalIncome(dynamic response) => castToType<int>(getJsonField(
+  int? stuIdGetTotalIncome(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.totalIncome''',
       ));
-  int? getStuSpending(dynamic response) => castToType<int>(getJsonField(
+  int? stuIdGetTotalSpending(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.totalSpending''',
       ));
-  String? getStuDateCreated(dynamic response) =>
+  String? stuIdGetDatecreated(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.dateCreated''',
       ));
-  String? getStuDateUpdated(dynamic response) =>
+  int? stuIdGetState(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.state''',
+      ));
+  String? stuIdGetDateUpdated(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.dateUpdated''',
       ));
-  int? getStuState(dynamic response) => castToType<int>(getJsonField(
-        response,
-        r'''$.state''',
-      ));
-  bool? getStuStatus(dynamic response) => castToType<bool>(getJsonField(
+  bool? stuIdGetStatus(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.status''',
       ));
 }
 
 class ApiAccountStudentRegisterPOSTCall {
-  Future<ApiCallResponse> call({
-    String? userName = '',
-    String? password = '',
-    String? phone = '',
-    String? email = '',
-    FFUploadedFile? studentCardFront,
-    String? fullName = '',
-    String? code = '',
-    int? gender = 1,
-    dynamic dateOfBirthJson,
-    String? address = '',
-    String? campusId = '',
-  }) async {
+  Future<ApiCallResponse> call() async {
     final baseUrl = SWalletAPIGroup.getBaseUrl();
-
-    final dateOfBirth = _serializeJson(dateOfBirthJson);
 
     return ApiManager.instance.makeApiCall(
       callName: '/api/Account/studentRegister POST',
       apiUrl: '${baseUrl}/api/Account/studentRegister',
       callType: ApiCallType.POST,
       headers: {},
-      params: {
-        'userName': userName,
-        'password': password,
-        'phone': phone,
-        'email': email,
-        'campusId': "HCMFPT                    ",
-        'fullName': fullName,
-        'code': code,
-        'gender': gender,
-        'dateOfBirth': "2000/01/01",
-        'address': address,
-        'studentCardFront': studentCardFront,
-      },
+      params: {},
       bodyType: BodyType.MULTIPART,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -700,50 +695,54 @@ class ApiAccountidGETCall {
     );
   }
 
-  String? accUserId(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetId(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.id''',
       ));
-  int? accUserRoleId(dynamic response) => castToType<int>(getJsonField(
+  int? accountIdGetRoleId(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.roleId''',
       ));
-  String? accUserRoleName(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetRoleName(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.roleName''',
       ));
-  String? accUserUserName(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetUserName(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.userName''',
       ));
-  String? accUserPhone(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetPhone(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.phone''',
       ));
-  String? accUserEmail(dynamic response) => castToType<String>(getJsonField(
+  String? accountIdGetEmail(dynamic response) =>
+      castToType<String>(getJsonField(
         response,
         r'''$.email''',
       ));
-  bool? accUserIsverify(dynamic response) => castToType<bool>(getJsonField(
+  bool? accountIdGetIsverify(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.isVerify''',
       ));
-  String? accUserDateCreated(dynamic response) =>
+  String? accountIdGetDateCreated(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.dateCreated''',
       ));
-  String? accUserDateUpdated(dynamic response) =>
+  String? accountIdGetDatedUpdated(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.dateUpdated''',
       ));
-  String? accUserDescription(dynamic response) =>
+  String? accountIdGetDescription(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.description''',
       ));
-  bool? accUserStatus(dynamic response) => castToType<bool>(getJsonField(
+  bool? accountIdGetStatus(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.status''',
       ));
@@ -1060,6 +1059,169 @@ class ApiBrandGETCall {
       alwaysAllowBody: false,
     );
   }
+
+  int? brandGetSize(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.size''',
+      ));
+  int? brandGetPage(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.page''',
+      ));
+  int? brandGetTotal(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.total''',
+      ));
+  int? brandGetTotalPages(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.totalPages''',
+      ));
+  List? brandGetItems(dynamic response) => getJsonField(
+        response,
+        r'''$.items''',
+        true,
+      ) as List?;
+  List<String>? brandGetItemsId(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsAccountId(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].accountId''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsBrandName(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].brandName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsAcronym(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].acronym''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsAddress(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].address''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsCoverPhoto(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].coverPhoto''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsCoverFileName(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].coverFileName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsOpeningHours(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].openingHours''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsLink(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].link''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? brandGetItemsClosingHours(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].closingHours''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? brandGetItemsTotalIncome(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].totalIncome''',
+        true,
+      ) as List?;
+  List? brandGetItemsTotalSpending(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].totalSpending''',
+        true,
+      ) as List?;
+  List<String>? brandGetItemsDateCreated(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].dateCreated''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? brandGetItemsDateUpdated(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].dateUpdated''',
+        true,
+      ) as List?;
+  List<String>? brandGetItemsDescription(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].description''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<bool>? brandGetItemsState(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].state''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<bool>(x))
+          .withoutNulls
+          .toList();
+  List<bool>? brandGetItemsStatus(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<bool>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ApiBrandidGETCall {
@@ -1185,6 +1347,35 @@ class ApiCampaignDetailsGETCall {
   }
 }
 
+class ApiCampaignGetStoreByCampaignIdcampaignIdGETCall {
+  Future<ApiCallResponse> call({
+    String? campaignId = '',
+    String? searchName = '',
+    int? page,
+    int? size,
+  }) async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/Campaign/getStoreByCampaignId/{campaignId} GET',
+      apiUrl: '${baseUrl}/api/Campaign/getStoreByCampaignId/${campaignId}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'searchName': searchName,
+        'page': page,
+        'size': size,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiCampaignGETCall {
   Future<ApiCallResponse> call({
     String? searchName = '',
@@ -1255,6 +1446,246 @@ class ApiCampaignPOSTCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class ApiCampaignGetAllGETCall {
+  Future<ApiCallResponse> call({
+    String? searchName = '',
+    int? page,
+    int? size,
+  }) async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/Campaign/getAll GET',
+      apiUrl: '${baseUrl}/api/Campaign/getAll',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'searchName': searchName,
+        'page': page,
+        'size': size,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  int? camGetAllSize(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.size''',
+      ));
+  int? camGetAllpage(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.page''',
+      ));
+  int? camGetAllTotal(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.total''',
+      ));
+  int? camGetAllTotalPages(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.totalPages''',
+      ));
+  List? camGetAllItems(dynamic response) => getJsonField(
+        response,
+        r'''$.items''',
+        true,
+      ) as List?;
+  List<String>? camGetAllItemsId(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsBrandId(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].brandId''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsBrandName(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].brandName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsBrandAcronym(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].brandAcronym''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsTypeId(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].typeId''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsTypeName(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].typeName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsCampaginName(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].campaignName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsImageName(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].imageName''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsImage(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].image''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List? camGetAllItemsFile(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].file''',
+        true,
+      ) as List?;
+  List? camGetAllItemsFileName(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].fileName''',
+        true,
+      ) as List?;
+  List<String>? camGetAllItemsCondition(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].condition''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsLink(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].link''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsStartOn(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].startOn''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsEndOn(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].endOn''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<int>? camGetAllItemsDuration(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].duration''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<int>? camGetAllItemsTotalIncome(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].totalIncome''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<int>? camGetAllItemsTotalSpending(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].totalSpending''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsDateCreated(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].dateCreated''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsDateupdated(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].dateUpdated''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<String>? camGetAllItemsDescription(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].description''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+  List<bool>? camGetAllItemsStatus(dynamic response) => (getJsonField(
+        response,
+        r'''$.items[:].status''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<bool>(x))
+          .withoutNulls
+          .toList();
 }
 
 class ApiCampaignidPUTCall {
@@ -1484,6 +1915,32 @@ class ApiCampaignTypeidPUTCall {
         'state': state,
       },
       bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiCampusDistributePointsPOSTCall {
+  Future<ApiCallResponse> call({
+    String? campusId = '',
+    List<String>? lecturerIdsList,
+    int? points,
+  }) async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+    final lecturerIds = _serializeList(lecturerIdsList);
+
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/Campus/distribute-points POST',
+      apiUrl: '${baseUrl}/api/Campus/distribute-points',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -1934,6 +2391,36 @@ class ApiLecturerGETCall {
   }
 }
 
+class ApiLecturerGenerateQrcodePOSTCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "lecturerId": "",
+  "points": 0,
+  "expirationTime": "",
+  "startOnTime": "",
+  "availableHours": 0
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/Lecturer/generate-qrcode POST',
+      apiUrl: '${baseUrl}/api/Lecturer/generate-qrcode',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
 class ApiLectureridGETCall {
   Future<ApiCallResponse> call({
     String? id = '',
@@ -1971,6 +2458,143 @@ class ApiLectureridPUTCall {
     return ApiManager.instance.makeApiCall(
       callName: '/api/Lecturer/{id} PUT',
       apiUrl: '${baseUrl}/api/Lecturer/${id}',
+      callType: ApiCallType.PUT,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiLecturerScanQrcodePOSTCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "qrCodeJson": "",
+  "studentId": ""
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/Lecturer/scan-qrcode POST',
+      apiUrl: '${baseUrl}/api/Lecturer/scan-qrcode',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiLecturerCampusGETCall {
+  Future<ApiCallResponse> call({
+    String? campusId = '',
+    String? searchName = '',
+    int? page,
+    int? size,
+  }) async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/Lecturer/campus GET',
+      apiUrl: '${baseUrl}/api/Lecturer/campus',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'campusId': campusId,
+        'searchName': searchName,
+        'page': page,
+        'size': size,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiLuckyPrizeGETCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/LuckyPrize GET',
+      apiUrl: '${baseUrl}/api/LuckyPrize',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiLuckyPrizePOSTCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "prizeName": "",
+  "probability": 0,
+  "quantity": 0,
+  "status": false
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/LuckyPrize POST',
+      apiUrl: '${baseUrl}/api/LuckyPrize',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiLuckyPrizeidPUTCall {
+  Future<ApiCallResponse> call({
+    int? id,
+  }) async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    final ffApiRequestBody = '''
+{
+  "prizeName": "",
+  "probability": 0,
+  "quantity": 0,
+  "status": false
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/LuckyPrize/{id} PUT',
+      apiUrl: '${baseUrl}/api/LuckyPrize/${id}',
       callType: ApiCallType.PUT,
       headers: {},
       params: {},
@@ -2523,6 +3147,116 @@ class ApiVoucherGETCall {
       alwaysAllowBody: false,
     );
   }
+
+  int? voucherListSize(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.size''',
+      ));
+  int? voucherListPage(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.page''',
+      ));
+  int? voucherListTotal(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.total''',
+      ));
+  int? voucherListTotalPages(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.totalPages''',
+      ));
+  List? vouListItems(dynamic response) => getJsonField(
+        response,
+        r'''$.items''',
+        true,
+      ) as List?;
+  String? vouListItemsId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].id''',
+      ));
+  String? vouListItemsBrandId(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].brandId''',
+      ));
+  String? vouListItemsBrandName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].brandName''',
+      ));
+  String? vouListItemsTypeId(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].typeId''',
+      ));
+  String? vouListItemsTypeName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].typeName''',
+      ));
+  int? vouListItemsNOItems(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.items[:].numberOfItems''',
+      ));
+  bool? vouListItemsState(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.items[:].state''',
+      ));
+  String? vouListItemsDescription(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].description''',
+      ));
+  String? vouListItemsDateUpdated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].dateUpdated''',
+      ));
+  bool? vouListItemsStatus(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.items[:].status''',
+      ));
+  String? vouListItemsDateCreated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].dateCreated''',
+      ));
+  String? vouListItemsFileName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].fileName''',
+      ));
+  String? vouListItemsFile(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].file''',
+      ));
+  String? vouListItemsImageName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].imageName''',
+      ));
+  String? vouListItemsImage(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].image''',
+      ));
+  String? vouListItemsCondition(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].condition''',
+      ));
+  double? vouListItemsRate(dynamic response) => castToType<double>(getJsonField(
+        response,
+        r'''$.items[:].rate''',
+      ));
+  int? vouListItemsprice(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.items[:].price''',
+      ));
+  String? vouListItemsVouname(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.items[:].voucherName''',
+      ));
 }
 
 class ApiVoucheridGETCall {
@@ -2560,6 +3294,28 @@ class ApiVoucheridPUTCall {
       headers: {},
       params: {},
       bodyType: BodyType.MULTIPART,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiVoucherCampaignDetailcampaignIdGETCall {
+  Future<ApiCallResponse> call({
+    String? campaignId = '',
+  }) async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/Voucher/campaign-detail/{campaignId} GET',
+      apiUrl: '${baseUrl}/api/Voucher/campaign-detail/${campaignId}',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -2627,6 +3383,31 @@ class ApiVoucherItemPOSTCall {
       params: {},
       body: ffApiRequestBody,
       bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiVoucherItemGETCall {
+  Future<ApiCallResponse> call({
+    List<String>? campaignDetailIdList,
+  }) async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+    final campaignDetailId = _serializeList(campaignDetailIdList);
+
+    return ApiManager.instance.makeApiCall(
+      callName: '/api/VoucherItem GET',
+      apiUrl: '${baseUrl}/api/VoucherItem',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'campaignDetailId': campaignDetailId,
+      },
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,

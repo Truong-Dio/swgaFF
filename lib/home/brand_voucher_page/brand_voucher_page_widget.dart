@@ -1,11 +1,13 @@
 import '/all_component/product_contanier/product_contanier_widget.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/schema/structs/index.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
 import 'brand_voucher_page_model.dart';
 export 'brand_voucher_page_model.dart';
 
@@ -37,6 +39,17 @@ class _BrandVoucherPageWidgetState extends State<BrandVoucherPageWidget>
     super.initState();
     _model = createModel(context, () => BrandVoucherPageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.voucherListGet = await SWalletAPIGroup.apiVoucherGETCall.call(
+        brandId: '01JMH34A946RYPBC6AAAHTPPQF',
+        state: true,
+        isAsc: true,
+        page: 1,
+        size: 4,
+      );
+    });
+
     animationsMap.addAll({
       'textOnPageLoadAnimation': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -64,8 +77,6 @@ class _BrandVoucherPageWidgetState extends State<BrandVoucherPageWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -162,10 +173,11 @@ class _BrandVoucherPageWidgetState extends State<BrandVoucherPageWidget>
                   padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 0.0),
                   child: Builder(
                     builder: (context) {
-                      final waterlist = FFAppState()
-                          .detaillist
-                          .where((e) => e.isColor)
-                          .toList();
+                      final brandVoucherList = VoucherListStruct.maybeFromMap(
+                                  (_model.voucherListGet?.jsonBody ?? ''))
+                              ?.voucheritems
+                              .toList() ??
+                          [];
 
                       return GridView.builder(
                         padding: EdgeInsets.fromLTRB(
@@ -183,55 +195,24 @@ class _BrandVoucherPageWidgetState extends State<BrandVoucherPageWidget>
                         primary: false,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: waterlist.length,
-                        itemBuilder: (context, waterlistIndex) {
-                          final waterlistItem = waterlist[waterlistIndex];
+                        itemCount: brandVoucherList.length,
+                        itemBuilder: (context, brandVoucherListIndex) {
+                          final brandVoucherListItem =
+                              brandVoucherList[brandVoucherListIndex];
                           return Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 8.0, 0.0, 8.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                context.pushNamed(
-                                  VoucherDetailPageWidget.routeName,
-                                  queryParameters: {
-                                    'detail': serializeParam(
-                                      waterlistItem,
-                                      ParamType.DataStruct,
-                                    ),
-                                  }.withoutNulls,
-                                );
-                              },
-                              child: wrapWithModel(
-                                model: _model.productContanierModels.getModel(
-                                  waterlistIndex.toString(),
-                                  waterlistIndex,
+                            child: wrapWithModel(
+                              model: _model.productContanierModels.getModel(
+                                brandVoucherListItem.id,
+                                brandVoucherListIndex,
+                              ),
+                              updateCallback: () => safeSetState(() {}),
+                              child: ProductContanierWidget(
+                                key: Key(
+                                  'Key8qw_${brandVoucherListItem.id}',
                                 ),
-                                updateCallback: () => safeSetState(() {}),
-                                child: ProductContanierWidget(
-                                  key: Key(
-                                    'Key8qw_${waterlistIndex.toString()}',
-                                  ),
-                                  colordata: waterlistItem,
-                                  onTapFav: () async {
-                                    if (waterlistItem.isFav == true) {
-                                      FFAppState().updateDetaillistAtIndex(
-                                        waterlistItem.id,
-                                        (e) => e..isFav = false,
-                                      );
-                                      safeSetState(() {});
-                                    } else {
-                                      FFAppState().updateDetaillistAtIndex(
-                                        waterlistItem.id,
-                                        (e) => e..isFav = true,
-                                      );
-                                      safeSetState(() {});
-                                    }
-                                  },
-                                ),
+                                voucherList: brandVoucherListItem,
                               ),
                             ),
                           );
