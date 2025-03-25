@@ -5,8 +5,8 @@ import '/backend/schema/util/schema_util.dart';
 import 'index.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
-class VoucheritemsStruct extends BaseStruct {
-  VoucheritemsStruct({
+class VoucherDetailsStruct extends BaseStruct {
+  VoucherDetailsStruct({
     String? id,
     String? brandId,
     String? brandName,
@@ -195,8 +195,8 @@ class VoucheritemsStruct extends BaseStruct {
 
   bool hasNumberOfItemsAvailable() => _numberOfItemsAvailable != null;
 
-  static VoucheritemsStruct fromMap(Map<String, dynamic> data) =>
-      VoucheritemsStruct(
+  static VoucherDetailsStruct fromMap(Map<String, dynamic> data) =>
+      VoucherDetailsStruct(
         id: data['id'] as String?,
         brandId: data['brandId'] as String?,
         brandName: data['brandName'] as String?,
@@ -219,8 +219,8 @@ class VoucheritemsStruct extends BaseStruct {
         numberOfItemsAvailable: data['numberOfItemsAvailable'] as String?,
       );
 
-  static VoucheritemsStruct? maybeFromMap(dynamic data) => data is Map
-      ? VoucheritemsStruct.fromMap(data.cast<String, dynamic>())
+  static VoucherDetailsStruct? maybeFromMap(dynamic data) => data is Map
+      ? VoucherDetailsStruct.fromMap(data.cast<String, dynamic>())
       : null;
 
   Map<String, dynamic> toMap() => {
@@ -330,8 +330,8 @@ class VoucheritemsStruct extends BaseStruct {
         ),
       }.withoutNulls;
 
-  static VoucheritemsStruct fromSerializableMap(Map<String, dynamic> data) =>
-      VoucheritemsStruct(
+  static VoucherDetailsStruct fromSerializableMap(Map<String, dynamic> data) =>
+      VoucherDetailsStruct(
         id: deserializeParam(
           data['id'],
           ParamType.String,
@@ -435,11 +435,11 @@ class VoucheritemsStruct extends BaseStruct {
       );
 
   @override
-  String toString() => 'VoucheritemsStruct(${toMap()})';
+  String toString() => 'VoucherDetailsStruct(${toMap()})';
 
   @override
   bool operator ==(Object other) {
-    return other is VoucheritemsStruct &&
+    return other is VoucherDetailsStruct &&
         id == other.id &&
         brandId == other.brandId &&
         brandName == other.brandName &&
@@ -487,7 +487,7 @@ class VoucheritemsStruct extends BaseStruct {
       ]);
 }
 
-VoucheritemsStruct createVoucheritemsStruct({
+VoucherDetailsStruct createVoucherDetailsStruct({
   String? id,
   String? brandId,
   String? brandName,
@@ -509,7 +509,7 @@ VoucheritemsStruct createVoucheritemsStruct({
   int? numberOfItems,
   String? numberOfItemsAvailable,
 }) =>
-    VoucheritemsStruct(
+    VoucherDetailsStruct(
       id: id,
       brandId: brandId,
       brandName: brandName,

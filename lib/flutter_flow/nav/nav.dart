@@ -162,11 +162,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: VoucherDetailPageWidget.routeName,
               path: VoucherDetailPageWidget.routePath,
               builder: (context, params) => VoucherDetailPageWidget(
-                detail: params.getParam(
-                  'detail',
-                  ParamType.DataStruct,
-                  isList: false,
-                  structBuilder: DetailStruct.fromSerializableMap,
+                voucherId: params.getParam(
+                  'voucherId',
+                  ParamType.String,
                 ),
               ),
             ),

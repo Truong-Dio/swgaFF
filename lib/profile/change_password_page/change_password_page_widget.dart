@@ -303,7 +303,14 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                     }
                     if (_model.textController1.text ==
                         _model.textController2.text) {
-                      context.safePop();
+                      _model.apiResultChangePassword =
+                          await SWalletAPIGroup.apiAccountidPUTCall.call(
+                        id: FFAppState().accountId,
+                        phone: FFAppState().phone,
+                        email: FFAppState().email,
+                        oldPassword: FFAppState().password,
+                        newPassword: _model.textController1.text,
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -320,32 +327,7 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                       );
                     }
 
-                    _model.apiResultChangePassword =
-                        await SWalletAPIGroup.apiAccountidPUTCall.call(
-                      id: FFAppState().accountId,
-                      phone: FFAppState().phone,
-                      email: FFAppState().email,
-                      oldPassword: FFAppState().password,
-                      newPassword: _model.textController1.text,
-                    );
-
-                    if ((_model.apiResultChangePassword?.succeeded ?? true)) {
-                      context.pushNamed(SignInPageWidget.routeName);
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'something error please try again',
-                            style: TextStyle(
-                              color: Color(0xFFF10000),
-                            ),
-                          ),
-                          duration: Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).secondary,
-                        ),
-                      );
-                    }
+                    context.pushNamed(MyProfilePageWidget.routeName);
 
                     safeSetState(() {});
                   },

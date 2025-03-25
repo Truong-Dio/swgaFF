@@ -758,12 +758,21 @@ class ApiAccountidPUTCall {
   }) async {
     final baseUrl = SWalletAPIGroup.getBaseUrl();
 
+    final ffApiRequestBody = '''
+{
+  "id": "${escapeStringForJson(id)}",
+  "phone": "${escapeStringForJson(phone)}",
+  "email": "${escapeStringForJson(email)}",
+  "oldPassword": "${escapeStringForJson(oldPassword)}",
+  "newPassword": "${escapeStringForJson(newPassword)}"
+}''';
     return ApiManager.instance.makeApiCall(
       callName: '/api/Account/{id} PUT',
       apiUrl: '${baseUrl}/api/Account/${id}',
       callType: ApiCallType.PUT,
       headers: {},
       params: {},
+      body: ffApiRequestBody,
       bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3142,7 +3151,7 @@ class ApiVoucherGETCall {
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
-      cache: false,
+      cache: true,
       isStreamingApi: false,
       alwaysAllowBody: false,
     );
@@ -3164,100 +3173,100 @@ class ApiVoucherGETCall {
         response,
         r'''$.totalPages''',
       ));
-  List? vouListItems(dynamic response) => getJsonField(
+  List? voucheritems(dynamic response) => getJsonField(
         response,
         r'''$.items''',
         true,
       ) as List?;
-  String? vouListItemsId(dynamic response) => castToType<String>(getJsonField(
+  String? voucheritemsId(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.items[:].id''',
       ));
-  String? vouListItemsBrandId(dynamic response) =>
+  String? voucheritemsBrandId(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].brandId''',
       ));
-  String? vouListItemsBrandName(dynamic response) =>
+  String? voucheritemsBrandName(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].brandName''',
       ));
-  String? vouListItemsTypeId(dynamic response) =>
+  String? voucheritemsTypeId(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].typeId''',
       ));
-  String? vouListItemsTypeName(dynamic response) =>
+  String? voucheritemsTypeName(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].typeName''',
       ));
-  int? vouListItemsNOItems(dynamic response) => castToType<int>(getJsonField(
+  int? voucheritemsNOItems(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.items[:].numberOfItems''',
       ));
-  bool? vouListItemsState(dynamic response) => castToType<bool>(getJsonField(
+  bool? voucheritemsState(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.items[:].state''',
       ));
-  String? vouListItemsDescription(dynamic response) =>
+  String? voucheritemsDescription(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].description''',
       ));
-  String? vouListItemsDateUpdated(dynamic response) =>
+  String? voucheritemsDateUpdated(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].dateUpdated''',
       ));
-  bool? vouListItemsStatus(dynamic response) => castToType<bool>(getJsonField(
+  bool? voucheritemsStatus(dynamic response) => castToType<bool>(getJsonField(
         response,
         r'''$.items[:].status''',
       ));
-  String? vouListItemsDateCreated(dynamic response) =>
+  String? voucheritemsDateCreated(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].dateCreated''',
       ));
-  String? vouListItemsFileName(dynamic response) =>
+  String? voucheritemsFileName(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].fileName''',
       ));
-  String? vouListItemsFile(dynamic response) => castToType<String>(getJsonField(
+  String? voucheritemsFile(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$.items[:].file''',
       ));
-  String? vouListItemsImageName(dynamic response) =>
+  String? voucheritemsImageName(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].imageName''',
       ));
-  String? vouListItemsImage(dynamic response) =>
+  String? voucheritemsImage(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].image''',
       ));
-  String? vouListItemsCondition(dynamic response) =>
+  String? voucheritemsCondition(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].condition''',
       ));
-  double? vouListItemsRate(dynamic response) => castToType<double>(getJsonField(
+  double? voucheritemsRate(dynamic response) => castToType<double>(getJsonField(
         response,
         r'''$.items[:].rate''',
       ));
-  int? vouListItemsprice(dynamic response) => castToType<int>(getJsonField(
+  int? voucheritemsprice(dynamic response) => castToType<int>(getJsonField(
         response,
         r'''$.items[:].price''',
       ));
-  String? vouListItemsVouname(dynamic response) =>
+  String? voucheritemsVouname(dynamic response) =>
       castToType<String>(getJsonField(
         response,
         r'''$.items[:].voucherName''',
       ));
-  List? vouListItemsNOItemsA(dynamic response) => getJsonField(
+  List? voucheritemsnumberOfItemsAvailable(dynamic response) => getJsonField(
         response,
         r'''$.items[:].numberOfItemsAvailable''',
         true,
@@ -3278,12 +3287,104 @@ class ApiVoucheridGETCall {
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
-      decodeUtf8: false,
+      decodeUtf8: true,
       cache: false,
       isStreamingApi: false,
       alwaysAllowBody: false,
     );
   }
+
+  String? voucherDetailsId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.id''',
+      ));
+  String? voucherDetailsBrandId(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.brandId''',
+      ));
+  String? voucherDetailsBrandName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.brandName''',
+      ));
+  String? voucherDetailsTypeId(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.typeId''',
+      ));
+  String? voucherDetailsTypeName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.typeName''',
+      ));
+  String? voucherDetailsVoucherName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.voucherName''',
+      ));
+  int? voucherDetailsPrice(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.price''',
+      ));
+  double? voucherDetailsRate(dynamic response) =>
+      castToType<double>(getJsonField(
+        response,
+        r'''$.rate''',
+      ));
+  String? voucherDetailsCondition(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.condition''',
+      ));
+  String? voucherDetailsImage(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.image''',
+      ));
+  String? voucherDetailsImageName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.imageName''',
+      ));
+  String? voucherDetailsFile(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.file''',
+      ));
+  String? voucherDetailsFileName(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.fileName''',
+      ));
+  String? voucherDetailsDateCreated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateCreated''',
+      ));
+  String? voucherDetailsDateUpdated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateUpdated''',
+      ));
+  String? voucherDetailsDescription(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.description''',
+      ));
+  bool? voucherDetailsState(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.state''',
+      ));
+  bool? voucherDetailsStatus(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.status''',
+      ));
+  int? voucherDetailsNumberOfItems(dynamic response) =>
+      castToType<int>(getJsonField(
+        response,
+        r'''$.numberOfItems''',
+      ));
 }
 
 class ApiVoucheridPUTCall {

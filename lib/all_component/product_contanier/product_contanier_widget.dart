@@ -11,7 +11,7 @@ class ProductContanierWidget extends StatefulWidget {
     required this.voucherList,
   });
 
-  final VoucheritemsStruct? voucherList;
+  final VoucherItemsStruct? voucherList;
 
   @override
   State<ProductContanierWidget> createState() => _ProductContanierWidgetState();

@@ -512,17 +512,17 @@ class FFAppState extends ChangeNotifier {
     campaignList.insert(index, value);
   }
 
-  List<VoucheritemsStruct> _voucherList = [];
-  List<VoucheritemsStruct> get voucherList => _voucherList;
-  set voucherList(List<VoucheritemsStruct> value) {
+  List<VoucherItemsStruct> _voucherList = [];
+  List<VoucherItemsStruct> get voucherList => _voucherList;
+  set voucherList(List<VoucherItemsStruct> value) {
     _voucherList = value;
   }
 
-  void addToVoucherList(VoucheritemsStruct value) {
+  void addToVoucherList(VoucherItemsStruct value) {
     voucherList.add(value);
   }
 
-  void removeFromVoucherList(VoucheritemsStruct value) {
+  void removeFromVoucherList(VoucherItemsStruct value) {
     voucherList.remove(value);
   }
 
@@ -532,13 +532,19 @@ class FFAppState extends ChangeNotifier {
 
   void updateVoucherListAtIndex(
     int index,
-    VoucheritemsStruct Function(VoucheritemsStruct) updateFn,
+    VoucherItemsStruct Function(VoucherItemsStruct) updateFn,
   ) {
     voucherList[index] = updateFn(_voucherList[index]);
   }
 
-  void insertAtIndexInVoucherList(int index, VoucheritemsStruct value) {
+  void insertAtIndexInVoucherList(int index, VoucherItemsStruct value) {
     voucherList.insert(index, value);
+  }
+
+  String _defaultBrandVoucher = '01JMH34A946RYPBC6AAAHTPPQF';
+  String get defaultBrandVoucher => _defaultBrandVoucher;
+  set defaultBrandVoucher(String value) {
+    _defaultBrandVoucher = value;
   }
 }
 

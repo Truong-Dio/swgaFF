@@ -10,7 +10,7 @@ class VoucherListStruct extends BaseStruct {
     int? page,
     int? total,
     int? totalPages,
-    List<VoucheritemsStruct>? voucheritems,
+    List<VoucherItemsStruct>? voucheritems,
   })  : _size = size,
         _page = page,
         _total = total,
@@ -54,11 +54,11 @@ class VoucherListStruct extends BaseStruct {
   bool hasTotalPages() => _totalPages != null;
 
   // "Voucheritems" field.
-  List<VoucheritemsStruct>? _voucheritems;
-  List<VoucheritemsStruct> get voucheritems => _voucheritems ?? const [];
-  set voucheritems(List<VoucheritemsStruct>? val) => _voucheritems = val;
+  List<VoucherItemsStruct>? _voucheritems;
+  List<VoucherItemsStruct> get voucheritems => _voucheritems ?? const [];
+  set voucheritems(List<VoucherItemsStruct>? val) => _voucheritems = val;
 
-  void updateVoucheritems(Function(List<VoucheritemsStruct>) updateFn) {
+  void updateVoucheritems(Function(List<VoucherItemsStruct>) updateFn) {
     updateFn(_voucheritems ??= []);
   }
 
@@ -72,7 +72,7 @@ class VoucherListStruct extends BaseStruct {
         totalPages: castToType<int>(data['totalPages']),
         voucheritems: getStructList(
           data['Voucheritems'],
-          VoucheritemsStruct.fromMap,
+          VoucherItemsStruct.fromMap,
         ),
       );
 
@@ -135,11 +135,11 @@ class VoucherListStruct extends BaseStruct {
           ParamType.int,
           false,
         ),
-        voucheritems: deserializeStructParam<VoucheritemsStruct>(
+        voucheritems: deserializeStructParam<VoucherItemsStruct>(
           data['Voucheritems'],
           ParamType.DataStruct,
           true,
-          structBuilder: VoucheritemsStruct.fromSerializableMap,
+          structBuilder: VoucherItemsStruct.fromSerializableMap,
         ),
       );
 
