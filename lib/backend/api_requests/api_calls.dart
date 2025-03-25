@@ -3257,6 +3257,11 @@ class ApiVoucherGETCall {
         response,
         r'''$.items[:].voucherName''',
       ));
+  List? vouListItemsNOItemsA(dynamic response) => getJsonField(
+        response,
+        r'''$.items[:].numberOfItemsAvailable''',
+        true,
+      ) as List?;
 }
 
 class ApiVoucheridGETCall {

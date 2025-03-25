@@ -1,5 +1,7 @@
 import '/all_component/appbar/appbar_widget.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/index.dart';
 import 'change_password_page_widget.dart' show ChangePasswordPageWidget;
 import 'package:flutter/material.dart';
 
@@ -35,6 +37,9 @@ class ChangePasswordPageModel
 
     return null;
   }
+
+  // Stores action output result for [Backend Call - API (/api/Account/{id} PUT)] action in Button widget.
+  ApiCallResponse? apiResultChangePassword;
 
   @override
   void initState(BuildContext context) {

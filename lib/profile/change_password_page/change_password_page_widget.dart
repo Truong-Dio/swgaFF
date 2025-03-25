@@ -1,8 +1,11 @@
 import '/all_component/appbar/appbar_widget.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'change_password_page_model.dart';
 export 'change_password_page_model.dart';
 
@@ -45,6 +48,8 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -314,6 +319,35 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                         ),
                       );
                     }
+
+                    _model.apiResultChangePassword =
+                        await SWalletAPIGroup.apiAccountidPUTCall.call(
+                      id: FFAppState().accountId,
+                      phone: FFAppState().phone,
+                      email: FFAppState().email,
+                      oldPassword: FFAppState().password,
+                      newPassword: _model.textController1.text,
+                    );
+
+                    if ((_model.apiResultChangePassword?.succeeded ?? true)) {
+                      context.pushNamed(SignInPageWidget.routeName);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'something error please try again',
+                            style: TextStyle(
+                              color: Color(0xFFF10000),
+                            ),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).secondary,
+                        ),
+                      );
+                    }
+
+                    safeSetState(() {});
                   },
                   text: 'Save',
                   options: FFButtonOptions(
