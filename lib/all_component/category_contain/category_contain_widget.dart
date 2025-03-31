@@ -45,6 +45,8 @@ class _CategoryContainWidgetState extends State<CategoryContainWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 80.0,
+      height: 80.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
@@ -52,8 +54,8 @@ class _CategoryContainWidgetState extends State<CategoryContainWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 85.0,
-            height: 85.0,
+            width: 55.16,
+            height: 51.0,
             decoration: BoxDecoration(
               color: FlutterFlowTheme.of(context).primaryLight,
               borderRadius: BorderRadius.circular(8.0),
@@ -74,7 +76,7 @@ class _CategoryContainWidgetState extends State<CategoryContainWidget> {
           Text(
             valueOrDefault<String>(
               widget.tiltle,
-              'Calculator',
+              'gameTitle',
             ),
             textAlign: TextAlign.center,
             maxLines: 1,

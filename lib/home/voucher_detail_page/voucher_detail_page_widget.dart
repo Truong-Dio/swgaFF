@@ -437,31 +437,6 @@ class _VoucherDetailPageWidgetState extends State<VoucherDetailPageWidget> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(20.0, 4.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 8.0, 0.0),
-                              child: Text(
-                                '6',
-                                maxLines: 1,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'SF Pro Text',
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                      lineHeight: 1.5,
-                                    ),
-                              ),
-                            ),
-                          ].divide(SizedBox(width: 1.5)),
-                        ),
-                      ),
-                      Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 16.0, 0.0, 0.0),
                         child: Text(
@@ -893,7 +868,7 @@ class _VoucherDetailPageWidgetState extends State<VoucherDetailPageWidget> {
 
                       context.pushNamed(CartPageWidget.routeName);
                     },
-                    text: 'Add to cart',
+                    text: 'Add to voucher wallet',
                     options: FFButtonOptions(
                       width: double.infinity,
                       height: 56.0,
@@ -901,7 +876,7 @@ class _VoucherDetailPageWidgetState extends State<VoucherDetailPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: FlutterFlowTheme.of(context).primary,
+                      color: Color(0xFF2ECC71),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'SF Pro Text',
@@ -918,7 +893,7 @@ class _VoucherDetailPageWidgetState extends State<VoucherDetailPageWidget> {
                         color: Colors.transparent,
                         width: 1.0,
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
+                      borderRadius: BorderRadius.circular(24.0),
                     ),
                   ),
                 ),

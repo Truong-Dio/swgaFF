@@ -1,12 +1,11 @@
+import '/all_component/appbar/appbar_widget.dart';
 import '/all_component/phone/phone_widget.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
 import 'sign_up_page_model.dart';
 export 'sign_up_page_model.dart';
@@ -21,13 +20,10 @@ class SignUpPageWidget extends StatefulWidget {
   State<SignUpPageWidget> createState() => _SignUpPageWidgetState();
 }
 
-class _SignUpPageWidgetState extends State<SignUpPageWidget>
-    with TickerProviderStateMixin {
+class _SignUpPageWidgetState extends State<SignUpPageWidget> {
   late SignUpPageModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
@@ -43,24 +39,6 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
 
     _model.textController3 ??= TextEditingController(text: 'abc@gmail.com');
     _model.textFieldFocusNode3 ??= FocusNode();
-
-    _model.textController4 ??= TextEditingController();
-    _model.textFieldFocusNode4 ??= FocusNode();
-
-    animationsMap.addAll({
-      'textOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.linear,
-            delay: 50.0.ms,
-            duration: 400.0.ms,
-            begin: Offset(0.0, -20.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -83,31 +61,23 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Text(
-                  'Sign up',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'SF Pro Text',
-                        fontSize: 28.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        useGoogleFonts: false,
-                        lineHeight: 1.5,
-                      ),
-                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
+              wrapWithModel(
+                model: _model.appbarModel,
+                updateCallback: () => safeSetState(() {}),
+                child: AppbarWidget(
+                  title: 'Sign Up',
+                ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 13.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
                 child: Text(
-                  'Sign up and begin your journey to the\n next level',
+                  'Sign up and begin your journey.\nStep 1/4',
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -120,10 +90,19 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                       ),
                 ),
               ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/images/signup_account.png',
+                  width: 244.2,
+                  height: 235.42,
+                  fit: BoxFit.cover,
+                ),
+              ),
               Expanded(
                 child: Form(
                   key: _model.formKey,
-                  autovalidateMode: AutovalidateMode.always,
+                  autovalidateMode: AutovalidateMode.disabled,
                   child: Padding(
                     padding:
                         EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
@@ -325,7 +304,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 26.0, 0.0, 26.0),
+                              0.0, 26.0, 0.0, 0.0),
                           child: TextFormField(
                             controller: _model.textController3,
                             focusNode: _model.textFieldFocusNode3,
@@ -410,86 +389,6 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                 .asValidator(context),
                           ),
                         ),
-                        TextFormField(
-                          controller: _model.textController4,
-                          focusNode: _model.textFieldFocusNode4,
-                          autofocus: false,
-                          textInputAction: TextInputAction.next,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Full Name',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'SF Pro Text',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                ),
-                            hintText: 'fullName',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'SF Pro Text',
-                                  color: FlutterFlowTheme.of(context).black40,
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                ),
-                            errorStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'SF Pro Text',
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 15.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                  lineHeight: 1.2,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).borderColor,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 13.0, 16.0, 12.0),
-                          ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'SF Pro Text',
-                                    fontSize: 17.0,
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: false,
-                                  ),
-                          cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.textController4Validator
-                              .asValidator(context),
-                        ),
                         wrapWithModel(
                           model: _model.phoneModel,
                           updateCallback: () => safeSetState(() {}),
@@ -500,15 +399,15 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                               0.0, 48.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              _model.step1 = true;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
+                                safeSetState(() => _model.step1 = false);
                                 return;
                               }
                               FFAppState().email = _model.textController3.text;
                               FFAppState().userName =
                                   _model.textController1.text;
-                              FFAppState().fullName =
-                                  _model.textController4.text;
                               FFAppState().phone = _model.phoneModel
                                   .phoneNumberFieldTextController.text;
                               FFAppState().password =
@@ -516,6 +415,8 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                               safeSetState(() {});
 
                               context.pushNamed(SignUpPage2Widget.routeName);
+
+                              safeSetState(() {});
                             },
                             text: 'Next',
                             options: FFButtonOptions(
@@ -525,7 +426,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: Color(0xFF2ECC71),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -543,7 +444,7 @@ class _SignUpPageWidgetState extends State<SignUpPageWidget>
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(24.0),
                             ),
                           ),
                         ),

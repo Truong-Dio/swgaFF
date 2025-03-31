@@ -71,7 +71,7 @@ class _PrivacyPolicyPageWidgetState extends State<PrivacyPolicyPageWidget> {
                     scrollDirection: Axis.vertical,
                     children: [
                       Text(
-                        '1. Types of data we collect',
+                        '1. Information We Collect',
                         maxLines: 1,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'SF Pro Text',
@@ -86,8 +86,8 @@ class _PrivacyPolicyPageWidgetState extends State<PrivacyPolicyPageWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                         child: Text(
-                          'Duis tristique diam nunc. Sed at tincidunt orci. Mauris eget congue leo. Cras varius at ante vitae convallis. Duis semper magna nec tortor tincidunt, id tincidunt quam blandit. Vivamus vehicula dictum magna quis eleifend. ',
-                          textAlign: TextAlign.justify,
+                          'We may collect personal information including your name, student ID, email address, and school affiliation during account registration. We also collect in-app activity data such as campaign participation, QR scans, and earned rewards.',
+                          textAlign: TextAlign.start,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'SF Pro Text',
@@ -100,7 +100,7 @@ class _PrivacyPolicyPageWidgetState extends State<PrivacyPolicyPageWidget> {
                         ),
                       ),
                       Text(
-                        '2. Use of your personal data ',
+                        '2. How We Use Your Information',
                         maxLines: 1,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'SF Pro Text',
@@ -115,8 +115,8 @@ class _PrivacyPolicyPageWidgetState extends State<PrivacyPolicyPageWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                         child: Text(
-                          'Sed sollicitudin nisi mollis libero consectetur rutrum. Nam maximus mollis nisl quis facilisis. Integer fermentum commodo nibh. Ut mollis tincidunt hendrerit. Duis ipsum velit, maximus sed commodo imperdiet, dapibus id velit. Nullam in maximus enim. Pellentesque vulputate nisi sit amet lacus pulvinar finibus.',
-                          textAlign: TextAlign.justify,
+                          'Your data is used to:\n- Verify your identity and link your account with your campus.\n- Track your participation in activities and campaigns.\n- Deliver points and rewards.\n- Improve user experience through usage insights.',
+                          textAlign: TextAlign.start,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'SF Pro Text',
@@ -129,7 +129,7 @@ class _PrivacyPolicyPageWidgetState extends State<PrivacyPolicyPageWidget> {
                         ),
                       ),
                       Text(
-                        '3.Disclosure of your personal data',
+                        '3. Data Sharing',
                         maxLines: 1,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'SF Pro Text',
@@ -142,10 +142,97 @@ class _PrivacyPolicyPageWidgetState extends State<PrivacyPolicyPageWidget> {
                       ),
                       Padding(
                         padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                         child: Text(
-                          'Sed sollicitudin nisi mollis libero consectetur rutrum. Nam maximus mollis nisl quis facilisis. Integer fermentum commodo nibh. Ut mollis tincidunt hendrerit. Duis ipsum velit, maximus sed commodo imperdiet, dapibus id velit. Nullam in maximus enim. Pellentesque vulputate nisi sit amet lacus pulvinar finibus. Nullam sit amet enim id nibh volutpat gravida vitae in orci. ',
-                          textAlign: TextAlign.justify,
+                          'We only share your data with:\n- Verified campus staff (for authentication purposes).\n- Partner brands (only anonymous activity data, never your personal info). We do not sell or share your personal data with third parties for marketing.',
+                          textAlign: TextAlign.start,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'SF Pro Text',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                    lineHeight: 1.5,
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        '4. Data Security',
+                        maxLines: 1,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'SF Pro Text',
+                              fontSize: 20.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: false,
+                              lineHeight: 1.5,
+                            ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
+                        child: Text(
+                          'We use encryption and secure servers to protect your data. Only authorized personnel can access your information when necessary.',
+                          textAlign: TextAlign.start,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'SF Pro Text',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                    lineHeight: 1.5,
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        '5. Your Rights',
+                        maxLines: 1,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'SF Pro Text',
+                              fontSize: 20.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: false,
+                              lineHeight: 1.5,
+                            ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
+                        child: Text(
+                          'You can request to:\n- View your stored information.\n- Edit your profile data.\n- Delete your account and personal information at any time.',
+                          textAlign: TextAlign.start,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'SF Pro Text',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                    lineHeight: 1.5,
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        '6. Changes to This Policy',
+                        maxLines: 1,
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'SF Pro Text',
+                              fontSize: 20.0,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                              useGoogleFonts: false,
+                              lineHeight: 1.5,
+                            ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
+                        child: Text(
+                          'We may update this Privacy Policy occasionally. You will be notified through the app when significant changes are made.',
+                          textAlign: TextAlign.start,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'SF Pro Text',

@@ -1,5 +1,4 @@
-import '/all_component/upload/upload_widget.dart';
-import '/backend/api_requests/api_calls.dart';
+import '/all_component/appbar/appbar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
@@ -10,20 +9,12 @@ class SignUpPage2Model extends FlutterFlowModel<SignUpPage2Widget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
-  // Model for upload component.
-  late UploadModel uploadModel;
-  // State field(s) for CodeText widget.
-  FocusNode? codeTextFocusNode;
-  TextEditingController? codeTextTextController;
-  String? Function(BuildContext, String?)? codeTextTextControllerValidator;
-  String? _codeTextTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Code is required';
-    }
-
-    return null;
-  }
-
+  // Model for Appbar component.
+  late AppbarModel appbarModel;
+  // State field(s) for TextField widget.
+  FocusNode? textFieldFocusNode;
+  TextEditingController? textController1;
+  String? Function(BuildContext, String?)? textController1Validator;
   // State field(s) for Gender widget.
   int? genderValue;
   FormFieldController<int>? genderValueController;
@@ -31,32 +22,20 @@ class SignUpPage2Model extends FlutterFlowModel<SignUpPage2Widget> {
   FocusNode? addressFocusNode;
   TextEditingController? addressTextController;
   String? Function(BuildContext, String?)? addressTextControllerValidator;
-  String? _addressTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Address is required';
-    }
-
-    return null;
-  }
-
-  // State field(s) for University widget.
-  String? universityValue;
-  FormFieldController<String>? universityValueController;
-  // Stores action output result for [Backend Call - API (/api/Account/studentRegister POST)] action in Button widget.
-  ApiCallResponse? successSignup;
+  DateTime? datePicked;
+  // Stores action output result for [Validate Form] action in Button widget.
+  bool? step2;
 
   @override
   void initState(BuildContext context) {
-    uploadModel = createModel(context, () => UploadModel());
-    codeTextTextControllerValidator = _codeTextTextControllerValidator;
-    addressTextControllerValidator = _addressTextControllerValidator;
+    appbarModel = createModel(context, () => AppbarModel());
   }
 
   @override
   void dispose() {
-    uploadModel.dispose();
-    codeTextFocusNode?.dispose();
-    codeTextTextController?.dispose();
+    appbarModel.dispose();
+    textFieldFocusNode?.dispose();
+    textController1?.dispose();
 
     addressFocusNode?.dispose();
     addressTextController?.dispose();

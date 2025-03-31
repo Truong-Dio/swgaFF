@@ -38,7 +38,9 @@ class SignInPageModel extends FlutterFlowModel<SignInPageWidget> {
   // Stores action output result for [Backend Call - API (/api/Student/account/{id} GET)] action in Button widget.
   ApiCallResponse? accountStuData;
   // Stores action output result for [Backend Call - API (/api/Account/{id} GET)] action in Button widget.
-  ApiCallResponse? getAccountUser;
+  ApiCallResponse? accountIdGet;
+  // Stores action output result for [Backend Call - API (/api/Student/{id} GET)] action in Button widget.
+  ApiCallResponse? studentIdGet;
 
   @override
   void initState(BuildContext context) {

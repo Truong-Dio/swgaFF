@@ -66,6 +66,86 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                   title: 'Help & Support',
                 ),
               ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 15.0,
+                        color: FlutterFlowTheme.of(context).shadowColor,
+                        offset: Offset(
+                          0.0,
+                          4.0,
+                        ),
+                        spreadRadius: 0.0,
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                    child: Container(
+                      width: double.infinity,
+                      color: Colors.white,
+                      child: ExpandableNotifier(
+                        controller: _model.expandableExpandableController1,
+                        child: ExpandablePanel(
+                          header: Text(
+                            'Are you know about service?',
+                            maxLines: 1,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  fontSize: 18.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.bold,
+                                  useGoogleFonts: false,
+                                  lineHeight: 1.5,
+                                ),
+                          ),
+                          collapsed: Container(
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                            ),
+                          ),
+                          expanded: Text(
+                            'If you can\'t find the answer within the app, reach out to our dedicated  customer support team. ',
+                            textAlign: TextAlign.start,
+                            maxLines: 3,
+                            style: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  fontSize: 17.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FontWeight.normal,
+                                  useGoogleFonts: false,
+                                  lineHeight: 1.5,
+                                ),
+                          ),
+                          theme: ExpandableThemeData(
+                            tapHeaderToExpand: true,
+                            tapBodyToExpand: false,
+                            tapBodyToCollapse: false,
+                            headerAlignment:
+                                ExpandablePanelHeaderAlignment.center,
+                            hasIcon: true,
+                            expandIcon: Icons.keyboard_arrow_up_rounded,
+                            collapseIcon: Icons.keyboard_arrow_down_rounded,
+                            iconSize: 20.0,
+                            iconColor: FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
                 child: ListView(
                   padding: EdgeInsets.fromLTRB(
@@ -104,7 +184,7 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                             color: Colors.white,
                             child: ExpandableNotifier(
                               controller:
-                                  _model.expandableExpandableController1,
+                                  _model.expandableExpandableController2,
                               child: ExpandablePanel(
                                 header: Text(
                                   'Contact Customer Support?',
@@ -189,95 +269,10 @@ class _HelpPageWidgetState extends State<HelpPageWidget> {
                             color: Colors.white,
                             child: ExpandableNotifier(
                               controller:
-                                  _model.expandableExpandableController2,
-                              child: ExpandablePanel(
-                                header: Text(
-                                  'Are you taking any service?',
-                                  maxLines: 1,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'SF Pro Text',
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                        useGoogleFonts: false,
-                                        lineHeight: 1.5,
-                                      ),
-                                ),
-                                collapsed: Container(
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
-                                ),
-                                expanded: Text(
-                                  'If you can\'t find the answer within the app, reach out to our dedicated  customer support team. ',
-                                  textAlign: TextAlign.start,
-                                  maxLines: 3,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'SF Pro Text',
-                                        fontSize: 17.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.normal,
-                                        useGoogleFonts: false,
-                                        lineHeight: 1.5,
-                                      ),
-                                ),
-                                theme: ExpandableThemeData(
-                                  tapHeaderToExpand: true,
-                                  tapBodyToExpand: false,
-                                  tapBodyToCollapse: false,
-                                  headerAlignment:
-                                      ExpandablePanelHeaderAlignment.center,
-                                  hasIcon: true,
-                                  expandIcon: Icons.keyboard_arrow_up_rounded,
-                                  collapseIcon:
-                                      Icons.keyboard_arrow_down_rounded,
-                                  iconSize: 20.0,
-                                  iconColor:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 15.0,
-                              color: FlutterFlowTheme.of(context).shadowColor,
-                              offset: Offset(
-                                0.0,
-                                4.0,
-                              ),
-                              spreadRadius: 0.0,
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 16.0, 16.0),
-                          child: Container(
-                            width: double.infinity,
-                            color: Colors.white,
-                            child: ExpandableNotifier(
-                              controller:
                                   _model.expandableExpandableController3,
                               child: ExpandablePanel(
                                 header: Text(
-                                  'Are you know about service?',
+                                  'Are you taking any service?',
                                   maxLines: 1,
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium

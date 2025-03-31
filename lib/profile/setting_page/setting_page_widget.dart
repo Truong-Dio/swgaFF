@@ -56,7 +56,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                 model: _model.appbarModel,
                 updateCallback: () => safeSetState(() {}),
                 child: AppbarWidget(
-                  title: 'Settings',
+                  title: 'Setting',
                 ),
               ),
               Expanded(

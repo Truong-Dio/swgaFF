@@ -1,4 +1,3 @@
-import '/all_component/category_contain/category_contain_widget.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
@@ -18,19 +17,13 @@ class BottomPageModel extends FlutterFlowModel<BottomPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - API (/api/Voucher GET)] action in BottomPage widget.
+  // Stores action output result for [Backend Call - API (/api/Voucher/get-all-vouchers GET)] action in BottomPage widget.
   ApiCallResponse? voucherGetResult;
-  // Models for CategoryContain dynamic component.
-  late FlutterFlowDynamicModels<CategoryContainModel> categoryContainModels;
+  var scanQrNav = '';
 
   @override
-  void initState(BuildContext context) {
-    categoryContainModels =
-        FlutterFlowDynamicModels(() => CategoryContainModel());
-  }
+  void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    categoryContainModels.dispose();
-  }
+  void dispose() {}
 }

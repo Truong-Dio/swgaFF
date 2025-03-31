@@ -50,11 +50,21 @@ class _AboutusPageWidgetState extends State<AboutusPageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              wrapWithModel(
-                model: _model.appbarModel,
-                updateCallback: () => safeSetState(() {}),
-                child: AppbarWidget(
-                  title: 'About us',
+              Container(
+                width: 498.3,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: Color(0xFF2ECC71),
+                  border: Border.all(
+                    color: Color(0xFF2ECC71),
+                  ),
+                ),
+                child: wrapWithModel(
+                  model: _model.appbarModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: AppbarWidget(
+                    title: 'About us',
+                  ),
                 ),
               ),
               Expanded(
@@ -79,83 +89,7 @@ class _AboutusPageWidgetState extends State<AboutusPageWidget> {
                         ),
                       ),
                       Text(
-                        'What is the SWallet',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Text',
-                              fontSize: 24.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.bold,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                      Text(
-                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. ',
-                        textAlign: TextAlign.justify,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Text',
-                              color: FlutterFlowTheme.of(context).black40,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                      Text(
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.',
-                        textAlign: TextAlign.justify,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Text',
-                              color: FlutterFlowTheme.of(context).black40,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                      Text(
-                        'In a laoreet purus. Integer turpis quam, laoreet id orci nec, ultrices lacinia nunc. Aliquam erat volutpat. Curabitur fringilla in purus eget egestas. Etiam quis.',
-                        textAlign: TextAlign.justify,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Text',
-                              color: FlutterFlowTheme.of(context).black40,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                      Text(
-                        'IVorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. ',
-                        textAlign: TextAlign.justify,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Text',
-                              color: FlutterFlowTheme.of(context).black40,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                      Text(
-                        'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. ',
-                        textAlign: TextAlign.justify,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Text',
-                              color: FlutterFlowTheme.of(context).black40,
-                              fontSize: 17.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.normal,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                      Text(
-                        'IVorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus elit sed risus. ',
+                        'S-Wallet is a reward-based platform designed specifically for students in the Ho Chi Minh City National University (VNU-HCMC) area. Our mission is to make campus life more engaging and rewarding by incorporating gamification into everyday student activities. With S-Wallet, students can earn points by joining campaigns, events, or activities, and redeem them for vouchers, discounts, and exclusive deals at partnered local businesses such as cafés, restaurants, and shops around VNU.\n\nThe platform goes beyond traditional loyalty programs by offering interactive mini-games like QR code scanning, lucky wheels, and phone-shaking to collect points. It also connects students, lecturers, and partner brands in one unified system—creating a vibrant ecosystem where users can interact, track their progress, and benefit from their engagement.\n\nS-Wallet is not just another reward app. It is a smart tool built to enrich student experiences, promote community connection, and bring real value to everyday interactions.',
                         textAlign: TextAlign.justify,
                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                               fontFamily: 'SF Pro Text',

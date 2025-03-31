@@ -514,7 +514,7 @@ class _AddCardBottomsheetWidgetState extends State<AddCardBottomsheetWidget> {
                   padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                   iconPadding:
                       EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
+                  color: Color(0xFF2ECC71),
                   textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                         fontFamily: 'SF Pro Text',
                         color: FlutterFlowTheme.of(context).secondaryBackground,
@@ -529,7 +529,7 @@ class _AddCardBottomsheetWidgetState extends State<AddCardBottomsheetWidget> {
                     color: Colors.transparent,
                     width: 1.0,
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
+                  borderRadius: BorderRadius.circular(24.0),
                 ),
               ),
             ),

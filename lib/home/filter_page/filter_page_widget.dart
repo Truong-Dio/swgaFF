@@ -1,4 +1,3 @@
-import '';
 import '/all_component/appbar/appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -685,7 +684,7 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                         showValueIndicator: ShowValueIndicator.always,
                       ),
                       child: Slider(
-                        activeColor: FlutterFlowTheme.of(context).primary,
+                        activeColor: Color(0xFF2ECC71),
                         inactiveColor: FlutterFlowTheme.of(context).alternate,
                         min: 0.0,
                         max: 5.0,
@@ -751,7 +750,7 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: Color(0xFF2ECC71),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'SF Pro Text',
                           color:
@@ -767,7 +766,7 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                       color: Colors.transparent,
                       width: 1.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                 ),
               ),

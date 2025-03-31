@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/backend/schema/structs/index.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -78,19 +77,31 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
+              Opacity(
+                opacity: 0.4,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/bg-card-level.png',
+                    width: double.infinity,
+                    height: 90.77,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
               Expanded(
                 child: Form(
                   key: _model.formKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child: Padding(
                     padding:
-                        EdgeInsetsDirectional.fromSTEB(20.0, 25.0, 20.0, 0.0),
+                        EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                     child: ListView(
                       padding: EdgeInsets.fromLTRB(
                         0,
@@ -102,7 +113,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 25.0, 0.0, 0.0),
+                              0.0, 2.0, 0.0, 0.0),
                           child: Text(
                             'Sign in',
                             textAlign: TextAlign.center,
@@ -371,70 +382,80 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                             _model.accountStuData = await SWalletAPIGroup
                                 .apiStudentAccountidGETCall
                                 .call(
-                              id: AuthValueStruct.maybeFromMap(
-                                      (_model.authLogin?.jsonBody ?? ''))
-                                  ?.accountId,
+                              id: getJsonField(
+                                (_model.authLogin?.jsonBody ?? ''),
+                                r'''$.accountId''',
+                              ).toString(),
                             );
 
-                            _model.getAccountUser =
+                            _model.accountIdGet =
                                 await SWalletAPIGroup.apiAccountidGETCall.call(
-                              id: AuthValueStruct.maybeFromMap(
-                                      (_model.authLogin?.jsonBody ?? ''))
-                                  ?.accountId,
+                              id: getJsonField(
+                                (_model.authLogin?.jsonBody ?? ''),
+                                r'''$.accountId''',
+                              ).toString(),
                             );
 
-                            FFAppState().fullName =
-                                AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountStuData?.jsonBody ??
-                                            ''))!
-                                    .fullName;
-                            FFAppState()
-                                .email = AccountIdGetStruct.maybeFromMap(
-                                    (_model.getAccountUser?.jsonBody ?? ''))!
-                                .email;
-                            FFAppState()
-                                .phone = AccountIdGetStruct.maybeFromMap(
-                                    (_model.getAccountUser?.jsonBody ?? ''))!
-                                .phone;
-                            FFAppState()
-                                .userName = AccountIdGetStruct.maybeFromMap(
-                                    (_model.getAccountUser?.jsonBody ?? ''))!
-                                .userName;
-                            FFAppState().campusId =
-                                AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountStuData?.jsonBody ??
-                                            ''))!
-                                    .campusId;
-                            FFAppState()
-                                .code = AccountStuIdGetInfoStruct.maybeFromMap(
-                                    (_model.accountStuData?.jsonBody ?? ''))!
-                                .code;
-                            FFAppState().gender =
-                                AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountStuData?.jsonBody ??
-                                            ''))!
-                                    .gender;
-                            FFAppState().address =
-                                AccountStuIdGetInfoStruct.maybeFromMap(
-                                        (_model.accountStuData?.jsonBody ??
-                                            ''))!
-                                    .address;
+                            _model.studentIdGet =
+                                await SWalletAPIGroup.apiStudentidGETCall.call(
+                              id: getJsonField(
+                                (_model.accountStuData?.jsonBody ?? ''),
+                                r'''$.id''',
+                              ).toString(),
+                            );
+
+                            FFAppState().fullName = getJsonField(
+                              (_model.studentIdGet?.jsonBody ?? ''),
+                              r'''$.fullName''',
+                            ).toString();
+                            FFAppState().email = getJsonField(
+                              (_model.accountIdGet?.jsonBody ?? ''),
+                              r'''$.email''',
+                            ).toString();
+                            FFAppState().phone = getJsonField(
+                              (_model.accountIdGet?.jsonBody ?? ''),
+                              r'''$.phone''',
+                            ).toString();
+                            FFAppState().userName = getJsonField(
+                              (_model.accountIdGet?.jsonBody ?? ''),
+                              r'''$.userName''',
+                            ).toString();
+                            FFAppState().campusId = getJsonField(
+                              (_model.studentIdGet?.jsonBody ?? ''),
+                              r'''$.campusId''',
+                            ).toString();
+                            FFAppState().code = getJsonField(
+                              (_model.studentIdGet?.jsonBody ?? ''),
+                              r'''$.code''',
+                            ).toString();
+                            FFAppState().gender = getJsonField(
+                              (_model.studentIdGet?.jsonBody ?? ''),
+                              r'''$.gender''',
+                            );
+                            FFAppState().address = getJsonField(
+                              (_model.studentIdGet?.jsonBody ?? ''),
+                              r'''$.address''',
+                            ).toString();
                             FFAppState().dateOfBirth = getJsonField(
-                              (_model.accountStuData?.jsonBody ?? ''),
+                              (_model.studentIdGet?.jsonBody ?? ''),
                               r'''$.dateOfBirth''',
                             );
-                            FFAppState().token = AuthValueStruct.maybeFromMap(
-                                    (_model.authLogin?.jsonBody ?? ''))!
-                                .token;
-                            FFAppState()
-                                .roleName = AccountIdGetStruct.maybeFromMap(
-                                    (_model.getAccountUser?.jsonBody ?? ''))!
-                                .roleName;
-                            FFAppState()
-                                .roleId = AccountIdGetStruct.maybeFromMap(
-                                    (_model.getAccountUser?.jsonBody ?? ''))!
-                                .roleId
-                                .toString();
+                            FFAppState().token = getJsonField(
+                              (_model.authLogin?.jsonBody ?? ''),
+                              r'''$.token''',
+                            ).toString();
+                            FFAppState().roleName = getJsonField(
+                              (_model.accountIdGet?.jsonBody ?? ''),
+                              r'''$.roleName''',
+                            ).toString();
+                            FFAppState().roleId = getJsonField(
+                              (_model.accountIdGet?.jsonBody ?? ''),
+                              r'''$.roleId''',
+                            ).toString();
+                            FFAppState().studentID = getJsonField(
+                              (_model.studentIdGet?.jsonBody ?? ''),
+                              r'''$.id''',
+                            ).toString();
                             safeSetState(() {});
 
                             context.goNamed(BottomPageWidget.routeName);
@@ -449,7 +470,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                 24.0, 0.0, 24.0, 0.0),
                             iconPadding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: FlutterFlowTheme.of(context).primary,
+                            color: Color(0xFF2ECC71),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -467,7 +488,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                               color: Colors.transparent,
                               width: 1.0,
                             ),
-                            borderRadius: BorderRadius.circular(8.0),
+                            borderRadius: BorderRadius.circular(24.0),
                           ),
                         ),
                         Padding(
@@ -488,7 +509,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: Color(0xFF2ECC71),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -506,17 +527,8 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(24.0),
                             ),
-                          ),
-                        ),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            'https://images.unsplash.com/vector-1742534549004-a710c282afdd?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                            width: 200.0,
-                            height: 200.0,
-                            fit: BoxFit.cover,
                           ),
                         ),
                       ],
@@ -532,7 +544,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed(SignUpPageWidget.routeName);
+                    context.pushNamed(SignUpPageOldWidget.routeName);
                   },
                   child: RichText(
                     textScaler: MediaQuery.of(context).textScaler,

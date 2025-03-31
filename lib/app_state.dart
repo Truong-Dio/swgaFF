@@ -109,60 +109,6 @@ class FFAppState extends ChangeNotifier {
     prefs.setInt('ff_introindex', value);
   }
 
-  List<CategoryStruct> _categorylist = [
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"0\",\"name\":\"Calculator\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/b52ejrgmsw5v/cal.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"1\",\"name\":\"Pencil\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/cjmx9nig7gce/pencile.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"2\",\"name\":\"Note Book\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/zozfsbjb59ls/book.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"3\",\"name\":\"Eraser\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/jajucxo4oqof/eeraser.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"4\",\"name\":\"Water Color\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/oi2l9dx09pji/color.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"5\",\"name\":\"File\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/zr0jf7dp2ib9/file.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"6\",\"name\":\"Scissor\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/zcwexa29kjxr/scissors.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"7\",\"name\":\"Sharpener\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/kfbr7gmq21ap/sharpner.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"8\",\"name\":\"Drawing Pin\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/yw90we81c5pz/pin.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"9\",\"name\":\"Stapler\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/u2t0lxsmfiy0/stapler.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"10\",\"name\":\"Paper Clip\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/ywfzvnvadt1m/peper_clip.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"11\",\"name\":\"Calendar\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/a07r8w2um191/calendar.png\"}'))
-  ];
-  List<CategoryStruct> get categorylist => _categorylist;
-  set categorylist(List<CategoryStruct> value) {
-    _categorylist = value;
-  }
-
-  void addToCategorylist(CategoryStruct value) {
-    categorylist.add(value);
-  }
-
-  void removeFromCategorylist(CategoryStruct value) {
-    categorylist.remove(value);
-  }
-
-  void removeAtIndexFromCategorylist(int index) {
-    categorylist.removeAt(index);
-  }
-
-  void updateCategorylistAtIndex(
-    int index,
-    CategoryStruct Function(CategoryStruct) updateFn,
-  ) {
-    categorylist[index] = updateFn(_categorylist[index]);
-  }
-
-  void insertAtIndexInCategorylist(int index, CategoryStruct value) {
-    categorylist.insert(index, value);
-  }
-
   List<DetailStruct> _detaillist = [
     DetailStruct.fromSerializableMap(jsonDecode(
         '{\"prid\":\"0\",\"id\":\"0\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/ndvdb37d9oe2/color1.png\",\"title\":\"FPTU SWallet Voucher\",\"price\":\"20.00 Points\",\"catetype\":\"FPTU\",\"is_fav\":\"false\",\"is_cart\":\"true\"}')),
@@ -545,6 +491,62 @@ class FFAppState extends ChangeNotifier {
   String get defaultBrandVoucher => _defaultBrandVoucher;
   set defaultBrandVoucher(String value) {
     _defaultBrandVoucher = value;
+  }
+
+  String _selectedDOB = '';
+  String get selectedDOB => _selectedDOB;
+  set selectedDOB(String value) {
+    _selectedDOB = value;
+  }
+
+  List<GameListStruct> _gameList = [
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"0\",\"gameName\":\"luckyWheel\",\"image\":\"https://images.unsplash.com/vector-1743358676890-6641eadd1880?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}')),
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"1\",\"gameName\":\"DailySignIn\",\"image\":\"https://images.unsplash.com/vector-1743358824701-93c700575771?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}')),
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"2\",\"gameName\":\"Quiz\",\"image\":\"https://images.unsplash.com/vector-1743358698276-fef11188e730?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}')),
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"3\",\"gameName\":\"Leaderboard\",\"image\":\"https://images.unsplash.com/vector-1743358676792-4d0fbe5bb3d0?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}'))
+  ];
+  List<GameListStruct> get gameList => _gameList;
+  set gameList(List<GameListStruct> value) {
+    _gameList = value;
+  }
+
+  void addToGameList(GameListStruct value) {
+    gameList.add(value);
+  }
+
+  void removeFromGameList(GameListStruct value) {
+    gameList.remove(value);
+  }
+
+  void removeAtIndexFromGameList(int index) {
+    gameList.removeAt(index);
+  }
+
+  void updateGameListAtIndex(
+    int index,
+    GameListStruct Function(GameListStruct) updateFn,
+  ) {
+    gameList[index] = updateFn(_gameList[index]);
+  }
+
+  void insertAtIndexInGameList(int index, GameListStruct value) {
+    gameList.insert(index, value);
+  }
+
+  String _studentID = '';
+  String get studentID => _studentID;
+  set studentID(String value) {
+    _studentID = value;
+  }
+
+  int _pointWallet = 0;
+  int get pointWallet => _pointWallet;
+  set pointWallet(int value) {
+    _pointWallet = value;
   }
 }
 

@@ -1,10 +1,13 @@
 import '/all_component/appbar/appbar_widget.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/flutter_flow/flutter_flow_expanded_image_view.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'verification_page_model.dart';
 export 'verification_page_model.dart';
 
@@ -42,6 +45,8 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -49,7 +54,7 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -124,7 +129,8 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                                 topRight: Radius.circular(12.0),
                               ),
                               shape: PinCodeFieldShape.box,
-                              activeColor: FlutterFlowTheme.of(context).primary,
+                              activeColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               inactiveColor:
                                   FlutterFlowTheme.of(context).borderColor,
                               selectedColor:
@@ -144,8 +150,14 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                               !_model.formKey.currentState!.validate()) {
                             return;
                           }
+                          await SWalletAPIGroup.apiAuthVerifyStudentPOSTCall
+                              .call(
+                            studentId: FFAppState().studentID,
+                            email: FFAppState().email,
+                            code: _model.pinCodeController!.text,
+                          );
 
-                          context.pushNamed(ResetPasswordPageWidget.routeName);
+                          context.pushNamed(BottomPageWidget.routeName);
                         },
                         text: 'Verify Now',
                         options: FFButtonOptions(
@@ -155,7 +167,7 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: Color(0xFF2ECC71),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'SF Pro Text',
@@ -172,7 +184,7 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                             color: Colors.transparent,
                             width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
                       ),
                       Align(
@@ -219,6 +231,44 @@ class _VerificationPageWidgetState extends State<VerificationPageWidget> {
                                   ),
                             ),
                             textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          await Navigator.push(
+                            context,
+                            PageTransition(
+                              type: PageTransitionType.fade,
+                              child: FlutterFlowExpandedImageView(
+                                image: Image.asset(
+                                  'assets/images/bg_signup_5.png',
+                                  fit: BoxFit.contain,
+                                  alignment: Alignment(0.0, -1.0),
+                                ),
+                                allowRotation: false,
+                                tag: 'imageTag',
+                                useHeroAnimation: true,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Hero(
+                          tag: 'imageTag',
+                          transitionOnUserGestures: true,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(
+                              'assets/images/bg_signup_5.png',
+                              width: 204.51,
+                              height: 515.8,
+                              fit: BoxFit.none,
+                              alignment: Alignment(0.0, -1.0),
+                            ),
                           ),
                         ),
                       ),

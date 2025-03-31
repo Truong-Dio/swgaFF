@@ -1,14 +1,12 @@
-import '/all_component/upload/upload_widget.dart';
-import '/backend/api_requests/api_calls.dart';
-import '/flutter_flow/flutter_flow_animations.dart';
+import '/all_component/appbar/appbar_widget.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'sign_up_page2_model.dart';
 export 'sign_up_page2_model.dart';
 
@@ -16,45 +14,27 @@ class SignUpPage2Widget extends StatefulWidget {
   const SignUpPage2Widget({super.key});
 
   static String routeName = 'SignUpPage2';
-  static String routePath = 'signUpPage/next';
+  static String routePath = 'signUpPage/2';
 
   @override
   State<SignUpPage2Widget> createState() => _SignUpPage2WidgetState();
 }
 
-class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
-    with TickerProviderStateMixin {
+class _SignUpPage2WidgetState extends State<SignUpPage2Widget> {
   late SignUpPage2Model _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  final animationsMap = <String, AnimationInfo>{};
 
   @override
   void initState() {
     super.initState();
     _model = createModel(context, () => SignUpPage2Model());
 
-    _model.codeTextTextController ??= TextEditingController();
-    _model.codeTextFocusNode ??= FocusNode();
+    _model.textController1 ??= TextEditingController();
+    _model.textFieldFocusNode ??= FocusNode();
 
     _model.addressTextController ??= TextEditingController();
     _model.addressFocusNode ??= FocusNode();
-
-    animationsMap.addAll({
-      'textOnPageLoadAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.linear,
-            delay: 50.0.ms,
-            duration: 400.0.ms,
-            begin: Offset(0.0, -20.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -75,31 +55,23 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
-                child: Text(
-                  'Sign up',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'SF Pro Text',
-                        fontSize: 28.0,
-                        letterSpacing: 0.0,
-                        fontWeight: FontWeight.bold,
-                        useGoogleFonts: false,
-                        lineHeight: 1.5,
-                      ),
-                ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation']!),
+              wrapWithModel(
+                model: _model.appbarModel,
+                updateCallback: () => safeSetState(() {}),
+                child: AppbarWidget(
+                  title: 'Sign Up',
+                ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 13.0),
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 21.0, 0.0, 0.0),
                 child: Text(
-                  'Sign up and begin your journey to the\n next level',
+                  'Willing give us more  your information.\nStep 2/4',
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
@@ -110,6 +82,15 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                         useGoogleFonts: false,
                         lineHeight: 1.5,
                       ),
+                ),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  'assets/images/bg_signup_2-removebg.png',
+                  width: 363.6,
+                  height: 209.7,
+                  fit: BoxFit.cover,
                 ),
               ),
               Expanded(
@@ -128,23 +109,14 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                       ),
                       scrollDirection: Axis.vertical,
                       children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 26.0),
-                          child: wrapWithModel(
-                            model: _model.uploadModel,
-                            updateCallback: () => safeSetState(() {}),
-                            child: UploadWidget(),
-                          ),
-                        ),
                         TextFormField(
-                          controller: _model.codeTextTextController,
-                          focusNode: _model.codeTextFocusNode,
+                          controller: _model.textController1,
+                          focusNode: _model.textFieldFocusNode,
                           autofocus: false,
                           textInputAction: TextInputAction.next,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Code',
+                            labelText: 'Full Name',
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -155,7 +127,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                                   letterSpacing: 0.0,
                                   useGoogleFonts: false,
                                 ),
-                            hintText: 'Code',
+                            hintText: 'fullName',
                             hintStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -214,7 +186,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                                     useGoogleFonts: false,
                                   ),
                           cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.codeTextTextControllerValidator
+                          validator: _model.textController1Validator
                               .asValidator(context),
                         ),
                         Padding(
@@ -238,7 +210,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                                   letterSpacing: 0.0,
                                   useGoogleFonts: false,
                                 ),
-                            hintText: 'Select...',
+                            hintText: 'Select you gender...',
                             icon: Icon(
                               Icons.keyboard_arrow_down_rounded,
                               color: FlutterFlowTheme.of(context).secondaryText,
@@ -345,77 +317,157 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                                 .asValidator(context),
                           ),
                         ),
-                        FlutterFlowDropDown<String>(
-                          controller: _model.universityValueController ??=
-                              FormFieldController<String>(
-                            _model.universityValue ??= 'FPT UNIVERSITY',
-                          ),
-                          options: [
-                            'FPT UNIVERSITY',
-                            'HCMC UNIVERSITY OF SCIENCE',
-                            'HCMC UNIVERSITY OF TECHNOLOGY',
-                            'HCMC INTERNATIONAL UNIVERSITY',
-                            'HCMC INTERNATIONAL UNIVERSITY',
-                            'HCMC UNIVERSITY OF AGRICULTURE AND FORESTRY',
-                            'HCMC UNIVERSITY OF INFORMATION TECHNOLOGY',
-                            'HCMC UNIVERSITY OF SOCIAL SCIENCES AND HUMANITIES',
-                            'HCMC PEOPLE\'S SERCURITY UNIVERSITY'
-                          ],
-                          onChanged: (val) async {
-                            safeSetState(() => _model.universityValue = val);
-                            safeSetState(() {});
-                          },
-                          width: 200.0,
-                          height: 49.9,
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'SF Pro Text',
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: false,
+                        Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Container(
+                              width: 345.0,
+                              height: 46.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(8.0),
+                                  bottomRight: Radius.circular(8.0),
+                                  topLeft: Radius.circular(8.0),
+                                  topRight: Radius.circular(8.0),
+                                ),
+                                border: Border.all(
+                                  color:
+                                      FlutterFlowTheme.of(context).borderColor,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text(
+                                    'Select your date of birth:',
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          fontFamily: 'SF Pro Text',
+                                          fontSize: 16.0,
+                                          letterSpacing: 0.0,
+                                          useGoogleFonts: false,
+                                        ),
                                   ),
-                          hintText: 'Select University',
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 2.0,
-                          borderColor: Color(0xFFDCDCDC),
-                          borderWidth: 1.0,
-                          borderRadius: 12.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 12.0, 0.0),
-                          hidesUnderline: true,
-                          isOverButton: false,
-                          isSearchable: false,
-                          isMultiSelect: false,
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: SelectionArea(
+                                        child: Text(
+                                      dateTimeFormat(
+                                          "yyyy/MM/dd", _model.datePicked),
+                                      textAlign: TextAlign.start,
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            fontFamily: 'SF Pro Text',
+                                            fontSize: 16.0,
+                                            letterSpacing: 0.0,
+                                            useGoogleFonts: false,
+                                          ),
+                                    )),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            FlutterFlowIconButton(
+                              borderColor:
+                                  FlutterFlowTheme.of(context).borderColor,
+                              borderRadius: 8.0,
+                              buttonSize: 46.0,
+                              fillColor: Color(0xFF1EC717),
+                              icon: Icon(
+                                Icons.calendar_month_outlined,
+                                color: FlutterFlowTheme.of(context).info,
+                                size: 24.0,
+                              ),
+                              onPressed: () async {
+                                final _datePickedDate = await showDatePicker(
+                                  context: context,
+                                  initialDate: getCurrentTimestamp,
+                                  firstDate: getCurrentTimestamp,
+                                  lastDate: DateTime(2050),
+                                  builder: (context, child) {
+                                    return wrapInMaterialDatePickerTheme(
+                                      context,
+                                      child!,
+                                      headerBackgroundColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      headerForegroundColor:
+                                          FlutterFlowTheme.of(context).info,
+                                      headerTextStyle:
+                                          FlutterFlowTheme.of(context)
+                                              .headlineLarge
+                                              .override(
+                                                fontFamily: 'SF Pro Text',
+                                                fontSize: 32.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                                useGoogleFonts: false,
+                                              ),
+                                      pickerBackgroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                      pickerForegroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                      selectedDateTimeBackgroundColor:
+                                          FlutterFlowTheme.of(context).primary,
+                                      selectedDateTimeForegroundColor:
+                                          FlutterFlowTheme.of(context).info,
+                                      actionButtonForegroundColor:
+                                          FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                      iconSize: 28.0,
+                                    );
+                                  },
+                                );
+
+                                if (_datePickedDate != null) {
+                                  safeSetState(() {
+                                    _model.datePicked = DateTime(
+                                      _datePickedDate.year,
+                                      _datePickedDate.month,
+                                      _datePickedDate.day,
+                                    );
+                                  });
+                                } else if (_model.datePicked != null) {
+                                  safeSetState(() {
+                                    _model.datePicked = getCurrentTimestamp;
+                                  });
+                                }
+                              },
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 48.0, 0.0, 0.0),
                           child: FFButtonWidget(
                             onPressed: () async {
+                              _model.step2 = true;
                               if (_model.formKey.currentState == null ||
                                   !_model.formKey.currentState!.validate()) {
+                                safeSetState(() => _model.step2 = false);
                                 return;
                               }
+                              FFAppState().fullName =
+                                  _model.textController1.text;
                               FFAppState().gender = _model.genderValue!;
-                              FFAppState().code =
-                                  _model.codeTextTextController.text;
+                              FFAppState().selectedDOB = dateTimeFormat(
+                                  "yyyy/MM/dd", _model.datePicked);
                               FFAppState().address =
                                   _model.addressTextController.text;
                               safeSetState(() {});
-                              _model.successSignup = await SWalletAPIGroup
-                                  .apiAccountStudentRegisterPOSTCall
-                                  .call();
 
-                              context.goNamed(BottomPageWidget.routeName);
+                              context.pushNamed(SignUpPage3Widget.routeName);
 
                               safeSetState(() {});
                             },
-                            text: 'Create account',
+                            text: 'Next',
                             options: FFButtonOptions(
                               width: double.infinity,
                               height: 56.0,
@@ -423,7 +475,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                                   24.0, 0.0, 24.0, 0.0),
                               iconPadding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
+                              color: Color(0xFF2ECC71),
                               textStyle: FlutterFlowTheme.of(context)
                                   .titleSmall
                                   .override(
@@ -441,7 +493,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget>
                                 color: Colors.transparent,
                                 width: 1.0,
                               ),
-                              borderRadius: BorderRadius.circular(8.0),
+                              borderRadius: BorderRadius.circular(24.0),
                             ),
                           ),
                         ),

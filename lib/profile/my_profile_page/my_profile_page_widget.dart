@@ -1,3 +1,4 @@
+import '/all_component/appbar/appbar_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -69,6 +70,42 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
           ),
         ],
       ),
+      'containerOnPageLoadAnimation4': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation5': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
+      'containerOnPageLoadAnimation6': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          MoveEffect(
+            curve: Curves.easeInOut,
+            delay: 100.0.ms,
+            duration: 600.0.ms,
+            begin: Offset(100.0, 0.0),
+            end: Offset(0.0, 0.0),
+          ),
+        ],
+      ),
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
@@ -98,82 +135,43 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.safePop();
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: Image.asset(
-                            'assets/images/arrowback.png',
-                            width: 40.0,
-                            height: 40.0,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+              wrapWithModel(
+                model: _model.appbarModel,
+                updateCallback: () => safeSetState(() {}),
+                child: AppbarWidget(
+                  title: 'My profile',
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(1.0, 0.0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
+                  child: InkWell(
+                    splashColor: Colors.transparent,
+                    focusColor: Colors.transparent,
+                    hoverColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                    onTap: () async {
+                      context.pushNamed(EditProfilePageWidget.routeName);
+                    },
+                    child: Container(
+                      width: 40.0,
+                      height: 40.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).lightGray,
+                        shape: BoxShape.circle,
                       ),
                     ),
-                    Expanded(
-                      child: Text(
-                        'My profile',
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF  pro display',
-                              fontSize: 24.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.bold,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                    ),
-                    Align(
-                      alignment: AlignmentDirectional(1.0, 0.0),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                        child: InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            context.pushNamed(EditProfilePageWidget.routeName);
-                          },
-                          child: Container(
-                            width: 40.0,
-                            height: 40.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).lightGray,
-                              shape: BoxShape.circle,
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(0.0),
-                              child: SvgPicture.asset(
-                                'assets/images/edit.svg',
-                                width: 24.0,
-                                height: 24.0,
-                                fit: BoxFit.none,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
+                  ),
+                ),
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(0.0),
+                child: SvgPicture.asset(
+                  'assets/images/edit.svg',
+                  width: 24.0,
+                  height: 24.0,
+                  fit: BoxFit.none,
                 ),
               ),
               Expanded(
@@ -228,6 +226,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
                           20.0, 30.0, 20.0, 16.0),
                       child: Container(
                         width: double.infinity,
+                        height: 50.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -258,7 +257,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
                                       fontFamily: 'SF Pro Text',
                                       color:
                                           FlutterFlowTheme.of(context).black40,
-                                      fontSize: 17.0,
+                                      fontSize: 15.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                       useGoogleFonts: false,
@@ -285,10 +284,197 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
                           animationsMap['containerOnPageLoadAnimation1']!),
                     ),
                     Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          20.0, 30.0, 20.0, 16.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 16.0,
+                              color: FlutterFlowTheme.of(context).shadowColor,
+                              offset: Offset(
+                                0.0,
+                                4.0,
+                              ),
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Name',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'SF Pro Text',
+                                      color:
+                                          FlutterFlowTheme.of(context).black40,
+                                      fontSize: 15.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                      useGoogleFonts: false,
+                                      lineHeight: 1.5,
+                                    ),
+                              ),
+                              Text(
+                                FFAppState().fullName,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'SF Pro Text',
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: false,
+                                      lineHeight: 1.5,
+                                    ),
+                              ),
+                            ].divide(SizedBox(height: 4.0)),
+                          ),
+                        ),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation2']!),
+                    ),
+                    Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
                       child: Container(
                         width: double.infinity,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 16.0,
+                              color: FlutterFlowTheme.of(context).shadowColor,
+                              offset: Offset(
+                                0.0,
+                                4.0,
+                              ),
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Name',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'SF Pro Text',
+                                      color:
+                                          FlutterFlowTheme.of(context).black40,
+                                      fontSize: 15.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                      useGoogleFonts: false,
+                                      lineHeight: 1.5,
+                                    ),
+                              ),
+                              Text(
+                                FFAppState().fullName,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'SF Pro Text',
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: false,
+                                      lineHeight: 1.5,
+                                    ),
+                              ),
+                            ].divide(SizedBox(height: 4.0)),
+                          ),
+                        ),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation3']!),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 50.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 16.0,
+                              color: FlutterFlowTheme.of(context).shadowColor,
+                              offset: Offset(
+                                0.0,
+                                4.0,
+                              ),
+                            )
+                          ],
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              16.0, 16.0, 16.0, 16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Name',
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'SF Pro Text',
+                                      color:
+                                          FlutterFlowTheme.of(context).black40,
+                                      fontSize: 15.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.normal,
+                                      useGoogleFonts: false,
+                                      lineHeight: 1.5,
+                                    ),
+                              ),
+                              Text(
+                                FFAppState().fullName,
+                                style: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'SF Pro Text',
+                                      fontSize: 16.0,
+                                      letterSpacing: 0.0,
+                                      fontWeight: FontWeight.w500,
+                                      useGoogleFonts: false,
+                                      lineHeight: 1.5,
+                                    ),
+                              ),
+                            ].divide(SizedBox(height: 4.0)),
+                          ),
+                        ),
+                      ).animateOnPageLoad(
+                          animationsMap['containerOnPageLoadAnimation4']!),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 50.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -319,7 +505,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
                                       fontFamily: 'SF Pro Text',
                                       color:
                                           FlutterFlowTheme.of(context).black40,
-                                      fontSize: 17.0,
+                                      fontSize: 15.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                       useGoogleFonts: false,
@@ -343,13 +529,14 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
                           ),
                         ),
                       ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation2']!),
+                          animationsMap['containerOnPageLoadAnimation5']!),
                     ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
                       child: Container(
                         width: double.infinity,
+                        height: 50.0,
                         decoration: BoxDecoration(
                           color:
                               FlutterFlowTheme.of(context).secondaryBackground,
@@ -380,7 +567,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
                                       fontFamily: 'SF Pro Text',
                                       color:
                                           FlutterFlowTheme.of(context).black40,
-                                      fontSize: 17.0,
+                                      fontSize: 15.0,
                                       letterSpacing: 0.0,
                                       fontWeight: FontWeight.normal,
                                       useGoogleFonts: false,
@@ -404,7 +591,7 @@ class _MyProfilePageWidgetState extends State<MyProfilePageWidget>
                           ),
                         ),
                       ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation3']!),
+                          animationsMap['containerOnPageLoadAnimation6']!),
                     ),
                   ],
                 ),

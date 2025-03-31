@@ -7,6 +7,7 @@ export 'auth_value_struct.dart';
 export 'brand_list_struct.dart';
 export 'category_struct.dart';
 export 'detail_struct.dart';
+export 'game_list_struct.dart';
 export 'gender_struct.dart';
 export 'items_struct.dart';
 export 'items_campaign_struct.dart';

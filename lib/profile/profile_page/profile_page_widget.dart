@@ -1,11 +1,14 @@
 import '/all_component/logout/logout_widget.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'profile_page_model.dart';
@@ -34,13 +37,28 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
     super.initState();
     _model = createModel(context, () => ProfilePageModel());
 
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.walletResult =
+          await SWalletAPIGroup.apiWalletstudentIdtypeGETCall.call(
+        studentId: FFAppState().studentID,
+        type: 1,
+      );
+
+      FFAppState().pointWallet = getJsonField(
+        (_model.walletResult?.jsonBody ?? ''),
+        r'''$.balance''',
+      );
+      safeSetState(() {});
+    });
+
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
           MoveEffect(
             curve: Curves.easeInOut,
-            delay: 100.0.ms,
+            delay: 250.0.ms,
             duration: 600.0.ms,
             begin: Offset(100.0, 0.0),
             end: Offset(0.0, 0.0),
@@ -76,30 +94,6 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
         effectsBuilder: () => [
           MoveEffect(
             curve: Curves.easeInOut,
-            delay: 150.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(100.0, 0.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation5': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 250.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(100.0, 0.0),
-            end: Offset(0.0, 0.0),
-          ),
-        ],
-      ),
-      'containerOnPageLoadAnimation6': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
             delay: 250.0.ms,
             duration: 600.0.ms,
             begin: Offset(100.0, 0.0),
@@ -130,223 +124,279 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
             children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Align(
-                    alignment: AlignmentDirectional(-1.0, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 4.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.safePop();
-                        },
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(0.0),
-                          child: Image.asset(
-                            'assets/images/arrowback.png',
-                            width: 40.0,
-                            height: 40.0,
-                            fit: BoxFit.cover,
-                            alignment: Alignment(-1.0, 0.0),
-                          ),
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.0),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: AlignmentDirectional(0.0, -1.19),
+                      child: Container(
+                        width: 469.4,
+                        height: 167.61,
+                        decoration: BoxDecoration(
+                          color: Color(0xFF2ECC71),
                         ),
                       ),
                     ),
-                  ),
-                  Align(
-                    alignment: AlignmentDirectional(0.0, 0.0),
-                    child: Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 0.0, 0.0),
-                      child: Text(
-                        'My Profile',
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF  pro display',
-                              fontSize: 24.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.bold,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/images/SWallet.png',
-                    width: 87.0,
-                    height: 87.0,
-                    fit: BoxFit.contain,
-                    alignment: Alignment(0.0, -1.0),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: ListView(
-                  padding: EdgeInsets.fromLTRB(
-                    0,
-                    45.0,
-                    0,
-                    24.0,
-                  ),
-                  scrollDirection: Axis.vertical,
-                  children: [
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                      child: Text(
-                        FFAppState().fullName,
-                        textAlign: TextAlign.center,
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'SF Pro Text',
-                              fontSize: 18.0,
-                              letterSpacing: 0.0,
-                              fontWeight: FontWeight.w600,
-                              useGoogleFonts: false,
-                              lineHeight: 1.5,
-                            ),
-                      ),
-                    ),
-                    Text(
-                      FFAppState().email,
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'SF Pro Text',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.normal,
-                            useGoogleFonts: false,
-                            lineHeight: 1.2,
-                          ),
-                    ),
-                    Text(
-                      FFAppState().campusId,
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'SF Pro Text',
-                            fontSize: 17.0,
-                            letterSpacing: 0.0,
-                            fontWeight: FontWeight.normal,
-                            useGoogleFonts: false,
-                            lineHeight: 1.2,
-                          ),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(
-                          20.0, 26.0, 20.0, 16.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(MyProfilePageWidget.routeName);
-                        },
+                    Align(
+                      alignment: AlignmentDirectional(-0.46, -0.86),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.0),
                         child: Container(
-                          width: double.infinity,
+                          width: 350.0,
+                          height: 180.0,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             boxShadow: [
                               BoxShadow(
-                                blurRadius: 16.0,
-                                color: Color(0x14000000),
+                                blurRadius: 50.0,
+                                color: Color(0x33000000),
                                 offset: Offset(
                                   0.0,
-                                  4.0,
+                                  2.0,
                                 ),
-                                spreadRadius: 0.0,
+                                spreadRadius: 20.0,
                               )
                             ],
-                            borderRadius: BorderRadius.circular(12.0),
+                            borderRadius: BorderRadius.circular(16.0),
                           ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/pmp_ic.svg',
-                                    width: 24.0,
-                                    height: 24.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Profile',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'SF Pro Text',
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: false,
-                                            lineHeight: 1.5,
-                                          ),
+                                        100.0, 0.0, 0.0, 70.0),
+                                    child: Container(
+                                      width: 242.6,
+                                      height: 28.1,
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                      ),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.06, -0.98),
+                                        child: Text(
+                                          FFAppState().fullName,
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Merriweather',
+                                                color: Colors.black,
+                                                fontSize: 22.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/arrow_right_ic.svg',
-                                    width: 20.0,
-                                    height: 20.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-0.79, -0.76),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            0.0, 100.0, 0.0, 0.0),
+                        child: Container(
+                          width: 165.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).lightGray,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Text(
+                              formatNumber(
+                                FFAppState().pointWallet,
+                                formatType: FormatType.decimal,
+                                decimalType: DecimalType.commaDecimal,
+                                currency: 'SP ',
+                              ),
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'SF Pro Text',
+                                    color: Color(0xFF2ECC71),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: false,
                                   ),
-                                ),
-                              ],
                             ),
                           ),
                         ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation1']!),
+                      ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(NotificationPageWidget.routeName);
-                        },
+                    Align(
+                      alignment: AlignmentDirectional(0.79, -0.67),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            3.0, 60.0, 10.0, 0.0),
                         child: Container(
-                          width: double.infinity,
+                          width: 165.0,
+                          height: 40.0,
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).lightGray,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Text(
+                              'Verify',
+                              textAlign: TextAlign.center,
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'SF Pro Text',
+                                    color: Color(0xFF2ECC71),
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.w600,
+                                    useGoogleFonts: false,
+                                  ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(-0.71, -0.77),
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(10.0, 0.0, 0.0, 0.0),
+                        child: Container(
+                          width: 70.0,
+                          height: 70.0,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                          ),
+                          child: SvgPicture.asset(
+                            'assets/images/18.svg',
+                            fit: BoxFit.fitWidth,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, -0.06),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 16.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(SettingPageWidget.routeName);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 16.0,
+                                  color:
+                                      FlutterFlowTheme.of(context).shadowColor,
+                                  offset: Offset(
+                                    0.0,
+                                    4.0,
+                                  ),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 16.0, 16.0, 16.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                    child: SvgPicture.asset(
+                                      'assets/images/pSetting.svg',
+                                      width: 24.0,
+                                      height: 24.0,
+                                      fit: BoxFit.contain,
+                                      alignment: Alignment(0.0, 0.0),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Settings',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'SF Pro Text',
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts: false,
+                                              lineHeight: 1.5,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                    child: SvgPicture.asset(
+                                      'assets/images/arrow_right.svg',
+                                      width: 20.0,
+                                      height: 20.0,
+                                      fit: BoxFit.contain,
+                                      alignment: Alignment(0.0, 0.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation1']!),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, -0.27),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 16.0),
+                        child: Container(
+                          width: 985.24,
+                          height: 54.9,
                           decoration: BoxDecoration(
                             color: FlutterFlowTheme.of(context)
                                 .secondaryBackground,
                             boxShadow: [
                               BoxShadow(
                                 blurRadius: 16.0,
-                                color: FlutterFlowTheme.of(context).shadowColor,
+                                color: Color(0x33000000),
                                 offset: Offset(
                                   0.0,
-                                  4.0,
+                                  2.0,
                                 ),
                               )
                             ],
@@ -401,251 +451,11 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                             ),
                           ),
                         ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation2']!),
+                      ),
                     ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(SettingPageWidget.routeName);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 16.0,
-                                color: FlutterFlowTheme.of(context).shadowColor,
-                                offset: Offset(
-                                  0.0,
-                                  4.0,
-                                ),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/pSetting.svg',
-                                    width: 24.0,
-                                    height: 24.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Settings',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'SF Pro Text',
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: false,
-                                            lineHeight: 1.5,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/arrow_right.svg',
-                                    width: 20.0,
-                                    height: 20.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation3']!),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(SecurityPageWidget.routeName);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 16.0,
-                                color: FlutterFlowTheme.of(context).shadowColor,
-                                offset: Offset(
-                                  0.0,
-                                  4.0,
-                                ),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: Image.asset(
-                                    'assets/images/security.png',
-                                    width: 24.0,
-                                    height: 24.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'Security',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'SF Pro Text',
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: false,
-                                            lineHeight: 1.5,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/arrow_right.svg',
-                                    width: 20.0,
-                                    height: 20.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation4']!),
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 16.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed(AboutusPageWidget.routeName);
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            boxShadow: [
-                              BoxShadow(
-                                blurRadius: 16.0,
-                                color: FlutterFlowTheme.of(context).shadowColor,
-                                offset: Offset(
-                                  0.0,
-                                  4.0,
-                                ),
-                              )
-                            ],
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 16.0, 16.0, 16.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/about.svg',
-                                    width: 24.0,
-                                    height: 24.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 0.0, 0.0),
-                                    child: Text(
-                                      'About',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'SF Pro Text',
-                                            fontSize: 17.0,
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.normal,
-                                            useGoogleFonts: false,
-                                            lineHeight: 1.5,
-                                          ),
-                                    ),
-                                  ),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(0.0),
-                                  child: SvgPicture.asset(
-                                    'assets/images/arrow_right.svg',
-                                    width: 20.0,
-                                    height: 20.0,
-                                    fit: BoxFit.contain,
-                                    alignment: Alignment(0.0, 0.0),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ).animateOnPageLoad(
-                          animationsMap['containerOnPageLoadAnimation5']!),
-                    ),
-                    Builder(
-                      builder: (context) => Padding(
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.17),
+                      child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             20.0, 0.0, 20.0, 16.0),
                         child: InkWell(
@@ -654,34 +464,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            await showDialog(
-                              context: context,
-                              builder: (dialogContext) {
-                                return Dialog(
-                                  elevation: 0,
-                                  insetPadding: EdgeInsets.zero,
-                                  backgroundColor: Colors.transparent,
-                                  alignment: AlignmentDirectional(0.0, 0.0)
-                                      .resolve(Directionality.of(context)),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      FocusScope.of(dialogContext).unfocus();
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus();
-                                    },
-                                    child: LogoutWidget(
-                                      onTapLogout: () async {
-                                        context.goNamed(
-                                            SignInPageWidget.routeName);
-
-                                        FFAppState().islogin = false;
-                                        safeSetState(() {});
-                                      },
-                                    ),
-                                  ),
-                                );
-                              },
-                            );
+                            context.pushNamed(SecurityPageWidget.routeName);
                           },
                           child: Container(
                             width: double.infinity,
@@ -709,8 +492,8 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(0.0),
-                                    child: SvgPicture.asset(
-                                      'assets/images/logout.svg',
+                                    child: Image.asset(
+                                      'assets/images/security.png',
                                       width: 24.0,
                                       height: 24.0,
                                       fit: BoxFit.contain,
@@ -722,7 +505,7 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                                       padding: EdgeInsetsDirectional.fromSTEB(
                                           16.0, 0.0, 0.0, 0.0),
                                       child: Text(
-                                        'Logout',
+                                        'Security',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
@@ -751,290 +534,582 @@ class _ProfilePageWidgetState extends State<ProfilePageWidget>
                             ),
                           ),
                         ).animateOnPageLoad(
-                            animationsMap['containerOnPageLoadAnimation6']!),
+                            animationsMap['containerOnPageLoadAnimation2']!),
                       ),
                     ),
-                  ],
-                ),
-              ),
-              Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).secondaryBackground,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 16.0,
-                      color: FlutterFlowTheme.of(context).shadowColor,
-                      offset: Offset(
-                        0.0,
-                        4.0,
-                      ),
-                    )
-                  ],
-                ),
-                alignment: AlignmentDirectional(0.0, 1.0),
-                child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(12.0, 15.0, 12.0, 15.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 2.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(BottomPageWidget.routeName);
-                                },
-                                child: Container(
-                                  width: 59.0,
-                                  height: 32.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryLight,
-                                    borderRadius: BorderRadius.circular(17.0),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.38),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            20.0, 0.0, 20.0, 16.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(AboutusPageWidget.routeName);
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 16.0,
+                                  color:
+                                      FlutterFlowTheme.of(context).shadowColor,
+                                  offset: Offset(
+                                    0.0,
+                                    4.0,
                                   ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: ClipRRect(
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 16.0, 16.0, 16.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                    child: SvgPicture.asset(
+                                      'assets/images/about.svg',
+                                      width: 24.0,
+                                      height: 24.0,
+                                      fit: BoxFit.contain,
+                                      alignment: Alignment(0.0, 0.0),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'About',
+                                        textAlign: TextAlign.start,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'SF Pro Text',
+                                              fontSize: 17.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.normal,
+                                              useGoogleFonts: false,
+                                              lineHeight: 1.5,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(0.0),
+                                    child: SvgPicture.asset(
+                                      'assets/images/arrow_right.svg',
+                                      width: 20.0,
+                                      height: 20.0,
+                                      fit: BoxFit.contain,
+                                      alignment: Alignment(0.0, 0.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ).animateOnPageLoad(
+                            animationsMap['containerOnPageLoadAnimation3']!),
+                      ),
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 0.6),
+                      child: Builder(
+                        builder: (context) => Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 0.0, 20.0, 16.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              await showDialog(
+                                context: context,
+                                builder: (dialogContext) {
+                                  return Dialog(
+                                    elevation: 0,
+                                    insetPadding: EdgeInsets.zero,
+                                    backgroundColor: Colors.transparent,
+                                    alignment: AlignmentDirectional(0.0, 0.0)
+                                        .resolve(Directionality.of(context)),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        FocusScope.of(dialogContext).unfocus();
+                                        FocusManager.instance.primaryFocus
+                                            ?.unfocus();
+                                      },
+                                      child: LogoutWidget(
+                                        onTapLogout: () async {
+                                          context.goNamed(
+                                              SignInPageWidget.routeName);
+
+                                          FFAppState().islogin = false;
+                                          safeSetState(() {});
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 16.0,
+                                    color: FlutterFlowTheme.of(context)
+                                        .shadowColor,
+                                    offset: Offset(
+                                      0.0,
+                                      4.0,
+                                    ),
+                                  )
+                                ],
+                                borderRadius: BorderRadius.circular(12.0),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    16.0, 16.0, 16.0, 16.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    ClipRRect(
                                       borderRadius: BorderRadius.circular(0.0),
                                       child: SvgPicture.asset(
-                                        'assets/images/home_bottom.svg',
-                                        width: 50.0,
-                                        height: 50.0,
+                                        'assets/images/logout.svg',
+                                        width: 24.0,
+                                        height: 24.0,
                                         fit: BoxFit.contain,
                                         alignment: Alignment(0.0, 0.0),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              ),
-                              Text(
-                                'Home',
-                                maxLines: 1,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'SF Pro Text',
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
-                                    ),
-                              ),
-                            ]
-                                .divide(SizedBox(height: 8.0))
-                                .addToStart(SizedBox(height: 5.0)),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 2.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed(NewVoucherWidget.routeName);
-                                },
-                                child: Container(
-                                  width: 59.0,
-                                  height: 32.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryLight,
-                                    borderRadius: BorderRadius.circular(17.0),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius:
-                                            BorderRadius.circular(0.0),
-                                        child: SvgPicture.asset(
-                                          'assets/images/gift-1-svgrepo-com.svg',
-                                          width: 50.0,
-                                          height: 50.0,
-                                          fit: BoxFit.contain,
+                                    Expanded(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 0.0, 0.0),
+                                        child: Text(
+                                          'Logout',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'SF Pro Text',
+                                                fontSize: 17.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.normal,
+                                                useGoogleFonts: false,
+                                                lineHeight: 1.5,
+                                              ),
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Text(
-                                  'Vouchers',
-                                  maxLines: 1,
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        fontFamily: 'SF Pro Text',
-                                        letterSpacing: 0.0,
-                                        useGoogleFonts: false,
-                                      ),
-                                ),
-                              ),
-                            ]
-                                .divide(SizedBox(height: 8.0))
-                                .addToStart(SizedBox(height: 5.0)),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 2.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context
-                                      .pushNamed(CampaignNewWidget.routeName);
-                                },
-                                child: Container(
-                                  width: 59.0,
-                                  height: 32.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryLight,
-                                    borderRadius: BorderRadius.circular(17.0),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(0.0),
-                                          child: SvgPicture.asset(
-                                            'assets/images/campaign-svgrepo-com.svg',
-                                            width: 30.0,
-                                            height: 30.0,
-                                            fit: BoxFit.contain,
-                                            alignment: Alignment(0.0, 0.0),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              AutoSizeText(
-                                'Campaign',
-                                maxLines: 1,
-                                minFontSize: 13.0,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'SF Pro Text',
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
                                     ),
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(0.0),
+                                      child: SvgPicture.asset(
+                                        'assets/images/arrow_right.svg',
+                                        width: 20.0,
+                                        height: 20.0,
+                                        fit: BoxFit.contain,
+                                        alignment: Alignment(0.0, 0.0),
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ]
-                                .divide(SizedBox(height: 8.0))
-                                .addToStart(SizedBox(height: 5.0)),
-                          ),
+                            ),
+                          ).animateOnPageLoad(
+                              animationsMap['containerOnPageLoadAnimation4']!),
                         ),
                       ),
-                      Expanded(
+                    ),
+                    Align(
+                      alignment: AlignmentDirectional(0.0, 1.0),
+                      child: Container(
+                        width: double.infinity,
+                        height: 100.0,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          boxShadow: [
+                            BoxShadow(
+                              blurRadius: 16.0,
+                              color: FlutterFlowTheme.of(context).shadowColor,
+                              offset: Offset(
+                                0.0,
+                                4.0,
+                              ),
+                            )
+                          ],
+                        ),
+                        alignment: AlignmentDirectional(0.0, 1.0),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 2.0),
-                          child: Column(
+                              12.0, 15.0, 12.0, 15.0),
+                          child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context
-                                      .pushNamed(ProfilePageWidget.routeName);
-                                },
-                                child: Container(
-                                  width: 59.0,
-                                  height: 32.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryLight,
-                                    borderRadius: BorderRadius.circular(17.0),
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Row(
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                          BottomPageWidget.routeName);
+                                    },
+                                    child: Column(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: [
-                                        Align(
-                                          alignment:
-                                              AlignmentDirectional(0.0, 0.0),
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(0.0),
-                                            child: SvgPicture.asset(
-                                              'assets/images/profile_fill_bottom.svg',
-                                              width: 50.0,
-                                              height: 50.0,
-                                              fit: BoxFit.contain,
-                                              alignment: Alignment(0.0, 0.0),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                                BottomPageWidget.routeName);
+                                          },
+                                          child: Container(
+                                            width: 42.1,
+                                            height: 42.1,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(17.0),
+                                            ),
+                                            child: Align(
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(0.0),
+                                                child: SvgPicture.asset(
+                                                  'assets/images/13.svg',
+                                                  width: 40.0,
+                                                  height: 33.9,
+                                                  fit: BoxFit.contain,
+                                                  alignment:
+                                                      Alignment(0.0, 0.0),
+                                                ),
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ],
+                                        Text(
+                                          'Home',
+                                          maxLines: 1,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'SF Pro Text',
+                                                letterSpacing: 0.0,
+                                                useGoogleFonts: false,
+                                              ),
+                                        ),
+                                      ]
+                                          .divide(SizedBox(height: 8.0))
+                                          .addToStart(SizedBox(height: 5.0)),
                                     ),
                                   ),
                                 ),
                               ),
-                              Text(
-                                'Profile',
-                                maxLines: 1,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      fontFamily: 'SF Pro Text',
-                                      letterSpacing: 0.0,
-                                      useGoogleFonts: false,
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 2.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed(
+                                          NewVoucherWidget.routeName);
+                                    },
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                                NewVoucherWidget.routeName);
+                                          },
+                                          child: Container(
+                                            width: 42.1,
+                                            height: 42.1,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(17.0),
+                                            ),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    bottomLeft:
+                                                        Radius.circular(20.0),
+                                                    bottomRight:
+                                                        Radius.circular(20.0),
+                                                    topLeft:
+                                                        Radius.circular(20.0),
+                                                    topRight:
+                                                        Radius.circular(20.0),
+                                                  ),
+                                                  child: SvgPicture.asset(
+                                                    'assets/images/15.svg',
+                                                    width: 42.9,
+                                                    height: 34.4,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Align(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Text(
+                                            'Vouchers',
+                                            maxLines: 1,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'SF Pro Text',
+                                                  letterSpacing: 0.0,
+                                                  useGoogleFonts: false,
+                                                ),
+                                          ),
+                                        ),
+                                      ]
+                                          .divide(SizedBox(height: 8.0))
+                                          .addToStart(SizedBox(height: 5.0)),
                                     ),
+                                  ),
+                                ),
                               ),
-                            ]
-                                .divide(SizedBox(height: 8.0))
-                                .addToStart(SizedBox(height: 5.0)),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 2.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          _model.scanQrNav =
+                                              await FlutterBarcodeScanner
+                                                  .scanBarcode(
+                                            '#C62828', // scanning line color
+                                            'Cancel', // cancel button text
+                                            true, // whether to show the flash icon
+                                            ScanMode.QR,
+                                          );
+
+                                          safeSetState(() {});
+                                        },
+                                        child: Container(
+                                          width: 39.0,
+                                          height: 39.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primaryLight,
+                                            borderRadius:
+                                                BorderRadius.circular(0.0),
+                                          ),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(16.0),
+                                            child: SvgPicture.asset(
+                                              'assets/images/S_20.svg',
+                                              width: 200.0,
+                                              height: 219.69,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ]
+                                        .divide(SizedBox(height: 8.0))
+                                        .addToStart(SizedBox(height: 5.0)),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 2.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                              CampaignNewWidget.routeName);
+                                        },
+                                        child: Container(
+                                          width: 42.1,
+                                          height: 42.1,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(17.0),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          0.0),
+                                                  child: SvgPicture.asset(
+                                                    'assets/images/17.svg',
+                                                    width: 39.7,
+                                                    height: 33.7,
+                                                    fit: BoxFit.contain,
+                                                    alignment:
+                                                        Alignment(0.0, 0.0),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      AutoSizeText(
+                                        'Campaign',
+                                        maxLines: 1,
+                                        minFontSize: 13.0,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'SF Pro Text',
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: false,
+                                            ),
+                                      ),
+                                    ]
+                                        .divide(SizedBox(height: 8.0))
+                                        .addToStart(SizedBox(height: 5.0)),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 2.0),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                              ProfilePageWidget.routeName);
+                                        },
+                                        child: Container(
+                                          width: 42.1,
+                                          height: 42.1,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(17.0),
+                                          ),
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              children: [
+                                                Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            0.0),
+                                                    child: SvgPicture.asset(
+                                                      'assets/images/18.svg',
+                                                      width: 28.0,
+                                                      height: 50.0,
+                                                      fit: BoxFit.contain,
+                                                      alignment:
+                                                          Alignment(0.0, 0.0),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        'Profile',
+                                        maxLines: 1,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              fontFamily: 'SF Pro Text',
+                                              letterSpacing: 0.0,
+                                              useGoogleFonts: false,
+                                            ),
+                                      ),
+                                    ]
+                                        .divide(SizedBox(height: 8.0))
+                                        .addToStart(SizedBox(height: 5.0)),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'reset_password_page_model.dart';
 export 'reset_password_page_model.dart';
 
@@ -47,6 +48,8 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -54,7 +57,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -84,7 +87,20 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                       scrollDirection: Axis.vertical,
                       children: [
                         Text(
-                          'The confirmation code was sent via email michelle.rivera@example.com',
+                          'The confirmation code was sent via email',
+                          textAlign: TextAlign.center,
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'SF Pro Text',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.normal,
+                                    useGoogleFonts: false,
+                                    lineHeight: 1.5,
+                                  ),
+                        ),
+                        Text(
+                          FFAppState().email,
                           textAlign: TextAlign.center,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -362,7 +378,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                                     24.0, 0.0, 24.0, 0.0),
                                 iconPadding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: FlutterFlowTheme.of(context).primary,
+                                color: Color(0xFF2ECC71),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -380,7 +396,7 @@ class _ResetPasswordPageWidgetState extends State<ResetPasswordPageWidget> {
                                   color: Colors.transparent,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(8.0),
+                                borderRadius: BorderRadius.circular(24.0),
                               ),
                             ),
                           ),

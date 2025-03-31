@@ -63,11 +63,18 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              wrapWithModel(
-                model: _model.appbarModel,
-                updateCallback: () => safeSetState(() {}),
-                child: AppbarWidget(
-                  title: 'Change Password',
+              Container(
+                width: 479.0,
+                height: 70.96,
+                decoration: BoxDecoration(
+                  color: Color(0xFF2ECC71),
+                ),
+                child: wrapWithModel(
+                  model: _model.appbarModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: AppbarWidget(
+                    title: 'Change Password',
+                  ),
                 ),
               ),
               Flexible(
@@ -297,10 +304,6 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.formKey.currentState == null ||
-                        !_model.formKey.currentState!.validate()) {
-                      return;
-                    }
                     if (_model.textController1.text ==
                         _model.textController2.text) {
                       _model.apiResultChangePassword =
@@ -309,7 +312,6 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                         phone: FFAppState().phone,
                         email: FFAppState().email,
                         oldPassword: FFAppState().password,
-                        newPassword: _model.textController1.text,
                       );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -339,7 +341,7 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: Color(0xFF2ECC71),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'SF Pro Text',
                           color:
@@ -355,7 +357,7 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                       color: Colors.transparent,
                       width: 1.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                 ),
               ),
