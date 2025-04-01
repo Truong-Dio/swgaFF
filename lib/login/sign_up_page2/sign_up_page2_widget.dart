@@ -175,6 +175,9 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                           ),
@@ -301,6 +304,9 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget> {
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 13.0, 16.0, 12.0),
                             ),
@@ -321,7 +327,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget> {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Container(
-                              width: 345.0,
+                              width: 306.57,
                               height: 46.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
@@ -343,7 +349,7 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget> {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   Text(
-                                    'Select your date of birth:',
+                                    'Select your birthday:',
                                     style: FlutterFlowTheme.of(context)
                                         .labelMedium
                                         .override(
@@ -388,8 +394,8 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget> {
                                 final _datePickedDate = await showDatePicker(
                                   context: context,
                                   initialDate: getCurrentTimestamp,
-                                  firstDate: getCurrentTimestamp,
-                                  lastDate: DateTime(2050),
+                                  firstDate: DateTime(1900),
+                                  lastDate: getCurrentTimestamp,
                                   builder: (context, child) {
                                     return wrapInMaterialDatePickerTheme(
                                       context,
@@ -439,6 +445,8 @@ class _SignUpPage2WidgetState extends State<SignUpPage2Widget> {
                                     _model.datePicked = getCurrentTimestamp;
                                   });
                                 }
+                                FFAppState().selectedDOB = '';
+                                safeSetState(() {});
                               },
                             ),
                           ],

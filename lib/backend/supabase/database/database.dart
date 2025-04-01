@@ -7,3 +7,4 @@ export 'table.dart';
 
 export 'tables/dailysignin.dart';
 export 'tables/simplecheckin.dart';
+export 'tables/userwavouchers.dart';

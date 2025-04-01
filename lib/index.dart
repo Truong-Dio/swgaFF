@@ -7,8 +7,8 @@ export '/login/sign_up_pageold2/sign_up_pageold2_widget.dart'
     show SignUpPageold2Widget;
 export '/login/forgot_password_page/forgot_password_page_widget.dart'
     show ForgotPasswordPageWidget;
-export '/profile/profile_page2/profile_page2_widget.dart'
-    show ProfilePage2Widget;
+export '/profile/profile_page2old/profile_page2old_widget.dart'
+    show ProfilePage2oldWidget;
 export '/profile/my_profile_page/my_profile_page_widget.dart'
     show MyProfilePageWidget;
 export '/profile/edit_profile_page/edit_profile_page_widget.dart'
@@ -62,5 +62,6 @@ export '/login/sign_up_page2/sign_up_page2_widget.dart' show SignUpPage2Widget;
 export '/profile/profile_page/profile_page_widget.dart' show ProfilePageWidget;
 export '/login/sign_up_page3/sign_up_page3_widget.dart' show SignUpPage3Widget;
 export '/login/sign_up_page4/sign_up_page4_widget.dart' show SignUpPage4Widget;
-export '/gamification/daily_signin/daily_signin_widget.dart'
-    show DailySigninWidget;
+export '/checkindaily/checkindaily_widget.dart' show CheckindailyWidget;
+export '/gamification/game_daily_signin/game_daily_signin_widget.dart'
+    show GameDailySigninWidget;

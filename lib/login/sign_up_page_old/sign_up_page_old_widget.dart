@@ -152,22 +152,17 @@ class _SignUpPageOldWidgetState extends State<SignUpPageOldWidget>
                             decoration: InputDecoration(
                               labelText: 'Username',
                               labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .labelLarge
                                   .override(
                                     fontFamily: 'SF Pro Text',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 14.0,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),
                               hintText: 'Username',
                               hintStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .labelLarge
                                   .override(
                                     fontFamily: 'SF Pro Text',
-                                    color: FlutterFlowTheme.of(context).black40,
-                                    fontSize: 17.0,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),
@@ -211,6 +206,8 @@ class _SignUpPageOldWidgetState extends State<SignUpPageOldWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context).info,
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 13.0, 16.0, 12.0),
                             ),
@@ -293,6 +290,9 @@ class _SignUpPageOldWidgetState extends State<SignUpPageOldWidget>
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                             suffixIcon: InkWell(
@@ -393,6 +393,9 @@ class _SignUpPageOldWidgetState extends State<SignUpPageOldWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 13.0, 16.0, 12.0),
                             ),
@@ -475,6 +478,9 @@ class _SignUpPageOldWidgetState extends State<SignUpPageOldWidget>
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                           ),

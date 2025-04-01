@@ -9,22 +9,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'profile_page2_model.dart';
-export 'profile_page2_model.dart';
+import 'profile_page2old_model.dart';
+export 'profile_page2old_model.dart';
 
-class ProfilePage2Widget extends StatefulWidget {
-  const ProfilePage2Widget({super.key});
+class ProfilePage2oldWidget extends StatefulWidget {
+  const ProfilePage2oldWidget({super.key});
 
-  static String routeName = 'ProfilePage2';
-  static String routePath = 'profilePage2';
+  static String routeName = 'ProfilePage2old';
+  static String routePath = 'profilePage2old';
 
   @override
-  State<ProfilePage2Widget> createState() => _ProfilePage2WidgetState();
+  State<ProfilePage2oldWidget> createState() => _ProfilePage2oldWidgetState();
 }
 
-class _ProfilePage2WidgetState extends State<ProfilePage2Widget>
+class _ProfilePage2oldWidgetState extends State<ProfilePage2oldWidget>
     with TickerProviderStateMixin {
-  late ProfilePage2Model _model;
+  late ProfilePage2oldModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -33,7 +33,7 @@ class _ProfilePage2WidgetState extends State<ProfilePage2Widget>
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProfilePage2Model());
+    _model = createModel(context, () => ProfilePage2oldModel());
 
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
@@ -928,8 +928,8 @@ class _ProfilePage2WidgetState extends State<ProfilePage2Widget>
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context
-                                      .pushNamed(ProfilePage2Widget.routeName);
+                                  context.pushNamed(
+                                      ProfilePage2oldWidget.routeName);
                                 },
                                 child: Container(
                                   width: 59.0,

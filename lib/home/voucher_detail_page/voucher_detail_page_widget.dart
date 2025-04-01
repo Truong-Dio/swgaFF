@@ -52,7 +52,7 @@ class _VoucherDetailPageWidgetState extends State<VoucherDetailPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: FutureBuilder<ApiCallResponse>(
           future: SWalletAPIGroup.apiVoucheridGETCall.call(
             id: widget.voucherId,
@@ -866,7 +866,18 @@ class _VoucherDetailPageWidgetState extends State<VoucherDetailPageWidget> {
                     onPressed: () async {
                       FFAppState().update(() {});
 
-                      context.pushNamed(CartPageWidget.routeName);
+                      context.pushNamed(
+                        CartPageWidget.routeName,
+                        queryParameters: {
+                          'voucherId': serializeParam(
+                            getJsonField(
+                              columnApiVoucheridGETResponse.jsonBody,
+                              r'''$.id''',
+                            ).toString(),
+                            ParamType.String,
+                          ),
+                        }.withoutNulls,
+                      );
                     },
                     text: 'Add to voucher wallet',
                     options: FFButtonOptions(

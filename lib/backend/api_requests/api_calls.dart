@@ -195,6 +195,7 @@ class SWalletAPIGroup {
       ApiWalletAddPointsToBrandWalletPOSTCall();
   static ApiWalletStudentPOSTCall apiWalletStudentPOSTCall =
       ApiWalletStudentPOSTCall();
+  static ApiWalletstudentCall apiWalletstudentCall = ApiWalletstudentCall();
 }
 
 class ApiAuthLoginPOSTCall {
@@ -922,15 +923,41 @@ class ApiStudentidStudentCardFrontPUTCall {
 }
 
 class ApiAccountStudentRegisterPOSTCall {
-  Future<ApiCallResponse> call() async {
+  Future<ApiCallResponse> call({
+    String? userName = '',
+    String? password = '',
+    String? phone = '',
+    String? email = '',
+    String? campusId = '',
+    FFUploadedFile? studentCardFront,
+    String? fullName = '',
+    String? code = '',
+    int? gender,
+    String? dateOfBirth = '',
+    String? address = '',
+  }) async {
     final baseUrl = SWalletAPIGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
       callName: '/api/Account/studentRegister POST',
       apiUrl: '${baseUrl}/api/Account/studentRegister',
       callType: ApiCallType.POST,
-      headers: {},
-      params: {},
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      params: {
+        'userName': userName,
+        'password': password,
+        'phone': phone,
+        'email': email,
+        'campusId': campusId,
+        'studentCardFront': studentCardFront,
+        'fullName': fullName,
+        'code': code,
+        'gender': gender,
+        'dateOfBirth': dateOfBirth,
+        'address': address,
+      },
       bodyType: BodyType.MULTIPART,
       returnBody: true,
       encodeBodyUtf8: false,
@@ -3554,6 +3581,86 @@ class ApiVoucheridGETCall {
       alwaysAllowBody: false,
     );
   }
+
+  String? vouGetId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.id''',
+      ));
+  String? vouGetBrandId(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.brandId''',
+      ));
+  String? vouGetBrandName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.brandName''',
+      ));
+  String? vouGetTypeid(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.typeId''',
+      ));
+  String? vouGetTypeName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.typeName''',
+      ));
+  String? vouGetVouName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.voucherName''',
+      ));
+  int? vouGetPrice(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.price''',
+      ));
+  int? vouGetRate(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.rate''',
+      ));
+  String? vouGetCondition(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.condition''',
+      ));
+  String? vouGetImage(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.image''',
+      ));
+  String? vouGetImageName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.imageName''',
+      ));
+  String? vouGetFile(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.file''',
+      ));
+  String? vouGetFileName(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.fileName''',
+      ));
+  String? vouGetDateCreated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateCreated''',
+      ));
+  String? vouGetDateUpdated(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.dateUpdated''',
+      ));
+  String? vouGetdescription(dynamic response) =>
+      castToType<String>(getJsonField(
+        response,
+        r'''$.description''',
+      ));
+  bool? vouGetState(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.state''',
+      ));
+  bool? vouGetStatus(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.status''',
+      ));
+  int? vouGetNoI(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.numberOfItems''',
+      ));
 }
 
 class ApiVoucheridPUTCall {
@@ -4180,14 +4287,33 @@ class ApiWalletAddPointsToBrandWalletPOSTCall {
 }
 
 class ApiWalletStudentPOSTCall {
-  Future<ApiCallResponse> call({
-    String? studentId = '',
-    int? points,
-  }) async {
+  Future<ApiCallResponse> call() async {
     final baseUrl = SWalletAPIGroup.getBaseUrl();
 
     return ApiManager.instance.makeApiCall(
       callName: '/api/Wallet/student POST',
+      apiUrl:
+          '${baseUrl}/api/Wallet/student?studentId=01JQPPA9QC8C0H7Z3QETBCZABJ&points=10',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class ApiWalletstudentCall {
+  Future<ApiCallResponse> call() async {
+    final baseUrl = SWalletAPIGroup.getBaseUrl();
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'apiWalletstudent',
       apiUrl: '${baseUrl}/api/Wallet/student',
       callType: ApiCallType.POST,
       headers: {},

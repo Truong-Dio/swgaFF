@@ -218,6 +218,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                           ),
@@ -303,6 +306,9 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 13.0, 16.0, 12.0),
                               suffixIcon: InkWell(
@@ -544,7 +550,7 @@ class _SignInPageWidgetState extends State<SignInPageWidget>
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed(SignUpPageOldWidget.routeName);
+                    context.pushNamed(SignUpPageWidget.routeName);
                   },
                   child: RichText(
                     textScaler: MediaQuery.of(context).textScaler,

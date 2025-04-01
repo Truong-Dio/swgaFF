@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'splash_page_model.dart';
 export 'splash_page_model.dart';
@@ -72,7 +73,7 @@ class _SplashPageWidgetState extends State<SplashPageWidget> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.asset(
-                    'assets/images/splash.png',
+                    'assets/images/background_splash.png',
                     width: double.infinity,
                     height: double.infinity,
                     fit: BoxFit.cover,
@@ -80,15 +81,37 @@ class _SplashPageWidgetState extends State<SplashPageWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(-0.06, -0.03),
+                alignment: AlignmentDirectional(-0.1, -0.34),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
-                  child: Image.network(
-                    'https://images.unsplash.com/vector-1742534549004-a710c282afdd?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    width: 200.0,
-                    height: 523.33,
+                  child: SvgPicture.asset(
+                    'assets/images/S_(2).svg',
+                    width: 320.0,
+                    height: 320.0,
                     fit: BoxFit.cover,
                   ),
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(0.0, 0.28),
+                child: Text(
+                  'S-Wallet ',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'SF Pro Text',
+                        color: Color(0xFF00FF78),
+                        fontSize: 60.0,
+                        letterSpacing: 0.0,
+                        fontWeight: FontWeight.w800,
+                        shadows: [
+                          Shadow(
+                            color: FlutterFlowTheme.of(context).primaryText,
+                            offset: Offset(5.0, 5.0),
+                            blurRadius: 2.0,
+                          )
+                        ],
+                        useGoogleFonts: false,
+                      ),
                 ),
               ),
             ],

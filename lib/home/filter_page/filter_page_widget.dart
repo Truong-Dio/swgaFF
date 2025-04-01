@@ -45,7 +45,7 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -102,7 +102,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               decoration: BoxDecoration(
                                 color: _model.filterindex == 0
                                     ? FlutterFlowTheme.of(context).primary
-                                    : FlutterFlowTheme.of(context).lightGray,
+                                    : FlutterFlowTheme.of(context)
+                                        .primaryBackground,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Align(
@@ -147,7 +148,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               decoration: BoxDecoration(
                                 color: _model.filterindex == 1
                                     ? FlutterFlowTheme.of(context).primary
-                                    : FlutterFlowTheme.of(context).lightGray,
+                                    : FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Align(
@@ -190,9 +192,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                             child: Container(
                               height: 38.0,
                               decoration: BoxDecoration(
-                                color: _model.filterindex == 2
-                                    ? FlutterFlowTheme.of(context).primary
-                                    : FlutterFlowTheme.of(context).lightGray,
+                                color: FlutterFlowTheme.of(context)
+                                    .primaryBackground,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Align(
@@ -235,9 +236,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                             child: Container(
                               height: 38.0,
                               decoration: BoxDecoration(
-                                color: _model.filterindex == 3
-                                    ? FlutterFlowTheme.of(context).primary
-                                    : FlutterFlowTheme.of(context).lightGray,
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: Align(
@@ -294,9 +294,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 4
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -339,9 +338,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 5
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -384,9 +382,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 6
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -429,9 +426,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 7
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -489,9 +485,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 8
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .primaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -534,9 +529,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 9
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -579,9 +573,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 10
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -624,9 +617,8 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                               child: Container(
                                 height: 38.0,
                                 decoration: BoxDecoration(
-                                  color: _model.filterindex == 11
-                                      ? FlutterFlowTheme.of(context).primary
-                                      : FlutterFlowTheme.of(context).lightGray,
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: Align(
@@ -717,7 +709,7 @@ class _FilterPageWidgetState extends State<FilterPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Colors.transparent,
+                    color: FlutterFlowTheme.of(context).primaryBackground,
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'SF Pro Text',
                           color: FlutterFlowTheme.of(context).primary,

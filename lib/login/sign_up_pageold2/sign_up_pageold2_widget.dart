@@ -135,85 +135,93 @@ class _SignUpPageold2WidgetState extends State<SignUpPageold2Widget>
                             child: UploadWidget(),
                           ),
                         ),
-                        TextFormField(
-                          controller: _model.codeTextTextController,
-                          focusNode: _model.codeTextFocusNode,
-                          autofocus: false,
-                          textInputAction: TextInputAction.next,
-                          obscureText: false,
-                          decoration: InputDecoration(
-                            labelText: 'Code',
-                            labelStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'SF Pro Text',
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
-                                  fontSize: 14.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                ),
-                            hintText: 'Code',
-                            hintStyle: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'SF Pro Text',
-                                  color: FlutterFlowTheme.of(context).black40,
-                                  fontSize: 17.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                ),
-                            errorStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'SF Pro Text',
-                                  color: FlutterFlowTheme.of(context).error,
-                                  fontSize: 15.0,
-                                  letterSpacing: 0.0,
-                                  useGoogleFonts: false,
-                                  lineHeight: 1.2,
-                                ),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).borderColor,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).primaryText,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            errorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            focusedErrorBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: FlutterFlowTheme.of(context).error,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(12.0),
-                            ),
-                            contentPadding: EdgeInsetsDirectional.fromSTEB(
-                                16.0, 13.0, 16.0, 12.0),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
-                          style:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
+                          child: TextFormField(
+                            controller: _model.codeTextTextController,
+                            focusNode: _model.codeTextFocusNode,
+                            autofocus: false,
+                            textInputAction: TextInputAction.next,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              labelText: 'Code',
+                              labelStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
                                     fontFamily: 'SF Pro Text',
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryText,
+                                    fontSize: 14.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                              hintText: 'Code',
+                              hintStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'SF Pro Text',
+                                    color: FlutterFlowTheme.of(context).black40,
                                     fontSize: 17.0,
                                     letterSpacing: 0.0,
                                     useGoogleFonts: false,
                                   ),
-                          cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.codeTextTextControllerValidator
-                              .asValidator(context),
+                              errorStyle: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'SF Pro Text',
+                                    color: FlutterFlowTheme.of(context).error,
+                                    fontSize: 15.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                    lineHeight: 1.2,
+                                  ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      FlutterFlowTheme.of(context).borderColor,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(6.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(6.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(6.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: FlutterFlowTheme.of(context).error,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(6.0),
+                              ),
+                              contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 13.0, 16.0, 12.0),
+                            ),
+                            style: FlutterFlowTheme.of(context)
+                                .titleLarge
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                ),
+                            cursorColor: FlutterFlowTheme.of(context).primary,
+                            validator: _model.codeTextTextControllerValidator
+                                .asValidator(context),
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
@@ -256,9 +264,11 @@ class _SignUpPageold2WidgetState extends State<SignUpPageold2Widget>
                             isMultiSelect: false,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 26.0),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
                           child: TextFormField(
                             controller: _model.addressTextController,
                             focusNode: _model.addressFocusNode,
@@ -303,7 +313,7 @@ class _SignUpPageold2WidgetState extends State<SignUpPageold2Widget>
                                       FlutterFlowTheme.of(context).borderColor,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(6.0),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
@@ -311,30 +321,29 @@ class _SignUpPageold2WidgetState extends State<SignUpPageold2Widget>
                                       FlutterFlowTheme.of(context).primaryText,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(6.0),
                               ),
                               errorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(6.0),
                               ),
                               focusedErrorBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
                                   color: FlutterFlowTheme.of(context).error,
                                   width: 1.0,
                                 ),
-                                borderRadius: BorderRadius.circular(12.0),
+                                borderRadius: BorderRadius.circular(6.0),
                               ),
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 13.0, 16.0, 12.0),
                             ),
                             style: FlutterFlowTheme.of(context)
-                                .bodyMedium
+                                .titleLarge
                                 .override(
                                   fontFamily: 'SF Pro Text',
-                                  fontSize: 17.0,
                                   letterSpacing: 0.0,
                                   useGoogleFonts: false,
                                 ),
@@ -343,52 +352,57 @@ class _SignUpPageold2WidgetState extends State<SignUpPageold2Widget>
                                 .asValidator(context),
                           ),
                         ),
-                        FlutterFlowDropDown<String>(
-                          controller: _model.universityValueController ??=
-                              FormFieldController<String>(
-                            _model.universityValue ??= 'FPT UNIVERSITY',
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 26.0, 0.0, 0.0),
+                          child: FlutterFlowDropDown<String>(
+                            controller: _model.universityValueController ??=
+                                FormFieldController<String>(
+                              _model.universityValue ??= 'FPT UNIVERSITY',
+                            ),
+                            options: [
+                              'FPT UNIVERSITY',
+                              'HCMC UNIVERSITY OF SCIENCE',
+                              'HCMC UNIVERSITY OF TECHNOLOGY',
+                              'HCMC INTERNATIONAL UNIVERSITY',
+                              'HCMC INTERNATIONAL UNIVERSITY',
+                              'HCMC UNIVERSITY OF AGRICULTURE AND FORESTRY',
+                              'HCMC UNIVERSITY OF INFORMATION TECHNOLOGY',
+                              'HCMC UNIVERSITY OF SOCIAL SCIENCES AND HUMANITIES',
+                              'HCMC PEOPLE\'S SERCURITY UNIVERSITY'
+                            ],
+                            onChanged: (val) async {
+                              safeSetState(() => _model.universityValue = val);
+                              safeSetState(() {});
+                            },
+                            width: 200.0,
+                            height: 49.9,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                ),
+                            hintText: 'Select University',
+                            icon: Icon(
+                              Icons.keyboard_arrow_down_rounded,
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              size: 24.0,
+                            ),
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
+                            elevation: 2.0,
+                            borderColor: Color(0xFFDCDCDC),
+                            borderWidth: 1.0,
+                            borderRadius: 12.0,
+                            margin: EdgeInsetsDirectional.fromSTEB(
+                                12.0, 0.0, 12.0, 0.0),
+                            hidesUnderline: true,
+                            isOverButton: false,
+                            isSearchable: false,
+                            isMultiSelect: false,
                           ),
-                          options: [
-                            'FPT UNIVERSITY',
-                            'HCMC UNIVERSITY OF SCIENCE',
-                            'HCMC UNIVERSITY OF TECHNOLOGY',
-                            'HCMC INTERNATIONAL UNIVERSITY',
-                            'HCMC INTERNATIONAL UNIVERSITY',
-                            'HCMC UNIVERSITY OF AGRICULTURE AND FORESTRY',
-                            'HCMC UNIVERSITY OF INFORMATION TECHNOLOGY',
-                            'HCMC UNIVERSITY OF SOCIAL SCIENCES AND HUMANITIES',
-                            'HCMC PEOPLE\'S SERCURITY UNIVERSITY'
-                          ],
-                          onChanged: (val) async {
-                            safeSetState(() => _model.universityValue = val);
-                            safeSetState(() {});
-                          },
-                          width: 200.0,
-                          height: 49.9,
-                          textStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.override(
-                                    fontFamily: 'SF Pro Text',
-                                    letterSpacing: 0.0,
-                                    useGoogleFonts: false,
-                                  ),
-                          hintText: 'Select University',
-                          icon: Icon(
-                            Icons.keyboard_arrow_down_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          elevation: 2.0,
-                          borderColor: Color(0xFFDCDCDC),
-                          borderWidth: 1.0,
-                          borderRadius: 12.0,
-                          margin: EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 12.0, 0.0),
-                          hidesUnderline: true,
-                          isOverButton: false,
-                          isSearchable: false,
-                          isMultiSelect: false,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(

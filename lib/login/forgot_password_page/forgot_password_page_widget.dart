@@ -164,6 +164,9 @@ class _ForgotPasswordPageWidgetState extends State<ForgotPasswordPageWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 13.0, 16.0, 12.0),
                             ),

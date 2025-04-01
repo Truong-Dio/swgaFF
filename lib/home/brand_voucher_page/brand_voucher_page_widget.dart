@@ -84,7 +84,7 @@ class _BrandVoucherPageWidgetState extends State<BrandVoucherPageWidget>
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -182,157 +182,173 @@ class _BrandVoucherPageWidgetState extends State<BrandVoucherPageWidget>
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
-                  child: FutureBuilder<ApiCallResponse>(
-                    future: SWalletAPIGroup.apiVoucherGETCall.call(
-                      brandId: widget.brandId,
-                      state: true,
-                      isAsc: true,
-                      page: 1,
-                      size: 10,
-                    ),
-                    builder: (context, snapshot) {
-                      // Customize what your widget looks like when it's loading.
-                      if (!snapshot.hasData) {
-                        return Center(
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                FlutterFlowTheme.of(context).primary,
-                              ),
-                            ),
-                          ),
-                        );
-                      }
-                      final listViewApiVoucherGETResponse = snapshot.data!;
-
-                      return Builder(
-                        builder: (context) {
-                          final brandListItem = getJsonField(
-                            listViewApiVoucherGETResponse.jsonBody,
-                            r'''$.items''',
-                          ).toList();
-
-                          return ListView.separated(
-                            padding: EdgeInsets.fromLTRB(
-                              0,
-                              16.0,
-                              0,
-                              24.0,
-                            ),
-                            shrinkWrap: true,
-                            scrollDirection: Axis.vertical,
-                            itemCount: brandListItem.length,
-                            separatorBuilder: (_, __) => SizedBox(height: 16.0),
-                            itemBuilder: (context, brandListItemIndex) {
-                              final brandListItemItem =
-                                  brandListItem[brandListItemIndex];
-                              return Container(
-                                width: 364.0,
-                                height: 210.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 3.0,
-                                      color: Color(0x33000000),
-                                      offset: Offset(
-                                        0.0,
-                                        3.0,
-                                      ),
-                                      spreadRadius: 0.0,
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(8.0),
-                                    bottomRight: Radius.circular(8.0),
-                                    topLeft: Radius.circular(8.0),
-                                    topRight: Radius.circular(8.0),
+                child: Flex(
+                  direction: Axis.vertical,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 0.0),
+                      child: FutureBuilder<ApiCallResponse>(
+                        future: SWalletAPIGroup.apiVoucherGETCall.call(
+                          brandId: widget.brandId,
+                          state: true,
+                          isAsc: true,
+                          page: 1,
+                          size: 10,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
                                   ),
                                 ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Stack(
-                                      alignment:
-                                          AlignmentDirectional(1.0, -1.0),
-                                      children: [
-                                        ClipRRect(
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(0.0),
-                                            bottomRight: Radius.circular(0.0),
-                                            topLeft: Radius.circular(8.0),
-                                            topRight: Radius.circular(8.0),
+                              ),
+                            );
+                          }
+                          final listViewApiVoucherGETResponse = snapshot.data!;
+
+                          return Builder(
+                            builder: (context) {
+                              final brandListItem = getJsonField(
+                                listViewApiVoucherGETResponse.jsonBody,
+                                r'''$.items''',
+                              ).toList();
+
+                              return ListView.separated(
+                                padding: EdgeInsets.fromLTRB(
+                                  0,
+                                  16.0,
+                                  0,
+                                  24.0,
+                                ),
+                                shrinkWrap: true,
+                                scrollDirection: Axis.vertical,
+                                itemCount: brandListItem.length,
+                                separatorBuilder: (_, __) =>
+                                    SizedBox(height: 16.0),
+                                itemBuilder: (context, brandListItemIndex) {
+                                  final brandListItemItem =
+                                      brandListItem[brandListItemIndex];
+                                  return Container(
+                                    width: 364.0,
+                                    height: 210.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 3.0,
+                                          color: Color(0x33000000),
+                                          offset: Offset(
+                                            0.0,
+                                            3.0,
                                           ),
-                                          child: Image.network(
-                                            '${getJsonField(
+                                          spreadRadius: 0.0,
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(8.0),
+                                        bottomRight: Radius.circular(8.0),
+                                        topLeft: Radius.circular(8.0),
+                                        topRight: Radius.circular(8.0),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Stack(
+                                          alignment:
+                                              AlignmentDirectional(1.0, -1.0),
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius: BorderRadius.only(
+                                                bottomLeft:
+                                                    Radius.circular(0.0),
+                                                bottomRight:
+                                                    Radius.circular(0.0),
+                                                topLeft: Radius.circular(8.0),
+                                                topRight: Radius.circular(8.0),
+                                              ),
+                                              child: Image.network(
+                                                '${getJsonField(
+                                                  brandListItemItem,
+                                                  r'''$.image''',
+                                                ).toString()}',
+                                                width: double.infinity,
+                                                height: 131.0,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Flexible(
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    12.0, 8.0, 8.0, 0.0),
+                                            child: Text(
+                                              getJsonField(
+                                                brandListItemItem,
+                                                r'''$.voucherName''',
+                                              ).toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily:
+                                                            'SF Pro Text',
+                                                        fontSize: 17.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.normal,
+                                                        useGoogleFonts: false,
+                                                        lineHeight: 1.5,
+                                                      ),
+                                            ),
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12.0, 4.0, 0.0, 0.0),
+                                          child: Text(
+                                            getJsonField(
                                               brandListItemItem,
-                                              r'''$.image''',
-                                            ).toString()}',
-                                            width: double.infinity,
-                                            height: 131.0,
-                                            fit: BoxFit.cover,
+                                              r'''$.price''',
+                                            ).toString(),
+                                            maxLines: 1,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'SF Pro Text',
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  useGoogleFonts: false,
+                                                  lineHeight: 1.5,
+                                                ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                    Flexible(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            12.0, 8.0, 8.0, 0.0),
-                                        child: Text(
-                                          getJsonField(
-                                            brandListItemItem,
-                                            r'''$.voucherName''',
-                                          ).toString(),
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'SF Pro Text',
-                                                fontSize: 17.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.normal,
-                                                useGoogleFonts: false,
-                                                lineHeight: 1.5,
-                                              ),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 4.0, 0.0, 0.0),
-                                      child: Text(
-                                        getJsonField(
-                                          brandListItemItem,
-                                          r'''$.price''',
-                                        ).toString(),
-                                        maxLines: 1,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'SF Pro Text',
-                                              fontSize: 14.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w500,
-                                              useGoogleFonts: false,
-                                              lineHeight: 1.5,
-                                            ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  );
+                                },
                               );
                             },
                           );
                         },
-                      );
-                    },
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],

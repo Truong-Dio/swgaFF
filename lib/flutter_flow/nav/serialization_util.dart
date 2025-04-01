@@ -220,6 +220,8 @@ dynamic deserializeParam<T>(
             return DailysigninRow(data);
           case SimplecheckinRow:
             return SimplecheckinRow(data);
+          case UserwavouchersRow:
+            return UserwavouchersRow(data);
           default:
             return null;
         }

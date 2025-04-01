@@ -548,6 +548,30 @@ class FFAppState extends ChangeNotifier {
   set pointWallet(int value) {
     _pointWallet = value;
   }
+
+  String _studentWalletId = '';
+  String get studentWalletId => _studentWalletId;
+  set studentWalletId(String value) {
+    _studentWalletId = value;
+  }
+
+  bool _hasClaimedToday = false;
+  bool get hasClaimedToday => _hasClaimedToday;
+  set hasClaimedToday(bool value) {
+    _hasClaimedToday = value;
+  }
+
+  int _balanceWallet = 0;
+  int get balanceWallet => _balanceWallet;
+  set balanceWallet(int value) {
+    _balanceWallet = value;
+  }
+
+  int _newBalance = 0;
+  int get newBalance => _newBalance;
+  set newBalance(int value) {
+    _newBalance = value;
+  }
 }
 
 void _safeInit(Function() initializeField) {

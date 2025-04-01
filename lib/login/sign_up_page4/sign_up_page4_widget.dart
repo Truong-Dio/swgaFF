@@ -6,6 +6,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'sign_up_page4_model.dart';
 export 'sign_up_page4_model.dart';
 
@@ -41,6 +42,8 @@ class _SignUpPage4WidgetState extends State<SignUpPage4Widget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -203,13 +206,22 @@ class _SignUpPage4WidgetState extends State<SignUpPage4Widget> {
                                 safeSetState(() => _model.step3 = false);
                                 return;
                               }
-                              FFAppState().photoUploaded = _model
-                                  .uploadModel1.uploadedLocalFile.width!
-                                  .toString();
-                              safeSetState(() {});
                               _model.success = await SWalletAPIGroup
                                   .apiAccountStudentRegisterPOSTCall
-                                  .call();
+                                  .call(
+                                userName: FFAppState().userName,
+                                password: FFAppState().password,
+                                phone: FFAppState().phone,
+                                email: FFAppState().email,
+                                campusId: FFAppState().campusId,
+                                studentCardFront:
+                                    _model.uploadModel2.uploadedLocalFile,
+                                fullName: FFAppState().fullName,
+                                code: FFAppState().code,
+                                gender: FFAppState().gender,
+                                dateOfBirth: FFAppState().selectedDOB,
+                                address: FFAppState().address,
+                              );
 
                               context.pushNamed(BottomPageWidget.routeName);
 

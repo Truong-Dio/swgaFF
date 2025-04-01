@@ -47,7 +47,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : SignInPageWidget(),
+          : SplashPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,7 +62,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : SignInPageWidget(),
+              : SplashPageWidget(),
           routes: [
             FFRoute(
               name: SplashPageWidget.routeName,
@@ -90,9 +90,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ForgotPasswordPageWidget(),
             ),
             FFRoute(
-              name: ProfilePage2Widget.routeName,
-              path: ProfilePage2Widget.routePath,
-              builder: (context, params) => ProfilePage2Widget(),
+              name: ProfilePage2oldWidget.routeName,
+              path: ProfilePage2oldWidget.routePath,
+              builder: (context, params) => ProfilePage2oldWidget(),
             ),
             FFRoute(
               name: MyProfilePageWidget.routeName,
@@ -206,7 +206,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: CartPageWidget.routeName,
               path: CartPageWidget.routePath,
-              builder: (context, params) => CartPageWidget(),
+              builder: (context, params) => CartPageWidget(
+                voucherId: params.getParam(
+                  'voucherId',
+                  ParamType.String,
+                ),
+              ),
             ),
             FFRoute(
               name: NotificationPageWidget.routeName,
@@ -279,9 +284,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SignUpPage4Widget(),
             ),
             FFRoute(
-              name: DailySigninWidget.routeName,
-              path: DailySigninWidget.routePath,
-              builder: (context, params) => DailySigninWidget(),
+              name: CheckindailyWidget.routeName,
+              path: CheckindailyWidget.routePath,
+              builder: (context, params) => CheckindailyWidget(),
+            ),
+            FFRoute(
+              name: GameDailySigninWidget.routeName,
+              path: GameDailySigninWidget.routePath,
+              builder: (context, params) => GameDailySigninWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

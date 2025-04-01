@@ -29,14 +29,6 @@ class SignUpPageold2Model extends FlutterFlowModel<SignUpPageold2Widget> {
   FocusNode? addressFocusNode;
   TextEditingController? addressTextController;
   String? Function(BuildContext, String?)? addressTextControllerValidator;
-  String? _addressTextControllerValidator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Address is required';
-    }
-
-    return null;
-  }
-
   // State field(s) for University widget.
   String? universityValue;
   FormFieldController<String>? universityValueController;
@@ -45,7 +37,6 @@ class SignUpPageold2Model extends FlutterFlowModel<SignUpPageold2Widget> {
   void initState(BuildContext context) {
     uploadModel = createModel(context, () => UploadModel());
     codeTextTextControllerValidator = _codeTextTextControllerValidator;
-    addressTextControllerValidator = _addressTextControllerValidator;
   }
 
   @override

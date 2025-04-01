@@ -125,7 +125,7 @@ class _SignUpPage3WidgetState extends State<SignUpPage3Widget> {
                             controller: _model.universityValueController ??=
                                 FormFieldController<String>(null),
                             options: List<String>.from([
-                              '01JQ792FJWY7VBDD9G50VKVDT7',
+                              '01JQPAEHZCXBDQT76S92V5X8C1',
                               '01JQ78BQK9Z67M08ESER8JG2FY',
                               '01JQ78BQK9Z67M08ESER8JG2FY',
                               '01JQ78BQK9Z67M08ESER8JG2FY',
@@ -245,6 +245,9 @@ class _SignUpPage3WidgetState extends State<SignUpPage3Widget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                           ),
