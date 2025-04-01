@@ -2,7 +2,6 @@ import '/all_component/appbar/appbar_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'edit_profile_page_model.dart';
@@ -35,6 +34,9 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
     _model.textController2 ??= TextEditingController(text: FFAppState().email);
     _model.textFieldFocusNode2 ??= FocusNode();
 
+    _model.textController3 ??= TextEditingController(text: FFAppState().phone);
+    _model.textFieldFocusNode3 ??= FocusNode();
+
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
@@ -56,7 +58,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -94,7 +96,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                               alignment: AlignmentDirectional(1.0, 1.0),
                               children: [
                                 Image.asset(
-                                  'assets/images/profile.png',
+                                  'assets/images/OIP.jpg',
                                   width: 87.0,
                                   height: 87.0,
                                   fit: BoxFit.contain,
@@ -133,7 +135,7 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                           textInputAction: TextInputAction.next,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'First name',
+                            labelText: 'Full name',
                             labelStyle: FlutterFlowTheme.of(context)
                                 .labelMedium
                                 .override(
@@ -192,6 +194,9 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                           ),
@@ -273,6 +278,9 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                           ),
@@ -287,10 +295,89 @@ class _EditProfilePageWidgetState extends State<EditProfilePageWidget> {
                           validator: _model.textController2Validator
                               .asValidator(context),
                         ),
-                        custom_widgets.LabelCountryCodeWidget(
-                          width: double.infinity,
-                          height: 56.0,
-                          initialValue: '',
+                        TextFormField(
+                          controller: _model.textController3,
+                          focusNode: _model.textFieldFocusNode3,
+                          autofocus: false,
+                          textInputAction: TextInputAction.next,
+                          obscureText: false,
+                          decoration: InputDecoration(
+                            labelText: 'Phone',
+                            labelStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  color:
+                                      FlutterFlowTheme.of(context).primaryText,
+                                  fontSize: 14.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                ),
+                            hintText: 'Phone',
+                            hintStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  color: FlutterFlowTheme.of(context).black40,
+                                  fontSize: 17.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                ),
+                            errorStyle: FlutterFlowTheme.of(context)
+                                .bodyMedium
+                                .override(
+                                  fontFamily: 'SF Pro Text',
+                                  color: FlutterFlowTheme.of(context).error,
+                                  fontSize: 15.0,
+                                  letterSpacing: 0.0,
+                                  useGoogleFonts: false,
+                                  lineHeight: 1.2,
+                                ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).borderColor,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).primaryText,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: FlutterFlowTheme.of(context).error,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            filled: true,
+                            fillColor:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            contentPadding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 13.0, 16.0, 12.0),
+                          ),
+                          style:
+                              FlutterFlowTheme.of(context).bodyMedium.override(
+                                    fontFamily: 'SF Pro Text',
+                                    fontSize: 17.0,
+                                    letterSpacing: 0.0,
+                                    useGoogleFonts: false,
+                                  ),
+                          keyboardType: TextInputType.phone,
+                          cursorColor: FlutterFlowTheme.of(context).primary,
+                          validator: _model.textController3Validator
+                              .asValidator(context),
                         ),
                       ].divide(SizedBox(height: 16.0)),
                     ),

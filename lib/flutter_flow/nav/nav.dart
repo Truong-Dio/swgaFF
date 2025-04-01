@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 import '/backend/schema/structs/index.dart';
 
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
@@ -46,7 +47,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
               ),
             )
-          : SignInPageWidget(),
+          : SplashPageWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -61,7 +62,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                     ),
                   ),
                 )
-              : SignInPageWidget(),
+              : SplashPageWidget(),
           routes: [
             FFRoute(
               name: SplashPageWidget.routeName,
@@ -79,9 +80,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => SignInPageWidget(),
             ),
             FFRoute(
-              name: SignUpPage2Widget.routeName,
-              path: SignUpPage2Widget.routePath,
-              builder: (context, params) => SignUpPage2Widget(),
+              name: SignUpPageold2Widget.routeName,
+              path: SignUpPageold2Widget.routePath,
+              builder: (context, params) => SignUpPageold2Widget(),
             ),
             FFRoute(
               name: ForgotPasswordPageWidget.routeName,
@@ -89,9 +90,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ForgotPasswordPageWidget(),
             ),
             FFRoute(
-              name: ProfilePageWidget.routeName,
-              path: ProfilePageWidget.routePath,
-              builder: (context, params) => ProfilePageWidget(),
+              name: ProfilePage2oldWidget.routeName,
+              path: ProfilePage2oldWidget.routePath,
+              builder: (context, params) => ProfilePage2oldWidget(),
             ),
             FFRoute(
               name: MyProfilePageWidget.routeName,
@@ -146,6 +147,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   'title',
                   ParamType.String,
                 ),
+                brandId: params.getParam(
+                  'brandId',
+                  ParamType.String,
+                ),
               ),
             ),
             FFRoute(
@@ -162,11 +167,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: VoucherDetailPageWidget.routeName,
               path: VoucherDetailPageWidget.routePath,
               builder: (context, params) => VoucherDetailPageWidget(
-                detail: params.getParam(
-                  'detail',
-                  ParamType.DataStruct,
-                  isList: false,
-                  structBuilder: DetailStruct.fromSerializableMap,
+                voucherId: params.getParam(
+                  'voucherId',
+                  ParamType.String,
                 ),
               ),
             ),
@@ -196,11 +199,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ResetPasswordPageWidget(),
             ),
             FFRoute(
-              name: CategoriesPageWidget.routeName,
-              path: CategoriesPageWidget.routePath,
-              builder: (context, params) => CategoriesPageWidget(),
-            ),
-            FFRoute(
               name: CheckOutPageWidget.routeName,
               path: CheckOutPageWidget.routePath,
               builder: (context, params) => CheckOutPageWidget(),
@@ -208,17 +206,17 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: CartPageWidget.routeName,
               path: CartPageWidget.routePath,
-              builder: (context, params) => CartPageWidget(),
+              builder: (context, params) => CartPageWidget(
+                voucherId: params.getParam(
+                  'voucherId',
+                  ParamType.String,
+                ),
+              ),
             ),
             FFRoute(
               name: NotificationPageWidget.routeName,
               path: NotificationPageWidget.routePath,
               builder: (context, params) => NotificationPageWidget(),
-            ),
-            FFRoute(
-              name: SearchResultWidget.routeName,
-              path: SearchResultWidget.routePath,
-              builder: (context, params) => SearchResultWidget(),
             ),
             FFRoute(
               name: AboutusPageWidget.routeName,
@@ -236,9 +234,64 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ChangePasswordPageWidget(),
             ),
             FFRoute(
+              name: SignUpPageOldWidget.routeName,
+              path: SignUpPageOldWidget.routePath,
+              builder: (context, params) => SignUpPageOldWidget(),
+            ),
+            FFRoute(
+              name: CampaignNewWidget.routeName,
+              path: CampaignNewWidget.routePath,
+              builder: (context, params) => CampaignNewWidget(),
+            ),
+            FFRoute(
+              name: QuizGamePageWidget.routeName,
+              path: QuizGamePageWidget.routePath,
+              builder: (context, params) => QuizGamePageWidget(),
+            ),
+            FFRoute(
+              name: LeaderBoardWidget.routeName,
+              path: LeaderBoardWidget.routePath,
+              builder: (context, params) => LeaderBoardWidget(),
+            ),
+            FFRoute(
+              name: LuckyWheelWidget.routeName,
+              path: LuckyWheelWidget.routePath,
+              builder: (context, params) => LuckyWheelWidget(),
+            ),
+            FFRoute(
               name: SignUpPageWidget.routeName,
               path: SignUpPageWidget.routePath,
               builder: (context, params) => SignUpPageWidget(),
+            ),
+            FFRoute(
+              name: SignUpPage2Widget.routeName,
+              path: SignUpPage2Widget.routePath,
+              builder: (context, params) => SignUpPage2Widget(),
+            ),
+            FFRoute(
+              name: ProfilePageWidget.routeName,
+              path: ProfilePageWidget.routePath,
+              builder: (context, params) => ProfilePageWidget(),
+            ),
+            FFRoute(
+              name: SignUpPage3Widget.routeName,
+              path: SignUpPage3Widget.routePath,
+              builder: (context, params) => SignUpPage3Widget(),
+            ),
+            FFRoute(
+              name: SignUpPage4Widget.routeName,
+              path: SignUpPage4Widget.routePath,
+              builder: (context, params) => SignUpPage4Widget(),
+            ),
+            FFRoute(
+              name: CheckindailyWidget.routeName,
+              path: CheckindailyWidget.routePath,
+              builder: (context, params) => CheckindailyWidget(),
+            ),
+            FFRoute(
+              name: GameDailySigninWidget.routeName,
+              path: GameDailySigninWidget.routePath,
+              builder: (context, params) => GameDailySigninWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ),

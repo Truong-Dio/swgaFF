@@ -65,7 +65,7 @@ class _AppbarWidgetState extends State<AppbarWidget>
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: FlutterFlowTheme.of(context).secondaryBackground,
+        color: Color(0xFF2ECC71),
       ),
       child: Padding(
         padding: EdgeInsetsDirectional.fromSTEB(12.0, 12.0, 16.0, 12.0),
@@ -103,9 +103,9 @@ class _AppbarWidgetState extends State<AppbarWidget>
               child: AutoSizeText(
                 valueOrDefault<String>(
                   widget.title,
-                  'title',
+                  'TITLE',
                 ),
-                textAlign: TextAlign.start,
+                textAlign: TextAlign.center,
                 maxLines: 1,
                 minFontSize: 22.0,
                 style: FlutterFlowTheme.of(context).bodyMedium.override(

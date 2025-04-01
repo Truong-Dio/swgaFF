@@ -45,7 +45,7 @@ class _TermsConditionPageWidgetState extends State<TermsConditionPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -85,7 +85,7 @@ class _TermsConditionPageWidgetState extends State<TermsConditionPageWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                         child: Text(
-                          'Duis tristique diam nunc. Sed at tincidunt orci. Mauris eget congue leo. Cras varius at ante vitae convallis. Duis semper magna nec tortor tincidunt, id tincidunt quam blandit. Vivamus vehicula dictum magna quis eleifend. ',
+                          'By using the S-Wallet app, you agree to follow these Terms and Conditions. These terms apply to all users, including students, lecturers, and partners. If you do not agree to any part of the terms, you may not access or use the app and its services.',
                           textAlign: TextAlign.justify,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -113,7 +113,7 @@ class _TermsConditionPageWidgetState extends State<TermsConditionPageWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                         child: Text(
-                          'Sed sollicitudin nisi mollis libero consectetur rutrum. Nam maximus mollis nisl quis facilisis. Integer fermentum commodo nibh. Ut mollis tincidunt hendrerit. Duis ipsum velit, maximus sed commodo imperdiet, dapibus id velit. Nullam in maximus enim. Pellentesque vulputate nisi sit amet lacus pulvinar finibus.',
+                          'S-Wallet provides a platform for students at VNU-HCMC to earn and redeem rewards through campus-related activities and gamified features. We reserve the right to modify, pause, or discontinue any part of the service at any time without notice. Users are expected to behave respectfully and follow both community and legal guidelines when using the app.',
                           textAlign: TextAlign.justify,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
@@ -141,8 +141,8 @@ class _TermsConditionPageWidgetState extends State<TermsConditionPageWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Text(
-                          'Sed sollicitudin nisi mollis libero consectetur rutrum. Nam maximus mollis nisl quis facilisis. Integer fermentum commodo nibh. Ut mollis tincidunt hendrerit. Duis ipsum velit, maximus sed commodo imperdiet, dapibus id velit. Nullam in maximus enim. Pellentesque vulputate nisi sit amet lacus pulvinar finibus. Nullam sit amet enim id nibh volutpat gravida vitae in orci. ',
-                          textAlign: TextAlign.justify,
+                          'Users must:\n- Be verified as part of a VNU-HCMC institution.\n- Use the app for personal, non-commercial purposes.\n- Not misuse or attempt to exploit the reward system.\n- Respect the privacy and safety of others.\nViolation of these conditions may result in suspension or permanent removal of your account from the platform. ',
+                          textAlign: TextAlign.start,
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'SF Pro Text',

@@ -1,6 +1,6 @@
-import '/all_component/category_contain/category_contain_widget.dart';
-import '/all_component/order_empty/order_empty_widget.dart';
-import '/all_component/product_contanier/product_contanier_widget.dart';
+import '/all_component/updatenav/updatenav_widget.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'bottom_page_widget.dart' show BottomPageWidget;
@@ -19,53 +19,22 @@ class BottomPageModel extends FlutterFlowModel<BottomPageWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for PageView widget.
-  PageController? pageViewController;
-
-  int get pageViewCurrentIndex => pageViewController != null &&
-          pageViewController!.hasClients &&
-          pageViewController!.page != null
-      ? pageViewController!.page!.round()
-      : 0;
-  // Models for CategoryContain dynamic component.
-  late FlutterFlowDynamicModels<CategoryContainModel> categoryContainModels;
-  // Models for ProductContanier dynamic component.
-  late FlutterFlowDynamicModels<ProductContanierModel> productContanierModels1;
-  // State field(s) for TabBar widget.
-  TabController? tabBarController;
-  int get tabBarCurrentIndex =>
-      tabBarController != null ? tabBarController!.index : 0;
-
-  // Model for OrderEmpty component.
-  late OrderEmptyModel orderEmptyModel1;
-  // Model for OrderEmpty component.
-  late OrderEmptyModel orderEmptyModel2;
-  // Model for OrderEmpty component.
-  late OrderEmptyModel orderEmptyModel3;
-  // Models for ProductContanier dynamic component.
-  late FlutterFlowDynamicModels<ProductContanierModel> productContanierModels2;
+  // Stores action output result for [Backend Call - API (/api/Voucher/get-all-vouchers GET)] action in BottomPage widget.
+  ApiCallResponse? voucherGetResult;
+  // Stores action output result for [Backend Call - API (/api/Wallet/{studentId}/{type} GET)] action in BottomPage widget.
+  ApiCallResponse? stuWalletIdget;
+  // Stores action output result for [Backend Call - Query Rows] action in BottomPage widget.
+  List<UserwavouchersRow>? checkSupaWV;
+  // Model for updatenav component.
+  late UpdatenavModel updatenavModel;
 
   @override
   void initState(BuildContext context) {
-    categoryContainModels =
-        FlutterFlowDynamicModels(() => CategoryContainModel());
-    productContanierModels1 =
-        FlutterFlowDynamicModels(() => ProductContanierModel());
-    orderEmptyModel1 = createModel(context, () => OrderEmptyModel());
-    orderEmptyModel2 = createModel(context, () => OrderEmptyModel());
-    orderEmptyModel3 = createModel(context, () => OrderEmptyModel());
-    productContanierModels2 =
-        FlutterFlowDynamicModels(() => ProductContanierModel());
+    updatenavModel = createModel(context, () => UpdatenavModel());
   }
 
   @override
   void dispose() {
-    categoryContainModels.dispose();
-    productContanierModels1.dispose();
-    tabBarController?.dispose();
-    orderEmptyModel1.dispose();
-    orderEmptyModel2.dispose();
-    orderEmptyModel3.dispose();
-    productContanierModels2.dispose();
+    updatenavModel.dispose();
   }
 }

@@ -47,10 +47,6 @@ class FFAppState extends ChangeNotifier {
       _campusId = prefs.getString('ff_campusId') ?? _campusId;
     });
     _safeInit(() {
-      _studentCardFront =
-          prefs.getString('ff_studentCardFront') ?? _studentCardFront;
-    });
-    _safeInit(() {
       _code = prefs.getString('ff_code') ?? _code;
     });
     _safeInit(() {
@@ -70,6 +66,18 @@ class FFAppState extends ChangeNotifier {
     });
     _safeInit(() {
       _brandName = prefs.getString('ff_brandName') ?? _brandName;
+    });
+    _safeInit(() {
+      _token = prefs.getString('ff_token') ?? _token;
+    });
+    _safeInit(() {
+      _accountId = prefs.getString('ff_accountId') ?? _accountId;
+    });
+    _safeInit(() {
+      _roleId = prefs.getString('ff_roleId') ?? _roleId;
+    });
+    _safeInit(() {
+      _roleName = prefs.getString('ff_roleName') ?? _roleName;
     });
   }
 
@@ -99,60 +107,6 @@ class FFAppState extends ChangeNotifier {
   set introindex(int value) {
     _introindex = value;
     prefs.setInt('ff_introindex', value);
-  }
-
-  List<CategoryStruct> _categorylist = [
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"0\",\"name\":\"Calculator\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/b52ejrgmsw5v/cal.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"1\",\"name\":\"Pencil\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/cjmx9nig7gce/pencile.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"2\",\"name\":\"Note Book\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/zozfsbjb59ls/book.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"3\",\"name\":\"Eraser\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/jajucxo4oqof/eeraser.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"4\",\"name\":\"Water Color\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/oi2l9dx09pji/color.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"5\",\"name\":\"File\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/zr0jf7dp2ib9/file.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"6\",\"name\":\"Scissor\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/zcwexa29kjxr/scissors.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"7\",\"name\":\"Sharpener\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/kfbr7gmq21ap/sharpner.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"8\",\"name\":\"Drawing Pin\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/yw90we81c5pz/pin.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"9\",\"name\":\"Stapler\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/u2t0lxsmfiy0/stapler.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"10\",\"name\":\"Paper Clip\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/ywfzvnvadt1m/peper_clip.png\"}')),
-    CategoryStruct.fromSerializableMap(jsonDecode(
-        '{\"id\":\"11\",\"name\":\"Calendar\",\"image\":\"https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/stationery-ecommerce-app-dev-21z202/assets/a07r8w2um191/calendar.png\"}'))
-  ];
-  List<CategoryStruct> get categorylist => _categorylist;
-  set categorylist(List<CategoryStruct> value) {
-    _categorylist = value;
-  }
-
-  void addToCategorylist(CategoryStruct value) {
-    categorylist.add(value);
-  }
-
-  void removeFromCategorylist(CategoryStruct value) {
-    categorylist.remove(value);
-  }
-
-  void removeAtIndexFromCategorylist(int index) {
-    categorylist.removeAt(index);
-  }
-
-  void updateCategorylistAtIndex(
-    int index,
-    CategoryStruct Function(CategoryStruct) updateFn,
-  ) {
-    categorylist[index] = updateFn(_categorylist[index]);
-  }
-
-  void insertAtIndexInCategorylist(int index, CategoryStruct value) {
-    categorylist.insert(index, value);
   }
 
   List<DetailStruct> _detaillist = [
@@ -397,13 +351,6 @@ class FFAppState extends ChangeNotifier {
     prefs.setString('ff_campusId', value);
   }
 
-  String _studentCardFront = '';
-  String get studentCardFront => _studentCardFront;
-  set studentCardFront(String value) {
-    _studentCardFront = value;
-    prefs.setString('ff_studentCardFront', value);
-  }
-
   String _code = '';
   String get code => _code;
   set code(String value) {
@@ -438,6 +385,192 @@ class FFAppState extends ChangeNotifier {
   set brandName(String value) {
     _brandName = value;
     prefs.setString('ff_brandName', value);
+  }
+
+  String _photoUploaded = 'Uploaded successfully';
+  String get photoUploaded => _photoUploaded;
+  set photoUploaded(String value) {
+    _photoUploaded = value;
+  }
+
+  String _password = '';
+  String get password => _password;
+  set password(String value) {
+    _password = value;
+  }
+
+  /// authToken
+  String _token = '';
+  String get token => _token;
+  set token(String value) {
+    _token = value;
+    prefs.setString('ff_token', value);
+  }
+
+  /// loginaccount
+  String _accountId = '';
+  String get accountId => _accountId;
+  set accountId(String value) {
+    _accountId = value;
+    prefs.setString('ff_accountId', value);
+  }
+
+  String _roleId = '';
+  String get roleId => _roleId;
+  set roleId(String value) {
+    _roleId = value;
+    prefs.setString('ff_roleId', value);
+  }
+
+  String _roleName = '';
+  String get roleName => _roleName;
+  set roleName(String value) {
+    _roleName = value;
+    prefs.setString('ff_roleName', value);
+  }
+
+  List<ItemsStruct> _campaignList = [];
+  List<ItemsStruct> get campaignList => _campaignList;
+  set campaignList(List<ItemsStruct> value) {
+    _campaignList = value;
+  }
+
+  void addToCampaignList(ItemsStruct value) {
+    campaignList.add(value);
+  }
+
+  void removeFromCampaignList(ItemsStruct value) {
+    campaignList.remove(value);
+  }
+
+  void removeAtIndexFromCampaignList(int index) {
+    campaignList.removeAt(index);
+  }
+
+  void updateCampaignListAtIndex(
+    int index,
+    ItemsStruct Function(ItemsStruct) updateFn,
+  ) {
+    campaignList[index] = updateFn(_campaignList[index]);
+  }
+
+  void insertAtIndexInCampaignList(int index, ItemsStruct value) {
+    campaignList.insert(index, value);
+  }
+
+  List<VoucherItemsStruct> _voucherList = [];
+  List<VoucherItemsStruct> get voucherList => _voucherList;
+  set voucherList(List<VoucherItemsStruct> value) {
+    _voucherList = value;
+  }
+
+  void addToVoucherList(VoucherItemsStruct value) {
+    voucherList.add(value);
+  }
+
+  void removeFromVoucherList(VoucherItemsStruct value) {
+    voucherList.remove(value);
+  }
+
+  void removeAtIndexFromVoucherList(int index) {
+    voucherList.removeAt(index);
+  }
+
+  void updateVoucherListAtIndex(
+    int index,
+    VoucherItemsStruct Function(VoucherItemsStruct) updateFn,
+  ) {
+    voucherList[index] = updateFn(_voucherList[index]);
+  }
+
+  void insertAtIndexInVoucherList(int index, VoucherItemsStruct value) {
+    voucherList.insert(index, value);
+  }
+
+  String _defaultBrandVoucher = '01JMH34A946RYPBC6AAAHTPPQF';
+  String get defaultBrandVoucher => _defaultBrandVoucher;
+  set defaultBrandVoucher(String value) {
+    _defaultBrandVoucher = value;
+  }
+
+  String _selectedDOB = '';
+  String get selectedDOB => _selectedDOB;
+  set selectedDOB(String value) {
+    _selectedDOB = value;
+  }
+
+  List<GameListStruct> _gameList = [
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"0\",\"gameName\":\"luckyWheel\",\"image\":\"https://images.unsplash.com/vector-1743358676890-6641eadd1880?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}')),
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"1\",\"gameName\":\"DailySignIn\",\"image\":\"https://images.unsplash.com/vector-1743358824701-93c700575771?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}')),
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"2\",\"gameName\":\"Quiz\",\"image\":\"https://images.unsplash.com/vector-1743358698276-fef11188e730?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}')),
+    GameListStruct.fromSerializableMap(jsonDecode(
+        '{\"id\":\"3\",\"gameName\":\"Leaderboard\",\"image\":\"https://images.unsplash.com/vector-1743358676792-4d0fbe5bb3d0?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"}'))
+  ];
+  List<GameListStruct> get gameList => _gameList;
+  set gameList(List<GameListStruct> value) {
+    _gameList = value;
+  }
+
+  void addToGameList(GameListStruct value) {
+    gameList.add(value);
+  }
+
+  void removeFromGameList(GameListStruct value) {
+    gameList.remove(value);
+  }
+
+  void removeAtIndexFromGameList(int index) {
+    gameList.removeAt(index);
+  }
+
+  void updateGameListAtIndex(
+    int index,
+    GameListStruct Function(GameListStruct) updateFn,
+  ) {
+    gameList[index] = updateFn(_gameList[index]);
+  }
+
+  void insertAtIndexInGameList(int index, GameListStruct value) {
+    gameList.insert(index, value);
+  }
+
+  String _studentID = '';
+  String get studentID => _studentID;
+  set studentID(String value) {
+    _studentID = value;
+  }
+
+  int _pointWallet = 0;
+  int get pointWallet => _pointWallet;
+  set pointWallet(int value) {
+    _pointWallet = value;
+  }
+
+  String _studentWalletId = '';
+  String get studentWalletId => _studentWalletId;
+  set studentWalletId(String value) {
+    _studentWalletId = value;
+  }
+
+  bool _hasClaimedToday = false;
+  bool get hasClaimedToday => _hasClaimedToday;
+  set hasClaimedToday(bool value) {
+    _hasClaimedToday = value;
+  }
+
+  int _balanceWallet = 0;
+  int get balanceWallet => _balanceWallet;
+  set balanceWallet(int value) {
+    _balanceWallet = value;
+  }
+
+  int _newBalance = 0;
+  int get newBalance => _newBalance;
+  set newBalance(int value) {
+    _newBalance = value;
   }
 }
 

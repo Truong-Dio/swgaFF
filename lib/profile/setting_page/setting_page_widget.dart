@@ -46,7 +46,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -56,7 +56,7 @@ class _SettingPageWidgetState extends State<SettingPageWidget> {
                 model: _model.appbarModel,
                 updateCallback: () => safeSetState(() {}),
                 child: AppbarWidget(
-                  title: 'Settings',
+                  title: 'Setting',
                 ),
               ),
               Expanded(

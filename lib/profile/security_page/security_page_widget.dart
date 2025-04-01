@@ -47,7 +47,7 @@ class _SecurityPageWidgetState extends State<SecurityPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -103,7 +103,7 @@ class _SecurityPageWidgetState extends State<SecurityPageWidget> {
                                   width: 48.0,
                                   height: 48.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
+                                    color: Color(0xFF2ECC71),
                                     shape: BoxShape.circle,
                                   ),
                                   child: Align(
@@ -204,8 +204,7 @@ class _SecurityPageWidgetState extends State<SecurityPageWidget> {
                                     width: 48.0,
                                     height: 48.0,
                                     decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: Color(0xFF2ECC71),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Align(
@@ -313,8 +312,7 @@ class _SecurityPageWidgetState extends State<SecurityPageWidget> {
                                     width: 48.0,
                                     height: 48.0,
                                     decoration: BoxDecoration(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
+                                      color: Color(0xFF2ECC71),
                                       shape: BoxShape.circle,
                                     ),
                                     child: Align(

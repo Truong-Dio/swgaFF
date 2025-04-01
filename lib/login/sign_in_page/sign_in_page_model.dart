@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
 import 'sign_in_page_widget.dart' show SignInPageWidget;
@@ -13,12 +14,9 @@ class SignInPageModel extends FlutterFlowModel<SignInPageWidget> {
   String? Function(BuildContext, String?)? textController1Validator;
   String? _textController1Validator(BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
-      return 'Please enter email address';
+      return 'Please enter your username';
     }
 
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Please enter email address';
-    }
     return null;
   }
 
@@ -34,6 +32,15 @@ class SignInPageModel extends FlutterFlowModel<SignInPageWidget> {
 
     return null;
   }
+
+  // Stores action output result for [Backend Call - API (/api/Auth/login POST)] action in Button widget.
+  ApiCallResponse? authLogin;
+  // Stores action output result for [Backend Call - API (/api/Student/account/{id} GET)] action in Button widget.
+  ApiCallResponse? accountStuData;
+  // Stores action output result for [Backend Call - API (/api/Account/{id} GET)] action in Button widget.
+  ApiCallResponse? accountIdGet;
+  // Stores action output result for [Backend Call - API (/api/Student/{id} GET)] action in Button widget.
+  ApiCallResponse? studentIdGet;
 
   @override
   void initState(BuildContext context) {

@@ -1,4 +1,4 @@
-# Stationery App Template
+# swallet
 
 A new Flutter project.
 

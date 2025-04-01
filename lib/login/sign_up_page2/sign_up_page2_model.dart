@@ -1,3 +1,4 @@
+import '/all_component/appbar/appbar_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/index.dart';
@@ -8,69 +9,35 @@ class SignUpPage2Model extends FlutterFlowModel<SignUpPage2Widget> {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  // Model for Appbar component.
+  late AppbarModel appbarModel;
   // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode1;
+  FocusNode? textFieldFocusNode;
   TextEditingController? textController1;
   String? Function(BuildContext, String?)? textController1Validator;
-  String? _textController1Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter email address';
-    }
-
-    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
-      return 'Please enter email address';
-    }
-    return null;
-  }
-
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
-
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode2;
-  TextEditingController? textController2;
-  late bool passwordVisibility;
-  String? Function(BuildContext, String?)? textController2Validator;
-  String? _textController2Validator(BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Please enter password';
-    }
-
-    return null;
-  }
-
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode3;
-  TextEditingController? textController3;
-  String? Function(BuildContext, String?)? textController3Validator;
-  // State field(s) for TextField widget.
-  FocusNode? textFieldFocusNode4;
-  TextEditingController? textController4;
-  String? Function(BuildContext, String?)? textController4Validator;
-  // State field(s) for DropDown widget.
-  String? dropDownValue;
-  FormFieldController<String>? dropDownValueController;
+  // State field(s) for Gender widget.
+  int? genderValue;
+  FormFieldController<int>? genderValueController;
+  // State field(s) for Address widget.
+  FocusNode? addressFocusNode;
+  TextEditingController? addressTextController;
+  String? Function(BuildContext, String?)? addressTextControllerValidator;
+  DateTime? datePicked;
+  // Stores action output result for [Validate Form] action in Button widget.
+  bool? step2;
 
   @override
   void initState(BuildContext context) {
-    textController1Validator = _textController1Validator;
-    passwordVisibility = false;
-    textController2Validator = _textController2Validator;
+    appbarModel = createModel(context, () => AppbarModel());
   }
 
   @override
   void dispose() {
-    textFieldFocusNode1?.dispose();
+    appbarModel.dispose();
+    textFieldFocusNode?.dispose();
     textController1?.dispose();
 
-    textFieldFocusNode2?.dispose();
-    textController2?.dispose();
-
-    textFieldFocusNode3?.dispose();
-    textController3?.dispose();
-
-    textFieldFocusNode4?.dispose();
-    textController4?.dispose();
+    addressFocusNode?.dispose();
+    addressTextController?.dispose();
   }
 }

@@ -1,4 +1,3 @@
-import '';
 import '/all_component/add_card_bottomsheet/add_card_bottomsheet_widget.dart';
 import '/all_component/appbar/appbar_widget.dart';
 import '/all_component/order_successfull/order_successfull_widget.dart';
@@ -49,7 +48,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
@@ -378,7 +377,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                           EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                       iconPadding:
                           EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: Colors.transparent,
+                      color: FlutterFlowTheme.of(context).primaryBackground,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
                                 fontFamily: 'SF Pro Text',
@@ -445,7 +444,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: Color(0xFF2ECC71),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'SF Pro Text',
@@ -462,7 +461,7 @@ class _PaymentPageWidgetState extends State<PaymentPageWidget> {
                             color: Colors.transparent,
                             width: 1.0,
                           ),
-                          borderRadius: BorderRadius.circular(8.0),
+                          borderRadius: BorderRadius.circular(24.0),
                         ),
                         showLoadingIndicator: false,
                       ),

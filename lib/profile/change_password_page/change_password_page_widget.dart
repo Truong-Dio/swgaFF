@@ -1,8 +1,11 @@
 import '/all_component/appbar/appbar_widget.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/index.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'change_password_page_model.dart';
 export 'change_password_page_model.dart';
 
@@ -45,6 +48,8 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -52,17 +57,24 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
       },
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Color(0xFFEFFFF4),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              wrapWithModel(
-                model: _model.appbarModel,
-                updateCallback: () => safeSetState(() {}),
-                child: AppbarWidget(
-                  title: 'Change Password',
+              Container(
+                width: 479.0,
+                height: 70.96,
+                decoration: BoxDecoration(
+                  color: Color(0xFF2ECC71),
+                ),
+                child: wrapWithModel(
+                  model: _model.appbarModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: AppbarWidget(
+                    title: 'Change Password',
+                  ),
                 ),
               ),
               Flexible(
@@ -154,6 +166,9 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                                 ),
                                 borderRadius: BorderRadius.circular(12.0),
                               ),
+                              filled: true,
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
                               contentPadding: EdgeInsetsDirectional.fromSTEB(
                                   16.0, 13.0, 16.0, 12.0),
                               suffixIcon: InkWell(
@@ -253,6 +268,9 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                               ),
                               borderRadius: BorderRadius.circular(12.0),
                             ),
+                            filled: true,
+                            fillColor: FlutterFlowTheme.of(context)
+                                .secondaryBackground,
                             contentPadding: EdgeInsetsDirectional.fromSTEB(
                                 16.0, 13.0, 16.0, 12.0),
                             suffixIcon: InkWell(
@@ -292,13 +310,15 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16.0, 48.0, 16.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.formKey.currentState == null ||
-                        !_model.formKey.currentState!.validate()) {
-                      return;
-                    }
                     if (_model.textController1.text ==
                         _model.textController2.text) {
-                      context.safePop();
+                      _model.apiResultChangePassword =
+                          await SWalletAPIGroup.apiAccountidPUTCall.call(
+                        id: FFAppState().accountId,
+                        phone: FFAppState().phone,
+                        email: FFAppState().email,
+                        oldPassword: FFAppState().password,
+                      );
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -314,6 +334,10 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                         ),
                       );
                     }
+
+                    context.pushNamed(MyProfilePageWidget.routeName);
+
+                    safeSetState(() {});
                   },
                   text: 'Save',
                   options: FFButtonOptions(
@@ -323,7 +347,7 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                         EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: FlutterFlowTheme.of(context).primary,
+                    color: Color(0xFF2ECC71),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'SF Pro Text',
                           color:
@@ -339,7 +363,7 @@ class _ChangePasswordPageWidgetState extends State<ChangePasswordPageWidget> {
                       color: Colors.transparent,
                       width: 1.0,
                     ),
-                    borderRadius: BorderRadius.circular(8.0),
+                    borderRadius: BorderRadius.circular(24.0),
                   ),
                 ),
               ),
